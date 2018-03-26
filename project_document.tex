@@ -1,0 +1,80 @@
+%
+% File    : project_document.tex
+% Author  : Mauricio Villarroel
+% Created : Sept 6, 2013
+% ____________________________________________________________________________
+%
+% This program is free software; you can redistribute it and/or modify it
+% under the terms of the GNU General Public License as published by the
+% Free Software Foundation; either version 2 of the License.
+%
+% This program is distributed in the hope that it will be useful, but
+% WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+% Public License for more details.
+% ____________________________________________________________________________
+%
+% DESCRIPTION :
+%
+% Sample main latex file
+% ____________________________________________________________________________
+
+
+\documentclass{mvdocument}
+
+\makeglossaries
+\include{glossary}
+
+%
+% Project author and metadata
+%
+
+\title     {Your title}
+\author    {Author's name}
+\college   {Your college name}
+\university{University of Oxford}
+\universitylogo{oxford-logo}       % File name of the logo
+\supervisor{Supervisor's name}
+\degreedate{Hilary Term, 2048}
+
+%
+% Document contents
+%
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\include{declaration}
+\include{dedication}
+\include{acknowledgements}
+\include{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\listofabbreviations
+
+\mainmatter
+
+%\layout  %Used temporarly for checking layout
+
+\include{chap_introduction}
+\include{chap_literature_review}
+\include{chap_dataset}
+\include{chap_method_1}
+\include{chap_method_2}
+\include{chap_conclusion}
+
+\appendix
+
+\include{appendix_1}
+\include{appendix_2}
+
+\backmatter 
+
+\listofreferences{references}
+
+\end{document}

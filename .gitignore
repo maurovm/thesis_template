@@ -1,32 +1,43 @@
-# Prerequisites
-*.d
+####################
+#   Latex
+####################
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
+*.aux
+*.acn
+*.acr
+*.alg
+*.backup
+*.bbl
+*.bcf
+*-blx.bib
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glg-abr
+*.glo
+*.glo-abr 
+*.gls 
+*.gls-abr 
+*.glsdefs 
+*.gz
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mp
+*.mtc
+*.mtc1
+*.nav
 *.out
-*.app
+*.snm
+*.synctex.gz
+*.tmp
+*.toc
+*.tui 
+*.xml

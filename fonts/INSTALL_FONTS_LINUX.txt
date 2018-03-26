@@ -1,0 +1,11 @@
+
+# Install the Carlito fonts
+
+mkdir -p ~/.fonts
+rsync -avtP fonts/ ~/.fonts/
+
+# Update font cache
+
+fc-cache -fv
+luaotfload-tool -vvv --update --force
+
