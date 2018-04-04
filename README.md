@@ -1,7 +1,7 @@
 # DPhil thesis template
 --------------------------
 
-Latex template for a research progress report or a DPhil thesis for an engineering graduate student at the University of Oxford.
+Latex template for a research progress report or a DPhil thesis for a graduate student of the Department of Engineering Science at the University of Oxford.
 
 Requirements
 --
