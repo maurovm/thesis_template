@@ -1,7 +1,7 @@
 # DPhil thesis template
 --------------------------
 
-Latex template for a research progress report or a DPhil thesis for a graduate student of the Department of Engineering Science at the University of Oxford.
+Latex template for a research progress report, a 4th year project (4YP) or a DPhil thesis for a student of the Department of Engineering Science at the University of Oxford
 
 Requirements
 --
@@ -21,4 +21,4 @@ If you are using a Latex editor, configure it to run the "Lualatex" build proces
 4. lualatex  --interaction=nonstopmode project_document
 
 
-You might need to run the "lualatex" command in setup 4 multiple times depending how complex is your document. Use the script "remove_latex_aux_files.sh" (in Linux or macOS) to clean the latex build.
+You might need to run the "lualatex" command in step 4 multiple times depending how complex is your document. Use the script "remove_latex_aux_files.sh" (in Linux or macOS) to clean temporarily files in the latex build.

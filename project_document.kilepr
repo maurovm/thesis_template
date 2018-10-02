@@ -16,6 +16,13 @@ src_extensions=.tex .ltx .latex .dtx .ins
 MakeIndex=
 QuickBuild=
 
+[document-settings,item:appendix_1.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Indentation Mode=normal
+Mode=LaTeX
+
 [document-settings,item:chap_conclusion.tex]
 Bookmarks=
 Encoding=UTF-8
@@ -80,13 +87,13 @@ order=-1
 
 [item:appendix_1.tex]
 archive=true
-column=22087
-encoding=
-highlight=
-line=0
-mode=
+column=0
+encoding=UTF-8
+highlight=LaTeX
+line=24
+mode=LaTeX
 open=false
-order=-1
+order=2
 
 [item:appendix_2.tex]
 archive=true
@@ -190,10 +197,10 @@ order=-1
 
 [item:mvdocument.cls]
 archive=true
-column=0
+column=7
 encoding=UTF-8
 highlight=LaTeX
-line=337
+line=593
 mode=LaTeX
 open=true
 order=1
@@ -228,6 +235,12 @@ mode=
 open=false
 order=-1
 
+[view-settings,view=0,item:appendix_1.tex]
+CursorColumn=0
+CursorLine=24
+JumpList=
+ViMarks=
+
 [view-settings,view=0,item:chap_conclusion.tex]
 CursorColumn=27
 CursorLine=20
@@ -253,10 +266,10 @@ JumpList=
 ViMarks=.,1,31,[,1,15,],1,31
 
 [view-settings,view=0,item:mvdocument.cls]
-CursorColumn=0
-CursorLine=337
+CursorColumn=7
+CursorLine=593
 JumpList=
-ViMarks=.,337,0,[,337,0,],337,0
+ViMarks=.,583,2,[,583,2,],583,2
 
 [view-settings,view=0,item:project_document.tex]
 CursorColumn=1
