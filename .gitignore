@@ -26,6 +26,7 @@
 *.ilg
 *.ind
 *.ist
+*.kilepr
 *.lof
 *.log
 *.lot
@@ -35,8 +36,10 @@
 *.mtc1
 *.nav
 *.out
+project_document.pdf
 *.snm
 *.synctex.gz
+*.texnicle
 *.tmp
 *.toc
 *.tui 
