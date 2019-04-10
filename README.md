@@ -11,6 +11,8 @@ You will need a recent version of latex installed in your system, such as Latex 
 Generate PDF
 --
 
+Copy either the file sample_dphil_thesis.tex or sample_4yp_report.tex to a new file depending if you are writing a DPhil thesis or a 4YP report document respectively.
+
 If you are using a Latex editor, configure it to run the "Lualatex" build process. If you are compiling the document manually, you would need to run the following commands:
 
 1. lualatex  --interaction=nonstopmode project_document

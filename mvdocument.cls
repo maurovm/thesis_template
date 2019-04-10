@@ -572,29 +572,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\let\Chaptermark\chaptermark
-\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
-
-%\newcommand*{\thesectionname}{\@currentlabelname}
-
-\let\Sectionmark\sectionmark
-\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
-
-\makepagestyle{mainpage}
-  \makeheadrule{mainpage}{\textwidth}{0.3pt}
-  \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
-  \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
-
-
-\addtodef{\mainmatter}{
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
-    \OnehalfSpacing   
-    \pagestyle{mainpage}
-}{}
+%\let\Chaptermark\chaptermark
+%\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+%
+%%\newcommand*{\thesectionname}{\@currentlabelname}
+%
+%\let\Sectionmark\sectionmark
+%\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+%
+%\makepagestyle{mainpage}
+%  \makeheadrule{mainpage}{\textwidth}{0.3pt}
+%  \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
+%  \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
+%
+%
+%\addtodef{\mainmatter}{
+%    \if@openright
+%      \cleardoublepage
+%    \else
+%      \clearpage
+%    \fi
+%    \OnehalfSpacing   
+%    \pagestyle{mainpage}
+%}{}
 
 
 % Enabling numbering for subsections
