@@ -12,6 +12,20 @@
 
 \section{Instrumentation}
 
+
+\begin{figure}[tbh]
+  \centering
+  \includegraphics[width=0.9\linewidth,keepaspectratio=true]{dummy_image}
+  \caption[Sample image]
+  {
+  Sample image.
+  }
+  \label{fig:sample_image}
+\end{figure}
+
+\Cref{fig:sample_image} shows the a dummy image ...
+
+
 \lipsum[2-4]
 
 \begin{figure}[tbh]
@@ -77,7 +91,46 @@
 
 \lipsum[2-4]
 
+
+\begin{table}[htb]
+  \centering
+  \caption{Summary of population demographics in the training and test sets}
+  {
+    \small
+    \begin{tabular}{p{2cm} c c c c c c c c c c c}
+      \toprule
+
+      Set &
+      \multirowcell{2}{Number of\\subjects} &
+      \multirowcell{2}{Number of\\sessions} &
+      \multirowcell{2}{Total time\\(hours)}$^1$ &
+      \multicolumn{2}{c}{Gender} &      
+      \multicolumn{6}{c}{Ethnicity$^2$}  \\
+
+      \cmidrule{5-12}        
+      &   & &  & Male & Female & W & B & A & WB & WA & O  \\
+      \midrule
+      Training 	& 15 & 43 & 216.6 & 8  & 7  & 10 & 1   & 1 & 1 & 1 & 1 \\        
+      Test 		& 15 & 47 & 210.0 & 10 & 5  & 10 & $-$ & 1 & 1 & 2 & 1 \\        
+      \midrule        
+      Total		& 30 & 90 & 426.6 & 18 & 12 & 20 & 1   & 2 & 2 & 3 & 2 \\        
+      \bottomrule        
+      \multicolumn{12}{l}
+      {
+        \footnotesize $^1$ Period during which both reference and estimated data were being recorded simultaneously.        
+      } \\        
+      \multicolumn{12}{l}
+      {        
+        \footnotesize $^2$ W = White, B = Black, A = Asian, WB = Mixed White \& Black, WA = Mixed White \& Asian and O = Other.        
+      } \\        
+      \end{tabular}      
+  } 
+  \label{table:patient_demographics}
+\end{table}
+
 \subsection{Demographics}
+
+The summary of the demographics for the entire set is described in  \cref{table:patient_demographics}. ...
 
 \lipsum[2-4]
 

@@ -40,6 +40,7 @@ project_document.pdf
 *.snm
 *.synctex.gz
 *.texnicle
+*.texpad*
 *.tmp
 *.toc
 *.tui 

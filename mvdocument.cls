@@ -172,7 +172,7 @@
 % Format tables
 % ____________________________________________________________________________
 
-
+\RequirePackage{makecell}
 \RequirePackage{multirow}
 \RequirePackage[table]{xcolor}
 \RequirePackage{array}
