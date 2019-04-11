@@ -1,18 +1,19 @@
 # DPhil thesis template
 --------------------------
 
-Latex template for a research progress report, a 4th year project (4YP) or a
+Latex template for an undergraduate 4th year project (4YP) report or a
 DPhil thesis for a student of the Department of Engineering Science at the
-University of Oxford
+University of Oxford. The typical 4YP report contains around 50 pages, whereas a
+DPhil thesis can contain 250 pages.
 
 Requirements
 --
 
-You will need a recent version of latex installed in your system, such as
-Latex 2017. Install the Carlito font following the instructions for your
-particular operating system from the "fonts" directory. If you are using
-Windows system, also install the Latin Modern Math font from the "fonts"
-directory.
+You will need a recent version of LaTeX installed in your system, such as
+Latex 2017. Install the Carlito font (if it's not alread installed) following
+the instructions for your particular operating system from the "fonts"
+directory. If you are using Windows system, also install the Latin Modern Math
+font from the "fonts" directory.
 
 Generate PDF output
 --
