@@ -23,7 +23,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{dphilthesis}[2017/12/20 v0.4 book class]
+\ProvidesClass{4ypdocument}[2017/12/20 v0.4 book class]
 
 \LoadClass{mvdocument}
 
