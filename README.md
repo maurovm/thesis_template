@@ -1,5 +1,5 @@
 # DPhil thesis template
---------------------------
+---
 
 Latex template for an undergraduate 4th year project (4YP) report or a
 DPhil thesis for a student of the Department of Engineering Science at the
