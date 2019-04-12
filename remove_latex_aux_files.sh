@@ -5,14 +5,18 @@
 # Created : May 15, 2014
 # Updated : $Id$
 # ____________________________________________________________________________
-# This file is part of ParamEstimator
+#
+# This file is part of thesis_template
+# thesis_template: Copyright (C) 2011-2019 Mauricio Villarroel.
 # 
-# ParamEstimator: Copyright (C) 2011-2017 Mauricio Villarroel.
-# 
-# ParamEstimator is proprietary software, distributed under the terms and
-# conditions of the ParamEstimator License Version 1.0.
-# You should have received a copy of the license, if not, you may contact the
-# author by e-mail (villarroel DOT mauricio AT gmail).
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 2 as published 
+# by the Free Software Foundation; either version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public License for more details.
 #____________________________________________________________________________
 #
 # DESCRIPTION :

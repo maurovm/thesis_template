@@ -4,9 +4,12 @@
 % Created : Sept 6, 2013
 % ____________________________________________________________________________
 %
+% This file is part of thesis_template
+% thesis_template: Copyright (C) 2011-2019 Mauricio Villarroel.
+%
 % This program is free software; you can redistribute it and/or modify it
-% under the terms of the GNU General Public License as published by the
-% Free Software Foundation; either version 2 of the License.
+% under the terms of the GNU General Public License version 2 as published 
+% by the Free Software Foundation; either version 2 of the License.
 %
 % This program is distributed in the hope that it will be useful, but
 % WITHOUT ANY WARRANTY; without even the implied warranty of
