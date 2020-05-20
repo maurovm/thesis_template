@@ -27,7 +27,16 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mvdocument}[2017/12/20 v0.4 book class]
+\ProvidesClass{mvdocument}[2020/05/20 v0.5 book class]
+
+
+\newif\if@report
+
+
+\DeclareOption{report}{\@reporttrue}
+
+\ProcessOptions\relax
+
 
 \LoadClass[10pt,a4paper,twoside,openany,final]{memoir}
 
@@ -311,7 +320,7 @@
 
 
 \aliaspagestyle{chapter}{empty}
-
+%\aliaspagestyle{title}{empty}
 
 % ____________________________________________________________________________
 %
@@ -335,11 +344,17 @@
 % The year and term the thesis is submitted 
 \def\degreedate#1{\gdef\@degreedate{#1}}
 
+% The full (unabbreviated) name of the degree
+\def\degree#1{\gdef\@degree{#1}}
+
 % The name of your Oxford college (e.g. Christ Church, Pembroke)
 \def\college#1{\gdef\@college{#1}}
 
 % The name of the university(e.g. University of Oxford)
 \def\university#1{\gdef\@university{#1}}
+
+% The name of the university department(e.g. Department of Engineering Science)
+\def\department#1{\gdef\@department{#1}}
 
 % Filename for the university's logo
 \def\universitylogo#1{\gdef\@universitylogo{#1}}
@@ -348,36 +363,40 @@
 \def\supervisor#1{\gdef\@supervisor{#1}}
  
  %define title page layout
- \renewcommand{\maketitle}{%
-
-   \setcounter{page}{0}
-   \pdfbookmark[0]{Title page}{title}
-   \renewcommand{\footnotesize}{\small}
-   \renewcommand{\footnoterule}{\relax}
+ \renewcommand{\maketitle}
+ {
+%   \setcounter{page}{0}
+%   \renewcommand{\footnotesize}{\small}
+%   \renewcommand{\footnoterule}{\relax}
    \thispagestyle{empty}
    \null\vfill
+   \pdfbookmark[0]{Title page}{title}
    \begin{center}
-     { \Huge {\bfseries {\@title}} \par}
+     {\Huge \bfseries \@title \par}
      \vspace*{20mm}
      {\includegraphics[width=60mm,keepaspectratio=true]{\@universitylogo} \par}
      \vspace*{20mm}
-     {{\Large \@author} \par}
-     {\large \vspace*{1ex}
-     {{\@college} \par}
+     {\huge \@author \par}
      \vspace*{1ex}
-     {{\@university} \par}
+     {\Large
+     \@college \par
      \vspace*{4ex}
-     {Supervised by \par}
+     \@degree \par
+     \vspace*{4ex}
+     Supervised by \par
      \vspace*{1ex}
-     {{\@supervisor} \par}
+     \@supervisor \par
      \vspace*{4ex}
-     \vspace*{2ex}
-     {\@degreedate}}
+     \@department \par
+     \vspace*{1ex}
+     \@university \par
+     \vspace*{4ex}
+     \@degreedate
+     }
    \end{center}
    \null\vfill   
-   \clearpage
-   \shipout\null
-   
+   %\clearpage
+   %\shipout\null
  }
 
 
@@ -388,11 +407,7 @@
 
 
 \newenvironment{declaration} {
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
+    \cleardoublepage
     \DoubleSpacing
     \chapter*{Declaration}
 }
@@ -405,11 +420,7 @@
 
 
 \newenvironment{dedication} {
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
+    \cleardoublepage
     \DoubleSpacing
     \setlength{\epigraphwidth}{0.5\textwidth}
     \renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
@@ -424,11 +435,7 @@
 
 
 \newenvironment{acknowledgements} {
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
+    \cleardoublepage
     \OnehalfSpacing
     \chapter*{Acknowledgements}
 }
@@ -441,11 +448,7 @@
 
 
 \renewenvironment{abstract} {
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
+    \cleardoublepage
     \OnehalfSpacing
     \chapter*{Abstract}
 }
@@ -480,11 +483,7 @@
 \renewcommand*{\tocheadstart}{\vspace{0em}}
 
 \addtodef{\tableofcontents}{
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
+    \cleardoublepage
     \SingleSpacing
     \setcounter{tocdepth}{2}
     \pagestyle{toc}
@@ -575,29 +574,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%\let\Chaptermark\chaptermark
-%\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
-%
-%%\newcommand*{\thesectionname}{\@currentlabelname}
-%
-%\let\Sectionmark\sectionmark
-%\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
-%
-%\makepagestyle{mainpage}
-%  \makeheadrule{mainpage}{\textwidth}{0.3pt}
-%  \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
-%  \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
-%
-%
-%\addtodef{\mainmatter}{
-%    \if@openright
-%      \cleardoublepage
-%    \else
-%      \clearpage
-%    \fi
-%    \OnehalfSpacing   
-%    \pagestyle{mainpage}
-%}{}
+\let\Chaptermark\chaptermark
+\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+
+%\newcommand*{\thesectionname}{\@currentlabelname}
+
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+
+\makepagestyle{mainpage}
+  \makeheadrule{mainpage}{\textwidth}{0.3pt}
+  \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
+  \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
+  \if@report
+  	\setlength\beforechapskip{0\baselineskip}
+  	\setlength\midchapskip{0\baselineskip}
+  \fi
+
+\addtodef{\mainmatter}{
+    \if@openright
+      \cleardoublepage
+    \else
+      \clearpage
+    \fi
+    \OnehalfSpacing
+    \pagestyle{mainpage}
+}{}
 
 
 % Enabling numbering for subsections
