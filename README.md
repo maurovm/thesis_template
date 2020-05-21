@@ -1,11 +1,12 @@
 # DPhil/PhD thesis template
 ---
 
-LaTeX template for an undergraduate 4th year project (4YP) report or a
+LaTeX template for a 4th year project (4YP) report or a
 DPhil/PhD thesis for a student of the Department of Engineering Science at the
 University of Oxford. The typical 4YP report contains around 50 pages, whereas a
-DPhil thesis can contain 250 pages. Therefore, there are two class templates
-provided: "4ypdocument.cls" for a 4YP report, and "dphilthesis.cls" for a DPhil
+DPhil thesis can contain 250 pages. The main LaTeX class file is "mvdocument.cls".
+Two sample documents are provided: "sample_4yp_report.tex" and "sample_dphil_thesis.tex"
+for a 4YP report and DPhil thesis respectively.
 thesis.
 
 Requirements
@@ -24,13 +25,15 @@ Copy either the file "sample_dphil_thesis.tex" or "sample_4yp_report.tex" to a
 new file depending on if you are writing a DPhil thesis or a 4YP report document
 respectively.
 
-The templates provided in this repository use the LuaLaTeX engine. To compile
-your LaTeX document, you can use your favourite editor, the provided script
-in this repository, or compile it manually. If you are using a LaTeX editor, configure it to run the "LuaLaTeX" build  process.
+The LaTeX class file in this repository requires the LuaLaTeX engine.
+You can use your favourite LaTex editor for your platform. We recommend
+TexPad as the editor in macOS. Kile or TeXMaker are good
+options for Linux.
 
-There is a script in this repository to compile the document in Unix and macOS
-operating systems. For example, to compile the sample 4YP report document,
-you will execute the following command:
+You can also manually compile the document from the command line using the
+script provided in this repository: "compile_document.sh". This script only
+works in a Linux or macOS system. For example, to compile the sample 4YP report
+document, you will execute the following command:
 
 ```shell
 $ ./compile_document.sh  sample_4yp_report.tex
