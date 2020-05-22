@@ -7,7 +7,7 @@ University of Oxford. The typical 4YP report contains around 50 pages, whereas a
 DPhil thesis can contain 250 pages. The main LaTeX class file is "mvdocument.cls".
 Two sample documents are provided: "sample_4yp_report.tex" and "sample_dphil_thesis.tex"
 for a 4YP report and DPhil thesis respectively.
-thesis.
+
 
 Requirements
 --
