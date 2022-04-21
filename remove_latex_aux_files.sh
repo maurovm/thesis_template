@@ -17,12 +17,12 @@
 #
 #____________________________________________________________________________
 
-rm -f *.aux  *.acn  *.acr  *.alg \
-      *.backup  *.bbl  *.bcf  *-blx.bib  *.blg \
-      *.dvi  *.fdb_latexmk  *.fls \
-      *.glg  *.glg-abr  *.glo *.glo-abr *.gls *.gls-abr *.glsdefs *.gz \
-      *.synctex.gz  *(busy)  \
+rm -f *.aux  *.acn  *.acr  *.alg    \
+      *.backup  *.bbl  *.bcf  *-blx.bib  *.blg  \
+      *.dvi  *.fdb_latexmk  *.fls   \
+      *.glg  *.glg-abr  *.glo  *.glo-abr *.gls  *.gls-abr  *.glsdefs  \
       *.idx  *.ilg  *.ind  *.ist \
-      *.lof  *.log  *.lot \
-      *.maf  *.mlf*  *.mlt*  *.mp  *.mtc*  *.nav \
-      *.out  *.snm * .synctex.gz  *.tmp  *.toc  *.tui  *.run.xml;
+      *.lof  *.log  *.lot        \
+      *.maf  *.mlf  *.mlt  *.mp  *.mtc  *.mtc[0-9]*   *.nav   \
+      *.out  *.snm  *.synctex.gz  *\(busy\)    \
+      *.tmp  *.toc  *.tui  *.run.xml;
