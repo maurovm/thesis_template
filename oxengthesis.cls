@@ -69,7 +69,7 @@
 \RequirePackage{siunitx}
 \DeclareSIUnit\year{yr}
 \DeclareSIUnit\hours{hrs}
-\DeclareSIUnit\bepm{beats/min}
+\DeclareSIUnit\bpm{beats/min}
 \DeclareSIUnit\brpm{breaths/min}
 
 
