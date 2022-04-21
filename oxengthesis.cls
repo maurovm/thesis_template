@@ -1,20 +1,12 @@
 %
-% File    : mvdocument.cls
+% File    : oxengthesis.cls
 % Author  : Mauricio Villarroel
 % Created : Sept 6, 2013
 % ____________________________________________________________________________
 %
-% This file is part of thesis_template
-% thesis_template: Copyright (C) 2011-2019 Mauricio Villarroel.
+% Copyright (C) 2013-2022 Mauricio Villarroel. All rights reserved.
 %
-% This program is free software; you can redistribute it and/or modify it
-% under the terms of the GNU General Public License version 2 as published 
-% by the Free Software Foundation; either version 2 of the License.
-%
-% This program is distributed in the hope that it will be useful, but
-% WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-% Public License for more details.
+% SPDX-License-Identifer:  GPL-2.0-only
 % ____________________________________________________________________________
 %
 % DESCRIPTION :
@@ -27,7 +19,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mvdocument}[2020/05/20 v0.5 book class]
+\ProvidesClass{oxengthesis}[2022/04/21 v0.6 book class]
 
 
 \newif\if@report

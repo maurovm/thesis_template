@@ -1,9 +1,9 @@
 
 # Carlito font installation for Linux
----
+
 
 Modern Linux distributions have the Carlito font already installed in the system.
-For Fedora 29, you can install it with the following command:
+For Fedora 29 and above, you can install it with the following command:
 
 ```shell
 $ sudo dnf install texlive-carlito
@@ -11,11 +11,11 @@ $ sudo dnf install texlive-carlito
 For Ubuntu 18.04, you can install the font by executing the following command:
 
 ```shell
-sudo apt-get install texlive-fonts-extra
+$ sudo apt-get install texlive-fonts-extra
 ```
 
-Manual font installation
---
+## Manual font installation
+
 
 If your linux distribution does not provide the Carlito font, you can install
 it by executing the following commands in the terminal:

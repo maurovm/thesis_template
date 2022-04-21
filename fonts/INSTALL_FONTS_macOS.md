@@ -1,4 +1,4 @@
 # Carlito font installation for macOS
----
 
-Just drag fonts to macOS's "Font Book"
+
+Just drag all the font files (*.ttf) into macOS's "Font Book"

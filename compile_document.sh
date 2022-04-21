@@ -3,29 +3,12 @@
 # File    : compile_document.sh
 # Author  : Mauricio Villarroel
 # Created : Apr 11, 2019
-# Updated : $Id$
 # ____________________________________________________________________________
 #
-# This file is part of thesis_template
-# thesis_template: Copyright (C) 2011-2019 Mauricio Villarroel.
-# 
-# This program is free software; you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 2 as published 
-# by the Free Software Foundation; either version 2 of the License.
+# Copyright (C) 2013-2022 Mauricio Villarroel. All rights reserved.
 #
-# This program is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-# Public License for more details.
-#____________________________________________________________________________
-#
-# DESCRIPTION :
-#
-#  Compile a given latex documet
-#
-#____________________________________________________________________________
-#
-# USAGE :
+# SPDX-License-Identifer:  GPL-2.0-only
+# ____________________________________________________________________________
 #
 
 
@@ -90,13 +73,9 @@ document_name=$(echo "$file_name" | cut -f 1 -d '.')
 # Compile document
 #
 
-
-lualatex  --interaction=nonstopmode $document_name
-bibtex $document_name
+latexmk -pdflatex=lualatex -pdf  $document_name
 makeglossaries $document_name
-lualatex  --interaction=nonstopmode $document_name
-lualatex  --interaction=nonstopmode $document_name
-lualatex  --interaction=nonstopmode $document_name
+latexmk -pdflatex=lualatex -pdf  $document_name
 
 
 
