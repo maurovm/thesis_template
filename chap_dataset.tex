@@ -18,9 +18,10 @@
   \includegraphics[width=0.9\linewidth,keepaspectratio=true]{dummy_image}
   \caption[Sample image]
   {
-  Sample image.
+      Sample image.
+      \label{fig:sample_image}
   }
-  \label{fig:sample_image}
+  
 \end{figure}
 
 \Cref{fig:sample_image} shows the a dummy image ...
@@ -30,29 +31,26 @@
 
 \begin{figure}[tbh]
   \centering
-  \subbottom[]{
-    \label{fig:subfig_example:fig1}
-    \includegraphics[width=0.3\linewidth,keepaspectratio=true]{dummy_image}
-  } 
-  \subbottom[]{
-    \label{fig:subfig_example:fig2}
-    \includegraphics[width=0.3\linewidth,keepaspectratio=true]{dummy_image}
-  }
-  \subbottom[]{
-    \label{fig:subfig_example:fig3}
-    \includegraphics[width=0.3\linewidth,keepaspectratio=true]{dummy_image}
-  }
   \caption[The PointGrey Grasshopper2 video camera]
   {
-  Caption of the figure, showingy:
-  \subcaptionref{fig:subfig_example:fig1} description 1,
-  \subcaptionref{fig:subfig_example:fig2} description 2.
-  \subcaptionref{fig:subfig_example:fig3} description 3.
+      Caption of the figure, showing:
+      \subcaptionref{fig:subfig_example:fig1} description 1,
+      \subcaptionref{fig:subfig_example:fig2} description 2 and
+      \subcaptionref{fig:subfig_example:fig3} description 3.
+      \label{fig:subfig_example}
   }
-  \label{fig:subfig_example}
+  \subbottom[\label{fig:subfig_example:fig1}]{
+    \includegraphics[width=0.3\linewidth,keepaspectratio=true]{dummy_image}
+  }
+  \subbottom[\label{fig:subfig_example:fig2}]{
+    \includegraphics[width=0.3\linewidth,keepaspectratio=true]{dummy_image}
+  }
+  \subbottom[\label{fig:subfig_example:fig3}]{
+    \includegraphics[width=0.3\linewidth,keepaspectratio=true]{dummy_image}
+  }
 \end{figure}
 
-\Cref{fig:subfig_example} shows the video camera used in the study ... \cref{fig:subfig_example:fig1} shows ....
+\Cref{fig:subfig_example} shows the video camera used in the study. \Cref{fig:subfig_example:fig1} shows the camera, as opposed to \cref{fig:subfig_example:fig2}, which shows the lens.
 
 \lipsum[2-4]
 
@@ -133,7 +131,7 @@
 
 \subsection{Demographics}
 
-The summary of the demographics for the entire set is described in  \cref{table:patient_demographics}. ...
+The summary of the demographics for the entire set is described in \cref{table:patient_demographics}. ...
 
 \lipsum[2-4]
 

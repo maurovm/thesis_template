@@ -14,7 +14,6 @@
 % Latex template for a project report based on the 
 % class file for a DPhil thesis of the Engineerind department of 
 % the University of Oxford
-%
 % ____________________________________________________________________________
 
 
@@ -33,38 +32,23 @@
 \LoadClass[10pt,a4paper,twoside,openany,final]{memoir}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BASIC LATEX CONFIGURATION
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 % ____________________________________________________________________________
 %
-% Minimum packages to include
+% BASIC LATEX CONFIGURATION
 % ____________________________________________________________________________
 
 
 \RequirePackage{textcomp}
 \RequirePackage{lipsum}
 
-
-% ____________________________________________________________________________
-%
 % Custom colours
-% ____________________________________________________________________________
-
 
 \RequirePackage{color}
 
 % TODO tags
 \newcommand{\todo}[1]{\textcolor{red}{@TODO: #1}}
 
-
-% ____________________________________________________________________________
-%
 % Common measurement units
-% ____________________________________________________________________________
-
 
 \RequirePackage{siunitx}
 \DeclareSIUnit\year{yr}
@@ -72,35 +56,24 @@
 \DeclareSIUnit\bpm{beats/min}
 \DeclareSIUnit\brpm{breaths/min}
 
-
-% ____________________________________________________________________________
-%
-% Configure the main font for the document
-% ____________________________________________________________________________
-
+% Font configuration
 
 \RequirePackage{fontspec}
 \setmainfont{Carlito}
 
-
-% ____________________________________________________________________________
-%
 % No hyphenation
-% ____________________________________________________________________________
-
 
 \RequirePackage[none]{hyphenat}
 
-
-% ____________________________________________________________________________
-%
-% Configure math
-% ____________________________________________________________________________
-
+% Configure math environment
 
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
 \setmathfont{Latin Modern Math}
+
+% Import external files
+
+\RequirePackage{listings}
 
 
 % ____________________________________________________________________________
@@ -142,39 +115,40 @@
 \setlength{\textheight}{\paperheight}
 \addtolength{\textheight}{-\uppermargin}
 \addtolength{\textheight}{-\lowermargin}
+
 %% footnote settings
+
 \setlength{\footskip}{\onelineskip}
 \setlength{\footnotesep}{\onelineskip}
 
 \setulmarginsandblock{\uppermargin}{\lowermargin}{*}
 
-
-
 \checkandfixthelayout[nearest]
+
 
 % ____________________________________________________________________________
 %
-% Paragraph indentation
+% Page layout
 % ____________________________________________________________________________
 
+
+% Paragraph indentation
 
 \setlength{\parindent}{2em}
 
 
-% ____________________________________________________________________________
-%
 % Widows and orphans
-% ____________________________________________________________________________
-
 
 \RequirePackage{nowidow}
 
 \flushbottom
 
+
 % ____________________________________________________________________________
 %
 % Format tables
 % ____________________________________________________________________________
+
 
 \RequirePackage{makecell}
 \RequirePackage{multirow}
@@ -182,6 +156,7 @@
 \RequirePackage{array}
 
 % Custom background colour for headers
+
 \definecolor{TableHeaderBackColor}{rgb}{0.9,0.9,0.9}
 
 % Standard table row heights
@@ -234,9 +209,11 @@
 \RequirePackage{graphicx}
 
 % Default folder for figures
+
 \graphicspath{{figures/}}
 
 % Subfigure link
+
 \newcommand{\oxfigsubplot}[1]{\textcolor{black}{(#1)}}
 
 % Configure captions
@@ -247,6 +224,7 @@
 \captionwidth{0.9\textwidth}  
 
 % Allow subfloats in figure environment
+
 \newsubfloat{figure}
 
 
@@ -263,7 +241,49 @@
 
 % ____________________________________________________________________________
 %
-% Fix microtype interword spacing
+% Custom styles for source code listings
+% ____________________________________________________________________________
+
+
+\lstdefinestyle{custom-c}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C++,
+  showstringspaces=false, 
+  basicstyle=\small\ttfamily, %footnotesize\ttfamily
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange}
+}
+
+\lstdefinestyle{custom-bash}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=bash,
+  showstringspaces=false,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue}, % identifierstyle=\color{green},
+  commentstyle=\color{red},
+  stringstyle=\color{orange}
+}
+
+\lstdefinestyle{custom-verbatim}{
+  frame=L,
+  showstringspaces=false,
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  keepspaces=true
+}
+
+
+% ____________________________________________________________________________
+%
+% Character protrusion, font expansion and interword spacing
 % ____________________________________________________________________________
 
 
@@ -274,18 +294,15 @@
 
 % ____________________________________________________________________________
 %
-% Cross links
+% References and hyperlinks
 % ____________________________________________________________________________
 
+
+% Cross links
 
 \RequirePackage[hyperindex=true,colorlinks=true,pagebackref=false,allcolors=black,plainpages=false,pdfpagelabels,bookmarksnumbered]{hyperref}
 
-
-% ____________________________________________________________________________
-%
 % Reference to the labels and numbers of chapter, section, figures, ...
-% ____________________________________________________________________________
-
 
 \RequirePackage[noabbrev]{cleveref}
 
@@ -293,10 +310,10 @@
 % ____________________________________________________________________________
 %
 % Debugging
+%
+% DO NOT DELETE: Uncomment the lines below to have more verbose diagnostics
 % ____________________________________________________________________________
 
-
-% DO NOT DELETE: Uncomment the lines below to have more verbose diagnostics
 
 % Show overfull errors
 %\overfullrule=15pt
@@ -304,15 +321,6 @@
 % Used temporarly for checking layout
 %\RequirePackage{layout}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FRONT MATTER
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\aliaspagestyle{chapter}{empty}
-%\aliaspagestyle{title}{empty}
 
 % ____________________________________________________________________________
 %
@@ -322,15 +330,23 @@
 
 \RequirePackage[toc=true,nopostdot=false,noredefwarn=false,nonumberlist,nogroupskip,abbreviations,nomain,automake,shortcuts=abbreviations]{glossaries-extra}
 
+
+% ____________________________________________________________________________
+%
+% FRONT MATTER
+% ____________________________________________________________________________
+
+
+\aliaspagestyle{chapter}{empty}
+
 \addtodef{\frontmatter}{
     \glsunsetall
 }{}
 
 
-% ____________________________________________________________________________
 %
-% Format the title page
-% ____________________________________________________________________________
+% Title page
+%
 
 
 % The year and term the thesis is submitted 
@@ -355,47 +371,48 @@
 \def\supervisor#1{\gdef\@supervisor{#1}}
  
  %define title page layout
- \renewcommand{\maketitle}
- {
+
+\renewcommand{\maketitle}
+{
 %   \setcounter{page}{0}
 %   \renewcommand{\footnotesize}{\small}
 %   \renewcommand{\footnoterule}{\relax}
-   \thispagestyle{empty}
-   \null\vfill
-   \pdfbookmark[0]{Title page}{title}
-   \begin{center}
-     {\Huge \bfseries \@title \par}
-     \vspace*{20mm}
-     {\includegraphics[width=60mm,keepaspectratio=true]{\@universitylogo} \par}
-     \vspace*{20mm}
-     {\huge \@author \par}
-     \vspace*{1ex}
-     {\Large
-     \@college \par
-     \vspace*{4ex}
-     \@degree \par
-     \vspace*{4ex}
-     Supervised by \par
-     \vspace*{1ex}
-     \@supervisor \par
-     \vspace*{4ex}
-     \@department \par
-     \vspace*{1ex}
-     \@university \par
-     \vspace*{4ex}
-     \@degreedate
-     }
-   \end{center}
-   \null\vfill   
-   %\clearpage
-   %\shipout\null
- }
+    \thispagestyle{empty}
+    \null\vfill
+    \pdfbookmark[0]{Title page}{title}
+    \begin{center}
+    {
+        \Huge \bfseries \@title \par}
+        \vspace*{20mm}
+        {\includegraphics[width=60mm,keepaspectratio=true]{\@universitylogo} \par}
+        \vspace*{20mm}
+        {\huge \@author \par}
+        \vspace*{1ex}
+        {\Large
+        \@college \par
+        \vspace*{4ex}
+        \@degree \par
+        \vspace*{4ex}
+        Supervised by \par
+        \vspace*{1ex}
+        \@supervisor \par
+        \vspace*{4ex}
+        \@department \par
+        \vspace*{1ex}
+        \@university \par
+        \vspace*{4ex}
+        \@degreedate
+    }
+    \end{center}
+    \null\vfill   
+    %\clearpage
+    %\shipout\null
+}
 
 
-% ____________________________________________________________________________
 %
 % Declaration page
-% ____________________________________________________________________________
+%
 
 
 \newenvironment{declaration} {
@@ -405,10 +422,9 @@
 }
 
 
-% ____________________________________________________________________________
 %
 % Dedication page
-% ____________________________________________________________________________
+%
 
 
 \newenvironment{dedication} {
@@ -420,10 +436,9 @@
 }
 
 
-% ____________________________________________________________________________
 %
 % Acknowledgements page
-% ____________________________________________________________________________
+%
 
 
 \newenvironment{acknowledgements} {
@@ -431,12 +446,11 @@
     \OnehalfSpacing
     \chapter*{Acknowledgements}
 }
-  
-  
-% ____________________________________________________________________________
+
+
 %
 % Abstract page
-% ____________________________________________________________________________
+%
 
 
 \renewenvironment{abstract} {
@@ -446,10 +460,10 @@
 }
 
 
-% ____________________________________________________________________________
 %
-% List of contributors
-% ____________________________________________________________________________
+% List of contributors page
+%
+
 
 \RequirePackage{multicol}
 
@@ -460,16 +474,15 @@
 }
 
 
-% ____________________________________________________________________________
 %
-% The Table Of Contents
-% ____________________________________________________________________________
+% Table of contents page
+%
 
 
 \makepagestyle{toc}
-  \makeheadrule{toc}{\textwidth}{0.3pt}
-  \makeevenhead{toc}{\thepage}{}{\bfseries{Table of contents}}
-  \makeoddhead {toc}{\bfseries{Table of contents}}{}{\thepage}
+    \makeheadrule{toc}{\textwidth}{0.3pt}
+    \makeevenhead{toc}{\thepage}{}{\bfseries{Table of contents}}
+    \makeoddhead {toc}{\bfseries{Table of contents}}{}{\thepage}
 
 \renewcommand{\contentsname}{Table of contents}
 \renewcommand*{\tocheadstart}{\vspace{0em}}
@@ -489,19 +502,16 @@
 \setrmarg{4em}
 
 
-
-% ____________________________________________________________________________
 %
-% The List Of Figures
-% ____________________________________________________________________________
+% List of figures page
+%
 
 
 \makepagestyle{lof}
-  \makeheadrule{lof}{\textwidth}{0.3pt}
-  \makeevenhead{lof}{\thepage}{}{\bfseries{List of figures}}
-  \makeoddhead {lof}{\bfseries{List of figures}}{}{\thepage}
-  
-  
+    \makeheadrule{lof}{\textwidth}{0.3pt}
+    \makeevenhead{lof}{\thepage}{}{\bfseries{List of figures}}
+    \makeoddhead {lof}{\bfseries{List of figures}}{}{\thepage}
+
 \renewcommand*{\lofheadstart}{\vspace{0em}}
 \renewcommand{\listfigurename}{List of figures}
 
@@ -512,16 +522,15 @@
 }{}
 
 
-% ____________________________________________________________________________
 %
-% The List Of Tables
-% ____________________________________________________________________________
+% List of tables page
+%
 
 
 \makepagestyle{lot}
-  \makeheadrule{lot}{\textwidth}{0.3pt}
-  \makeevenhead{lot}{\thepage}{}{\bfseries{List of tables}}
-  \makeoddhead {lot}{\bfseries{List of tables}}{}{\thepage}
+    \makeheadrule{lot}{\textwidth}{0.3pt}
+    \makeevenhead{lot}{\thepage}{}{\bfseries{List of tables}}
+    \makeoddhead {lot}{\bfseries{List of tables}}{}{\thepage}
 
 \renewcommand*{\lotheadstart}{\vspace{0em}}
 \renewcommand{\listtablename}{List of tables}
@@ -533,10 +542,9 @@
 }{}
 
 
-% ____________________________________________________________________________
 %
-%  Glossary
-% ____________________________________________________________________________
+%  Glossary page
+%
 
 
 \makepagestyle{loa}
@@ -546,7 +554,8 @@
   
 \renewcommand*{\abbreviationsname}{List of abbreviations}
 
-%The colour of the glossary links
+% The colour of the glossary links
+
 \renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
 
 \newcommand{\listofabbreviations}{
@@ -561,9 +570,10 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____________________________________________________________________________
+%
 % MAIN MATTER
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____________________________________________________________________________
 
 
 \let\Chaptermark\chaptermark
@@ -575,19 +585,19 @@
 \def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
 
 \makepagestyle{mainpage}
-  \makeheadrule{mainpage}{\textwidth}{0.3pt}
-  \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
-  \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
-  \if@report
-  	\setlength\beforechapskip{0\baselineskip}
-  	\setlength\midchapskip{0\baselineskip}
-  \fi
+    \makeheadrule{mainpage}{\textwidth}{0.3pt}
+    \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
+    \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
+    \if@report
+        \setlength\beforechapskip{0\baselineskip}
+        \setlength\midchapskip{0\baselineskip}
+    \fi
 
 \addtodef{\mainmatter}{
     \if@openright
-      \cleardoublepage
+        \cleardoublepage
     \else
-      \clearpage
+        \clearpage
     \fi
     \OnehalfSpacing
     \pagestyle{mainpage}
@@ -595,6 +605,7 @@
 
 
 % Enabling numbering for subsections
+
 \setsecnumdepth{subsection}
 
 
@@ -613,10 +624,9 @@
 }{}
 
 
-% ____________________________________________________________________________
 %
 % Bibliography
-% ____________________________________________________________________________
+%
 
 
 \RequirePackage[numbers,square,comma,sort]{natbib}
@@ -624,16 +634,16 @@
 \setlength{\bibsep}{1pt plus 1ex}
 
 \makepagestyle{biblio}
-  \makeheadrule{biblio}{\textwidth}{0.3pt}
-  \makeevenhead{biblio}{\thepage}{}{\bfseries{Bibliography}}
-  \makeoddhead {biblio}{\bfseries{Bibliography}}{}{\thepage}
+    \makeheadrule{biblio}{\textwidth}{0.3pt}
+    \makeevenhead{biblio}{\thepage}{}{\bfseries{Bibliography}}
+    \makeoddhead {biblio}{\bfseries{Bibliography}}{}{\thepage}
   
 % Param 1 : bibliography file
 \newcommand{\listofreferences}[1]{
     \if@openright
-      \cleardoublepage
+        \cleardoublepage
     \else
-      \clearpage
+        \clearpage
     \fi
     \pagestyle{biblio}
     \SingleSpacing
@@ -650,20 +660,16 @@
 %\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Extra configuration
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 % ____________________________________________________________________________
 %
-% Page boundary issues
+% Extra configuration
 % ____________________________________________________________________________
 
-% Suppress some underfull \vbox warnings
+
+% Page boundary: suppress some underfull \vbox warnings
 
 \makeatletter
- \def\@textbottom{\vskip \z@ \@plus 1pt}
- \let\@texttop\relax
+    \def\@textbottom{\vskip \z@ \@plus 1pt}
+    \let\@texttop\relax
 \makeatother
 
