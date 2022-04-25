@@ -75,6 +75,10 @@
 
 \RequirePackage{listings}
 
+% Don't let figures and other floats past their sections
+
+\RequirePackage[section,below]{placeins}
+
 
 % ____________________________________________________________________________
 %
