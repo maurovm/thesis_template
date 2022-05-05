@@ -16,49 +16,44 @@
 % ____________________________________________________________________________
 
 
-\documentclass{oxengthesis}
+\documentclass[10pt,a4paper,twoside,openany]{oxengthesis}
 
-\makeglossaries
-\include{glossary}
 
 %
-% Project author and metadata
+% Document metadata
 %
 
 \title      {Protein expression of the X-factor mutator gene in Homo Sapiens}
 \author     {Charles F. Xavier}
-\college    {Pembroke College}
-\universitylogo{oxford-logo}       % File name of the logo
-\supervisor {Professor Albus Dumbledore and Professor Abraham Van Helsing}
-\degree     {A thesis submitted for the degree of \\ \textit{Doctor of Philosophy}}
+\college    {Pembroke College}   % (OPTIONAL)
+\universitylogo{oxford-logo}     % (OPTIONAL) File name of the logo without the extension
+\supervisor    {Professor Albus Dumbledore and Professor Abraham Van Helsing}
+\degreeprefix  {A thesis submitted for the degree of} % (OPTIONAL)
+\degree     {Doctor of Philosophy}
 \department {Department of Engineering Science}
 \university {University of Oxford}
 \degreedate {Hilary Term, 2048}
+
 
 %
 % Document contents
 %
 
+\makeglossaries
+
 \begin{document}
 
 \frontmatter
 
-\maketitle
+% If you want more control of the front matter, you can review how the
+% 'makefrontmatterpages' is defined in the class template
 
-% Comment the following lines if writing a small progress report
-\include{declaration}
-\include{dedication}
-\include{acknowledgements}
-\include{abstract}
-
-\tableofcontents
-\listoffigures
-\listoftables
-\listofabbreviations
+\makefrontmatterpages
 
 \mainmatter
 
-%\layout  %Used temporarly for checking layout
+% Uncomment the following command to temporarly check/debug page layout
+%\layout
 
 \include{chap_introduction}
 \include{chap_literature_review}
@@ -74,6 +69,6 @@
 
 \backmatter 
 
-\listofreferences{references}
+\listofreferences
 
 \end{document}

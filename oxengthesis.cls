@@ -18,18 +18,19 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{oxengthesis}[2022/04/21 v0.6 book class]
+\ProvidesClass{oxengthesis}[2022/05/04 v0.7 Oxford Engineering thesis class]
 
 
 \newif\if@report
 
-
 \DeclareOption{report}{\@reporttrue}
+
+% Pass all other the options to the memoir class
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
 
 \ProcessOptions\relax
 
-
-\LoadClass[10pt,a4paper,twoside,openany,final]{memoir}
+\LoadClass[final]{memoir}
 
 
 % ____________________________________________________________________________
@@ -139,7 +140,6 @@
 % Paragraph indentation
 
 \setlength{\parindent}{2em}
-
 
 % Widows and orphans
 
@@ -298,17 +298,11 @@
 
 % ____________________________________________________________________________
 %
-% References and hyperlinks
+% Hyperlinks
 % ____________________________________________________________________________
 
 
-% Cross links
-
 \RequirePackage[hyperindex=true,colorlinks=true,pagebackref=false,allcolors=black,plainpages=false,pdfpagelabels,bookmarksnumbered]{hyperref}
-
-% Reference to the labels and numbers of chapter, section, figures, ...
-
-\RequirePackage[noabbrev]{cleveref}
 
 
 % ____________________________________________________________________________
@@ -343,18 +337,31 @@
 
 \aliaspagestyle{chapter}{empty}
 
-\addtodef{\frontmatter}{
-    \glsunsetall
-}{}
+
+%
+% Name of the input files used in the class
+%
+
+
+\def\abstractfilename{abstract.tex}
+\def\glossaryfilename{glossary.tex}
+
+\def\declarationfilename{declaration.tex}
+\def\dedicationfilename{dedication.tex}
+\def\acknowledgementsfilename{acknowledgements.tex}
+\def\publicationsfilename{publications.tex}
 
 
 %
-% Title page
+% Variables used in the front matter
 %
 
 
 % The year and term the thesis is submitted 
 \def\degreedate#1{\gdef\@degreedate{#1}}
+
+% A sentence to appear before the degree
+\def\degreeprefix#1{\gdef\@degreeprefix{#1}}
 
 % The full (unabbreviated) name of the degree
 \def\degree#1{\gdef\@degree{#1}}
@@ -373,56 +380,95 @@
 
 % The name of your supervisor
 \def\supervisor#1{\gdef\@supervisor{#1}}
- 
- %define title page layout
 
-\renewcommand{\maketitle}
+
+%
+% The single title page
+%
+
+\newcommand{\maketitlepage}
 {
-%   \setcounter{page}{0}
-%   \renewcommand{\footnotesize}{\small}
-%   \renewcommand{\footnoterule}{\relax}
+    \begingroup
+
     \thispagestyle{empty}
-    \null\vfill
     \pdfbookmark[0]{Title page}{title}
     \begin{center}
-    {
-        \Huge \bfseries \@title \par}
-        \vspace*{20mm}
-        {\includegraphics[width=60mm,keepaspectratio=true]{\@universitylogo} \par}
-        \vspace*{20mm}
-        {\huge \@author \par}
-        \vspace*{1ex}
+
+        {\Huge \bfseries \@title \par}
+
+        \null\vfill
+
+        \ifdefined \@universitylogo
+            \includegraphics[width=0.5\linewidth,keepaspectratio=true]{\@universitylogo}
+            \null\vfill
+        \fi
+
+        {\huge \bfseries \@author \par}
+        \ifdefined \@college
+            {\LARGE \@college \par}
+        \fi
+
+        \null\vfill
+
         {\Large
-        \@college \par
-        \vspace*{4ex}
-        \@degree \par
-        \vspace*{4ex}
-        Supervised by \par
-        \vspace*{1ex}
-        \@supervisor \par
-        \vspace*{4ex}
-        \@department \par
-        \vspace*{1ex}
-        \@university \par
-        \vspace*{4ex}
+
+        \vspace*{\baselineskip}
+        \ifdefined \@degreeprefix
+            \@degreeprefix \par
+        \fi
+        \@degree
+
+        \vspace*{\baselineskip}
+        Supervised by \\ \@supervisor
+
+        \vspace*{\baselineskip}
+        \@department \\ \@university 
+
+        \null\vfill
         \@degreedate
-    }
+        }
     \end{center}
-    \null\vfill   
-    %\clearpage
-    %\shipout\null
+    
+    \endgroup
 }
 
 
 %
-% Declaration page
+% Frontal abstract page
 %
 
-
-\newenvironment{declaration} {
+\newcommand{\makefrontabstractpage}
+{
     \cleardoublepage
-    \DoubleSpacing
-    \chapter*{Declaration}
+    \begingroup
+
+    \thispagestyle{empty}
+    \renewcommand*{\chapterheadstart}{}
+    \OnehalfSpacing
+
+    {\Large
+    \noindent
+    \begin{minipage}[t]{.6\textwidth}
+        \raggedright
+        \@author \\
+        \ifdefined \@college
+            \@college
+        \fi
+    \end{minipage}
+    \begin{minipage}[t]{.4\textwidth}
+        \raggedleft
+        \@degree \\
+        \@degreedate
+    \end{minipage}
+    }
+
+    \begin{center}
+        \LARGE{\bfseries{\@title}}
+    \end{center}
+
+    \input{\abstractfilename}
+    
+    \endgroup
 }
 
 
@@ -430,13 +476,38 @@
 % Dedication page
 %
 
-
-\newenvironment{dedication} {
+\newcommand{\makededicationpage}
+{
     \cleardoublepage
+    \begingroup
+    \thispagestyle{empty}
     \DoubleSpacing
     \setlength{\epigraphwidth}{0.5\textwidth}
-    \renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
-    \chapter*{}
+    \vspace*{\beforechapskip}
+    \input{\dedicationfilename}
+    \endgroup
+}
+
+
+%
+% Declaration page
+%
+
+\newcommand{\makedeclarationpage}
+{
+    \cleardoublepage
+    \chapter*{Declaration}
+    \DoubleSpacing
+    \input{\declarationfilename}
+    
+    \bigbreak
+    \bigbreak
+
+    \noindent \@author \par
+    \ifdefined \@college
+        \noindent \@college \par
+    \fi
+    
 }
 
 
@@ -444,11 +515,12 @@
 % Acknowledgements page
 %
 
-
-\newenvironment{acknowledgements} {
+\newcommand{\makeacknowledgementspage}
+{
     \cleardoublepage
-    \OnehalfSpacing
     \chapter*{Acknowledgements}
+    \OnehalfSpacing
+    \input{\acknowledgementsfilename}
 }
 
 
@@ -456,25 +528,31 @@
 % Abstract page
 %
 
-
-\renewenvironment{abstract} {
+\newcommand{\makeabstractpage}
+{
     \cleardoublepage
-    \OnehalfSpacing
     \chapter*{Abstract}
+    \OnehalfSpacing
+    \input{\abstractfilename}
 }
 
 
 %
-% List of contributors page
+% List of publications page
 %
 
+\makepagestyle{publicationspagestyle}
+    \makeevenhead{publicationspagestyle}{}{}{}
+    \makeoddhead {publicationspagestyle}{}{}{}
+    \renewcommand\chapterheadstart{}
 
-\RequirePackage{multicol}
-
-\newcommand{\contributor}[2]{
-\noindent
-\textbf{#1} \\
-#2 \par
+\newcommand{\makepublicationspage}
+{
+    \cleardoublepage
+    \chapter*{List of publications}
+    \pagestyle{publicationspagestyle}
+    \OnehalfSpacing
+    \input{\publicationsfilename}
 }
 
 
@@ -482,22 +560,24 @@
 % Table of contents page
 %
 
+\makepagestyle{tocpagestyle}
+    \makeheadrule{tocpagestyle}{\textwidth}{0.3pt}
+    \makeevenhead{tocpagestyle}{\thepage}{}{\bfseries{Table of contents}}
+    \makeoddhead {tocpagestyle}{\bfseries{Table of contents}}{}{\thepage}
+    \renewcommand{\contentsname}{Table of contents}
+    \renewcommand*{\tocheadstart}{}
 
-\makepagestyle{toc}
-    \makeheadrule{toc}{\textwidth}{0.3pt}
-    \makeevenhead{toc}{\thepage}{}{\bfseries{Table of contents}}
-    \makeoddhead {toc}{\bfseries{Table of contents}}{}{\thepage}
-
-\renewcommand{\contentsname}{Table of contents}
-\renewcommand*{\tocheadstart}{\vspace{0em}}
-
-\addtodef{\tableofcontents}{
+\addtodef{\tableofcontents}
+{
     \cleardoublepage
-    \SingleSpacing
+    \setcounter{page}{1}
     \setcounter{tocdepth}{2}
-    \pagestyle{toc}
+    \pagestyle{tocpagestyle}
+    \SingleSpacing
     \setlength{\cftbeforechapterskip}{0.8em \@plus\p@}
+    \renewcommand*{\cftappendixname}{Appendix\space}
 }{}
+
 
 % Fix hbox overfull warnings in TOC
 
@@ -511,18 +591,18 @@
 %
 
 
-\makepagestyle{lof}
-    \makeheadrule{lof}{\textwidth}{0.3pt}
-    \makeevenhead{lof}{\thepage}{}{\bfseries{List of figures}}
-    \makeoddhead {lof}{\bfseries{List of figures}}{}{\thepage}
+\makepagestyle{lofpagestyle}
+    \makeheadrule{lofpagestyle}{\textwidth}{0.3pt}
+    \makeevenhead{lofpagestyle}{\thepage}{}{\bfseries{List of figures}}
+    \makeoddhead {lofpagestyle}{\bfseries{List of figures}}{}{\thepage}
+    \renewcommand{\listfigurename}{List of figures}
+    \renewcommand*{\lofheadstart}{}
 
-\renewcommand*{\lofheadstart}{\vspace{0em}}
-\renewcommand{\listfigurename}{List of figures}
-
-\addtodef{\listoffigures}{
-    \clearpage
+\addtodef{\listoffigures}
+{
+    \clearforchapter
+    \pagestyle{lofpagestyle}
     \SingleSpacing
-    \pagestyle{lof}
 }{}
 
 
@@ -531,18 +611,18 @@
 %
 
 
-\makepagestyle{lot}
-    \makeheadrule{lot}{\textwidth}{0.3pt}
-    \makeevenhead{lot}{\thepage}{}{\bfseries{List of tables}}
-    \makeoddhead {lot}{\bfseries{List of tables}}{}{\thepage}
+\makepagestyle{lotpagestyle}
+    \makeheadrule{lotpagestyle}{\textwidth}{0.3pt}
+    \makeevenhead{lotpagestyle}{\thepage}{}{\bfseries{List of tables}}
+    \makeoddhead {lotpagestyle}{\bfseries{List of tables}}{}{\thepage}
+    \renewcommand{\listtablename}{List of tables}
+    \renewcommand*{\lotheadstart}{}
 
-\renewcommand*{\lotheadstart}{\vspace{0em}}
-\renewcommand{\listtablename}{List of tables}
-
-\addtodef{\listoftables}{
-    \clearpage
+\addtodef{\listoftables}
+{
+    \clearforchapter
+    \pagestyle{lotpagestyle}
     \SingleSpacing
-    \pagestyle{lot}
 }{}
 
 
@@ -551,10 +631,11 @@
 %
 
 
-\makepagestyle{loa}
-    \makeheadrule{loa}{\textwidth}{0.3pt}
-    \makeevenhead{loa}{\thepage}{}{\bfseries{List of abbreviations}}
-    \makeoddhead {loa}{\bfseries{List of abbreviations}}{}{\thepage}
+\makepagestyle{loapagestyle}
+    \makeheadrule{loapagestyle}{\textwidth}{0.3pt}
+    \makeevenhead{loapagestyle}{\thepage}{}{\bfseries{List of abbreviations}}
+    \makeoddhead {loapagestyle}{\bfseries{List of abbreviations}}{}{\thepage}
+    \renewcommand*{\chapterheadstart}{}
   
 \renewcommand*{\abbreviationsname}{List of abbreviations}
 
@@ -562,15 +643,54 @@
 
 \renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
 
-\newcommand{\listofabbreviations}{
-    \clearpage
+\newcommand{\listofabbreviations}
+{
+    \clearforchapter
+    \pagestyle{loapagestyle}
     \DoubleSpacing
-    \pagestyle{loa}
     \glsfindwidesttoplevelname
     \setglossarystyle{alttree}
-    \renewcommand*{\chapterheadstart}{\vspace{0em}}
     \printabbreviations
-    \renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
+    %\renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
+}
+
+
+%
+% A single command to create the entire contents of the front matter
+%
+
+\newcommand*{\makefrontmatterpages}
+{
+    \IfFileExists{\glossaryfilename}
+    {
+        \include{\glossaryfilename}
+        \glsunsetall
+    }{}
+    
+    \maketitlepage
+
+    \if@report
+
+    \else
+        \IfFileExists{\abstractfilename}{\makefrontabstractpage}{}
+        \IfFileExists{\dedicationfilename}{\makededicationpage}{}
+        \IfFileExists{\declarationfilename}{\makedeclarationpage}{}
+    \fi
+    
+    \IfFileExists{\acknowledgementsfilename}{\makeacknowledgementspage}{}
+    \IfFileExists{\abstractfilename}{\makeabstractpage}{}
+
+    \if@report
+
+    \else
+        \IfFileExists{\publicationsfilename}{\makepublicationspage}{}
+    \fi
+    
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    
+    \IfFileExists{\glossaryfilename}{\listofabbreviations}{}
 }
 
 
@@ -580,6 +700,8 @@
 % ____________________________________________________________________________
 
 
+\definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
+
 \let\Chaptermark\chaptermark
 \def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
 
@@ -588,23 +710,22 @@
 \let\Sectionmark\sectionmark
 \def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
 
-\makepagestyle{mainpage}
-    \makeheadrule{mainpage}{\textwidth}{0.3pt}
-    \makeevenhead{mainpage}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
-    \makeoddhead {mainpage}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
-    \if@report
-        \setlength\beforechapskip{0\baselineskip}
-        \setlength\midchapskip{0\baselineskip}
-    \fi
+\makepagestyle{mainpagestyle}
+    \makeevenhead{mainpagestyle}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
+    \makeoddhead {mainpagestyle}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
+    \makeheadrule{mainpagestyle}{\textwidth}{0.3pt}
+    \renewcommand\chapterheadstart{}
+    \setlength\beforechapskip{0\baselineskip}
+    \setlength\midchapskip{0\baselineskip}
+    \setsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
 
-\addtodef{\mainmatter}{
-    \if@openright
-        \cleardoublepage
-    \else
-        \clearpage
-    \fi
+\addtodef{\mainmatter}
+{
+    \clearforchapter
+    \pagestyle{mainpagestyle}
     \OnehalfSpacing
-    \pagestyle{mainpage}
 }{}
 
 
@@ -612,18 +733,39 @@
 
 \setsecnumdepth{subsection}
 
+%
+% Configure the appendix
+%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \makepagestyle{appendixpagestyle}
+     \makeevenhead{appendixpagestyle}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
+     \makeoddhead {appendixpagestyle}{\bfseries{\appendixname~\thechapter.~\Chaptername}}{}{\thepage}
+     \makeheadrule{appendixpagestyle}{\textwidth}{0.3pt}
+     \renewcommand\chapterheadstart{}
+     \setlength\beforechapskip{0\baselineskip}
+     \setlength\midchapskip{0\baselineskip}
+     \setsecheadstyle{\large\bfseries\color{headingcolor}}
+     \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
+     \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
+
+
+\addtodef{\appendix}
+{
+    \clearforchapter
+    \pagestyle{appendixpagestyle}
+    \OnehalfSpacing
+}{}
+
+
+% ____________________________________________________________________________
+%
 % BACK MATTER
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____________________________________________________________________________
 
 
-\addtodef{\backmatter}{
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
+\addtodef{\backmatter}
+{
+    \clearforchapter
     \SingleSpacing
 }{}
 
@@ -633,28 +775,29 @@
 %
 
 
+% Name of the input files used in the class
+\def\bibliographyfilename{references}
+
+
 \RequirePackage[numbers,square,comma,sort]{natbib}
 
 \setlength{\bibsep}{1pt plus 1ex}
 
-\makepagestyle{biblio}
-    \makeheadrule{biblio}{\textwidth}{0.3pt}
-    \makeevenhead{biblio}{\thepage}{}{\bfseries{Bibliography}}
-    \makeoddhead {biblio}{\bfseries{Bibliography}}{}{\thepage}
+\makepagestyle{bibliopagestyle}
+    \makeheadrule{bibliopagestyle}{\textwidth}{0.3pt}
+    \makeevenhead{bibliopagestyle}{\thepage}{}{\bfseries{Bibliography}}
+    \makeoddhead {bibliopagestyle}{\bfseries{Bibliography}}{}{\thepage}
   
 % Param 1 : bibliography file
-\newcommand{\listofreferences}[1]{
-    \if@openright
-        \cleardoublepage
-    \else
-        \clearpage
-    \fi
-    \pagestyle{biblio}
+\newcommand{\listofreferences}[1]
+{
+    \clearforchapter
+    \pagestyle{bibliopagestyle}
     \SingleSpacing
     \apptocmd{\sloppy}{\hbadness 10000\relax}{}{} % Fix hbox warnings on bibtex entries
     \renewcommand*{\chapterheadstart}{\vspace{0em}}
     \bibliographystyle{plainnat}
-    \bibliography{#1}
+    \IfFileExists{\bibliographyfilename.bib}{\bibliography{\bibliographyfilename}}{}    
     \renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
 }
 
@@ -677,3 +820,13 @@
     \let\@texttop\relax
 \makeatother
 
+
+% ____________________________________________________________________________
+%
+% References
+% ____________________________________________________________________________
+
+% Reference to the labels and numbers of chapter, section, figures, ...
+% "memoir" class requires this to be towards the end of the configuration
+
+\RequirePackage[noabbrev]{cleveref}
