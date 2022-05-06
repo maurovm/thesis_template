@@ -1,4 +1,4 @@
-# OxEngThesis
+# Oxford thesis template
 
 
 LaTeX template for an undergraduate 4th year project (4YP) report or a 
