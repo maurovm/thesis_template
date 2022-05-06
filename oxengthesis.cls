@@ -18,7 +18,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{oxengthesis}[2022/05/04 v0.7 Oxford Engineering thesis class]
+\ProvidesClass{oxengthesis}[2022/05/05 v0.8 Oxford Engineering thesis class by Mauricio Villarroel]
 
 
 \newif\if@report
@@ -700,7 +700,10 @@
 % ____________________________________________________________________________
 
 
-\definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
+\@ifundefined{headingcolor}{%
+    \definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
+}{}
+
 
 \let\Chaptermark\chaptermark
 \def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
