@@ -14,10 +14,10 @@ for more information on the license and copyright.
 
 ---
 
-As a student at Oxford, a significant proportion of your research time will be
-devoted to writing science in a formal academic style. My students have found
-very productive to use the LaTeX typesetting system to write reports, theses, 
-journal papers or other academic documents.
+As a student at Oxford, a proportion of your time will be devoted to writing
+science in a formal academic style. My students have found very helpful to
+use the LaTeX typesetting system to write reports, theses, journal papers or 
+other academic documents.
 
 You can write your documents from scratch, however, it is often easier to start
 with an already written LaTeX template. This repository contains a LaTeX template
@@ -33,6 +33,11 @@ if you are writing a 4YP report or a DPhil thesis respectively.
 
 
 ## Requirements
+
+There are several options for writing in LaTex, including online versions such
+as Overleaf. I don't recommend Overleaf, as you will be writing long documents
+with several figures, tables and other elements. In my experience, having LaTeX
+installed locally in your computer is a better option.
 
 You will need a modern LaTeX compiler installed in your system, at minimum,
 version 2017. Most modern operating systems use 
@@ -53,12 +58,11 @@ also install the Latin Modern Math font.
 
 ## Writing in LaTeX
 
-There are several options for writing in LaTex, including online versions such
-as Overleaf. I don't recommend Overleaf, as you will be writing long documents
-with several figures, tables and other elements. In my experience, having LaTeX
-installed locally in your computer is a better option. For macOS, you can use
-[TexPad](https://www.texpad.com) as your editor (or any other popular editor).
-Good editors for Linux are [Kile](https://apps.kde.org/en-gb/kile/) and 
+There are several editors available that will make your life easier when
+writing LaTex documents and, ultimately, generating the final PDF file (a.k.a 
+compiling the LaTeX source files). For macOS, you can use
+[TexPad](https://www.texpad.com) as your editor. Good editors for Linux are
+[Kile](https://apps.kde.org/en-gb/kile/) and 
 [TeXMaker](https://www.xm1math.net/texmaker/).
 
 After you installed you preferred LaTeX editor, copy either the file 
@@ -79,21 +83,21 @@ in the front matter to appear, you will need to create the following files:
 - **"glossary.tex"** : If you want the "List of abbreviations" page
 
 If any of the files above are missing, that particular page in the front matter
-won't be created. this is useful if you are just preparing a draft for your
+won't be created. This is useful if you are just preparing a draft for your
 thesis supervisor.
 
 Similarly, add all the BibTeX citations to a file named "references.bib" if you
-want the "Bibliography" sections to be created at the end of your document. 
+want the "Bibliography" section to be created at the end of your document. 
 
 
-The LaTeX class file in this repository requires the LuaLaTeX engine.
+The LaTeX files in this repository requires the LuaLaTeX engine.
 You editor should allow you to configure LuaLaTeX as the typesetting engine 
 for your document and automatically take care of the compilation process
 to generate the final PDF document.
 
-If you want to manually compile the document from the command line, you can
-use script "compile_document.sh" provided in this repository. This script only
-works in a Linux or macOS system. To compile the sample 4YP report
+If you want to compile the document from the command line, you can
+use the script "compile_document.sh" provided in this repository. This script
+only works in a Linux or macOS system. To compile the sample 4YP report
 document, you will execute the following command in the terminal:
 
 ```shell
@@ -108,14 +112,3 @@ $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 $ makeglossaries sample_4yp_report.tex
 $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 ```
-
-
-For more information, browse our
-[laboratory](https://cameralab.eng.ox.ac.uk) resources, or visit us at:
-
-[Institute of Biomedical Engineering](https://www.ibme.ox.ac.uk) </br>
-Department of Engineering Science</br>
-University of Oxford</br>
-Old Road Campus Research Building</br>
-Oxford, OX3 7DQ,</br>
-United Kingdom</br>
