@@ -6,14 +6,17 @@ or a DPhil/PhD thesis for a student of the
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
 the [University of Oxford](https://www.ox.ac.uk).
 
+&nbsp;
+
 ---
 
 "OxEngThesis" is free software: you can redistribute it or modify it
 under the terms of the GNU General Public License as published by the Free 
-Software Foundation, version 2 only. Please check the file [COPYING](COPYING) 
-for more information on the license and copyright.
+Software Foundation, version 2 only. Check the file [COPYING](COPYING) for more
+information on the license and copyright.
 
 ---
+&nbsp;
 
 As a student at Oxford, a proportion of your time will be devoted to writing
 science in a formal academic style. There are many resources that will help you write
@@ -163,3 +166,253 @@ $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 $ makeglossaries sample_4yp_report.tex
 $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 ```
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## Usage examples
+
+&nbsp;
+
+The [oxengthesis.cls](oxengthesis.cls) class template is based on the
+[memoir](https://ctan.org/pkg/memoir?lang=en) LaTeX package, with the addition
+of several other packages and features. In this section, I will summarise some
+of them, but take a look at the  [oxengthesis.cls](oxengthesis.cls) file and the
+sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
+[sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
+complete overview.
+
+
+### <u>Mark text as TODO</u>
+
+
+You can wrap text in "todo" tags so they appear in red colour in the PDF
+document. For example: 
+
+```latex
+    \todo{Add a citation to reference the latest research}
+```
+
+
+### <u>Figures</u>
+
+
+You can put all figures in a "figures/" folder and you can simply include the 
+image file directly without the file extension, as in:
+
+```latex
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{dummy_image}
+    \caption
+    {
+        Sample image.
+        \label{fig:sample_image}
+    }
+\end{figure}
+```
+
+will insert the image file "./figures/dummy_image.png".
+
+You can create a figure with sub plots with:
+
+```latex
+\begin{figure}[
+    \centering
+    \subbottom[\label{fig:subfig_example:fig1}]{
+        \includegraphics[width=0.3\linewidth]{dummy_image}
+    }
+    \subbottom[\label{fig:subfig_example:fig2}]{
+        \includegraphics[width=0.3\linewidth]{dummy_image}
+    }
+    \subbottom[\label{fig:subfig_example:fig3}]{
+        \includegraphics[width=0.3\linewidth]{dummy_image}
+    }
+    \caption[The PointGrey Grasshopper2 video camera]
+    {
+        Caption of the figure, showing:
+        \subcaptionref{fig:subfig_example:fig1} description 1,
+        \subcaptionref{fig:subfig_example:fig2} description 2 and
+        \subcaptionref{fig:subfig_example:fig3} description 3.
+        \label{fig:subfig_example}
+    }
+\end{figure}
+```
+
+which will automatically produce the following output:
+
+<p align="center">
+    <img src="./figures/subplot_example.png" alt="Subplot example" width="500"/>
+</p>
+
+You can directly refer to the subplot as in:
+
+```latex
+\Cref{fig:subfig_example:fig1} shows the camera ...
+ ```
+
+ it will automatically produce the text "Figure 3.2(a) shows the camera ..."
+
+
+ ### <u>Tables</u>
+
+ You can have tables with shaded headers with:
+
+ ```latex
+\begin{table}
+    \centering
+    \caption{General features and specification for ...}
+    \singleTableRowHeight
+    \begin{tabular}{ll}
+
+        \tableHeaderStart
+        \tableHCell{Item} & \tableHCell{Description} \\
+        \tableHeaderEnd
+
+        Imaging Sensor        & Sony ICX625 2/3" progressive scan CCD \\
+        Image size (pixels)   & 2448 (H) x 2048 (V)                   \\
+        Pixel Size            & 3.45 \si{\micro\metre} x 3.45 \si{\micro\metre} \\
+        A/D Converter         & AD9977 14-bit, dual-channel           \\
+        Max frame rate        & 15 FPS                                \\
+        Video Data Output     & 8, 12, 16 and 24-bit digital data     \\
+        Gain \& Exposure                  & Automatic/Manual/One-Push \\
+        Lens Mount            & C-mount                               \\
+        Interface             & Gigabit Ethernet                      \\
+        Physical dimensions   & 44 (W) mm x 29 (H) mm x 58 (L) mm     \\
+        \hline 
+
+    \end{tabular}
+    \label{table:camera_specs}
+\end{table}
+ ```
+
+which will produce the following output:
+
+<p align="center">
+    <img src="./figures/table_example_with_shaded_header.png" alt="Table with shaded header" width="500"/>
+</p>
+
+or you can have more complex table as in:
+
+```latex
+\begin{table}[htb]
+  \centering
+  \caption{Summary of population demographics in the training and test sets}
+  {
+    \small
+    \begin{tabular}{p{2cm} c c c c c c c c c c}
+      \toprule
+
+      Set &
+      \multirowcell{2}{Number of\\subjects} &
+      \multirowcell{2}{Total time\\(hours)}$^1$ &
+      \multicolumn{2}{c}{Gender} &      
+      \multicolumn{6}{c}{Ethnicity$^2$}  \\
+
+      \cmidrule{4-11}
+        
+      &  &  & Male & Female & W & B & A & WB & WA & O  \\
+      \midrule
+      Training  & 15 & 216.6 & 8  & 7  & 10 & 1   & 1 & 1 & 1 & 1 \\        
+      Test      & 15 & 210.0 & 10 & 5  & 10 & $-$ & 1 & 1 & 2 & 1 \\        
+      \midrule        
+      Total	& 30 & 426.6 & 18 & 12 & 20 & 1   & 2 & 2 & 3 & 2 \\
+        
+      \bottomrule
+        
+      \multicolumn{11}{l}
+      {
+        \footnotesize $^1$ Period during which both reference and estimated data were being recorded simultaneously.        
+      } \\        
+      \multicolumn{11}{l}
+      {        
+        \footnotesize $^2$ W = White, B = Black, A = Asian, WB = Mixed White \& Black, WA = Mixed White \& Asian and O = Other.        
+      } \\
+        
+      \end{tabular}      
+  } 
+  \label{table:patient_demographics}
+\end{table}
+```
+
+which will produce the following output:
+
+<p align="center">
+    <img src="./figures/table_example_complex.png" alt="Complex table" width="500"/>
+</p>
+
+
+### <u>Glossaries</u>
+
+
+The [glossaries-extra](https://ctan.org/pkg/glossaries-extra?lang=en) is used
+to automatically add the "List of abbreviations" page in the front matter. 
+Simply create a file with the name [glossary.tex](glossary.tex) and add all
+your definitions. In the your main document you can later use tags such as:
+
+```latex
+The standard vital signs include temperature, \af{hr}, \af{rr}, 
+blood pressure and, when appropriate, \af{spo2}.
+```
+
+which will automatically create the following output:
+
+```
+The standard vital signs include temperature, heart rate (HR), 
+respiratory rate (RR), blood pressure and, when appropriate, 
+peripheral oxygen saturation (SpO2).
+```
+and automatically create the "List of abbreviations" pages:
+
+<p align="center">
+    <kbd><img src="./figures/dphil-glossary.png" alt="Glossary page" width="300" border=1 /></kbd>
+</p>
+
+
+### <u>Cross-referencing labels</u>
+
+
+The [cleveref](https://ctan.org/pkg/cleveref?lang=en) is used to improve cross
+references to chapters, sections, figures and other common LaTeX labels. For
+example the following text:
+
+```latex
+\Cref{chapter:literature_review} discusses .... is presented in 
+\cref{chapter:dataset} with a detailed ...
+
+
+The summary of the demographics for the entire set is described in
+\cref{table:patient_demographics} ...
+
+
+\Cref{fig:subfig_example} shows the video camera used in the study.
+\Cref{fig:subfig_example:fig1} shows the camera, as opposed to 
+\cref{fig:subfig_example:fig2}, which shows the lens ...
+
+
+```
+will produce the following output:
+
+```
+Chapter 2 discusses .... is presented in chapter 3 with a detailed ...
+
+
+The summary of the demographics for the entire set is described in table 3.2 ...
+
+
+Figure 3.2 shows the video camera used in the study. Figure 3.2(a)
+shows the camera, as opposed to figure 3.2(b), which shows
+the lens ...
+
+```
+
+&nbsp;
+
+
+Take a look at the  [oxengthesis.cls](oxengthesis.cls) file and the
+sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
+[sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
+complete overview nof what you can do with the provided LaTeX class template.
