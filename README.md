@@ -180,7 +180,7 @@ $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 The [oxengthesis.cls](oxengthesis.cls) class template is based on the
 [memoir](https://ctan.org/pkg/memoir?lang=en) LaTeX package, with the addition
 of several other packages and features. In this section, I will summarise some
-of them, but take a look at the  [oxengthesis.cls](oxengthesis.cls) file and the
+of them, but take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
 sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
 [sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
 complete overview.
@@ -189,7 +189,7 @@ complete overview.
 ### <u>Mark text as TODO</u>
 
 
-You can wrap text in "todo" tags so they appear in red colour in the PDF
+You can wrap text in "todo" tags, so they appear in red colour in the PDF
 document. For example: 
 
 ```latex
@@ -254,7 +254,11 @@ You can directly refer to the subplot as in:
 \Cref{fig:subfig_example:fig1} shows the camera ...
  ```
 
- it will automatically produce the text "Figure 3.2(a) shows the camera ..."
+ it will automatically produce the text:
+ 
+ ```
+ Figure 3.2(a) shows the camera ...
+ ```
 
 
  ### <u>Tables</u>
@@ -295,7 +299,7 @@ which will produce the following output:
     <img src="./figures/table_example_with_shaded_header.png" alt="Table with shaded header" width="500"/>
 </p>
 
-or you can have more complex table as in:
+or you can have more complex tables as in:
 
 ```latex
 \begin{table}[htb]
@@ -351,7 +355,7 @@ which will produce the following output:
 The [glossaries-extra](https://ctan.org/pkg/glossaries-extra?lang=en) is used
 to automatically add the "List of abbreviations" page in the front matter. 
 Simply create a file with the name [glossary.tex](glossary.tex) and add all
-your definitions. In the your main document you can later use tags such as:
+your definitions. In your main document you can later use tags such as:
 
 ```latex
 The standard vital signs include temperature, \af{hr}, \af{rr}, 
@@ -412,7 +416,7 @@ the lens ...
 &nbsp;
 
 
-Take a look at the  [oxengthesis.cls](oxengthesis.cls) file and the
+Take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
 sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
 [sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
 complete overview nof what you can do with the provided LaTeX class template.
