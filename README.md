@@ -1,8 +1,8 @@
-# Oxford Engineering thesis template
+# Oxford thesis template
 
 
 OxEngThesis: LaTeX template for an undergraduate 4th year project (4YP) report
-or a DPhil/PhD thesis for a student of the 
+or a DPhil / PhD thesis for a student of the 
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
 the [University of Oxford](https://www.ox.ac.uk).
 
