@@ -337,7 +337,7 @@
 
 \aliaspagestyle{chapter}{empty}
 
-
+    
 %
 % Name of the input files used in the class
 %
@@ -437,12 +437,20 @@
 % Frontal abstract page
 %
 
+
+\makepagestyle{emptyFrontMatterPageStyle}
+    \makeevenhead{emptyFrontMatterPageStyle}{}{}{}
+    \makeoddhead {emptyFrontMatterPageStyle}{}{}{}
+    \renewcommand\chapterheadstart{}
+
+
 \newcommand{\makefrontabstractpage}
 {
     \cleardoublepage
+    \pagestyle{emptyFrontMatterPageStyle}
     \begingroup
 
-    \thispagestyle{empty}
+    %\thispagestyle{empty}
     \renewcommand*{\chapterheadstart}{}
     \OnehalfSpacing
 
@@ -519,6 +527,7 @@
 {
     \cleardoublepage
     \chapter*{Acknowledgements}
+    \pagestyle{emptyFrontMatterPageStyle}
     \OnehalfSpacing
     \input{\acknowledgementsfilename}
 }
@@ -532,6 +541,7 @@
 {
     \cleardoublepage
     \chapter*{Abstract}
+    \pagestyle{emptyFrontMatterPageStyle}
     \OnehalfSpacing
     \input{\abstractfilename}
 }
@@ -541,16 +551,11 @@
 % List of publications page
 %
 
-\makepagestyle{publicationspagestyle}
-    \makeevenhead{publicationspagestyle}{}{}{}
-    \makeoddhead {publicationspagestyle}{}{}{}
-    \renewcommand\chapterheadstart{}
-
 \newcommand{\makepublicationspage}
 {
     \cleardoublepage
     \chapter*{List of publications}
-    \pagestyle{publicationspagestyle}
+    \pagestyle{emptyFrontMatterPageStyle}
     \OnehalfSpacing
     \input{\publicationsfilename}
 }
