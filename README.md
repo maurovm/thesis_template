@@ -141,7 +141,7 @@ Similarly, add all the BibTeX citations to a file named
 [references.bib](references.bib) if you want the "Bibliography" section to be
 created at the end of your document. 
 
-The LaTeX files in this repository requires the 
+The LaTeX files in this repository require the 
 [LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should 
 allow you to configure LuaLaTeX as the typesetting engine for your document and
 automatically take care of the compilation process to generate the final PDF
@@ -352,10 +352,11 @@ which will produce the following output:
 ### <u>Glossaries</u>
 
 
-The [glossaries-extra](https://ctan.org/pkg/glossaries-extra?lang=en) is used
-to automatically add the "List of abbreviations" page in the front matter. 
-Simply create a file with the name [glossary.tex](glossary.tex) and add all
-your definitions. In your main document you can later use tags such as:
+The [glossaries-extra](https://ctan.org/pkg/glossaries-extra?lang=en) package
+is used to automatically add the "List of abbreviations" page in the front
+matter. Simply create a file with the name [glossary.tex](glossary.tex) and 
+add all your definitions. In your main document you can later use tags
+such as:
 
 ```latex
 The standard vital signs include temperature, \af{hr}, \af{rr}, 
@@ -379,9 +380,9 @@ and automatically create the "List of abbreviations" pages:
 ### <u>Cross-referencing labels</u>
 
 
-The [cleveref](https://ctan.org/pkg/cleveref?lang=en) is used to improve cross
-references to chapters, sections, figures and other common LaTeX labels. For
-example the following text:
+The [cleveref](https://ctan.org/pkg/cleveref?lang=en) package is used to
+improve cross references to chapters, sections, figures and other common
+LaTeX labels. For example the following text:
 
 ```latex
 \Cref{chapter:literature_review} discusses .... is presented in 
