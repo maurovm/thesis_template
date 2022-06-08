@@ -22,15 +22,17 @@
 
 
 \newif\if@report
-
 \DeclareOption{report}{\@reporttrue}
+
+\newif\if@review
+\DeclareOption{review}{\@reviewtrue}
 
 % Pass all other the options to the memoir class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
 
 \ProcessOptions\relax
 
-\LoadClass[final]{memoir}
+\LoadClass{memoir}
 
 
 % ____________________________________________________________________________
@@ -452,7 +454,13 @@
 
     %\thispagestyle{empty}
     \renewcommand*{\chapterheadstart}{}
-    \OnehalfSpacing
+    
+    \if@review
+        \DoubleSpacing
+    \else
+        \OnehalfSpacing
+    \fi    
+    
 
     {\Large
     \noindent
@@ -542,7 +550,11 @@
     \cleardoublepage
     \chapter*{Abstract}
     \pagestyle{emptyFrontMatterPageStyle}
-    \OnehalfSpacing
+    \if@review
+        \DoubleSpacing
+    \else
+        \OnehalfSpacing
+    \fi
     \input{\abstractfilename}
 }
 
@@ -733,7 +745,11 @@
 {
     \clearforchapter
     \pagestyle{mainpagestyle}
-    \OnehalfSpacing
+    \if@review
+        \DoubleSpacing
+    \else
+        \OnehalfSpacing
+    \fi
 }{}
 
 
@@ -761,7 +777,11 @@
 {
     \clearforchapter
     \pagestyle{appendixpagestyle}
-    \OnehalfSpacing
+    \if@review
+        \DoubleSpacing
+    \else
+        \OnehalfSpacing
+    \fi
 }{}
 
 

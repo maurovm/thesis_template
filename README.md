@@ -420,3 +420,20 @@ Take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
 sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
 [sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
 complete overview nof what you can do with the provided LaTeX class template.
+
+
+### <u>Review editing mode</u>
+
+Your thesis supervisor may request you to print your document with 
+double line spacing so he/she can correct your draft (the red pen!). You can
+simply add the ``review'' option to your document as in:
+
+```latex
+\documentclass[10pt,a4paper,twoside,openany,report,final,review]{oxengthesis}
+```
+
+Take a look at the source file 
+[sample_4yp_report-review_mode.tex](sample_4yp_report-review_mode.tex)
+and the PDF output  
+[sample_4yp_report-review_mode-sample_output.pdf](sample_4yp_report-review_mode-sample_output.pdf)
+to see and example of the ``review'' mode.
