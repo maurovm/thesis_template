@@ -84,7 +84,7 @@ sample PDF documents:
 
 ## Requirements
 
-There are several options for writing in LaTex, including online versions such
+There are several options for writing in LaTeX, including online versions such
 as Overleaf. I don't recommend Overleaf, as you will be writing long documents
 with several figures, tables and other elements. In my experience, having LaTeX
 installed locally in your computer is a better option.
@@ -118,12 +118,12 @@ compiling the LaTeX source files). For macOS, you can use
 After you installed you preferred LaTeX editor, copy either the file 
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) or
 [sample_4yp_report.tex](sample_4yp_report.tex) to a new file depending
-on if you are writing a DPhil thesis or a 4YP report document respectively.
+on if you are writing a DPhil thesis or a 4YP report respectively.
 
 The frontmatter section will be automatically created depending on the type
 of document you are writing. If you want more control, you can review how the
 '\makefrontmatterpages' command is defined in the main 
-[oxengthesis.cls](oxengthesis.cls) class template. If you want all the sections
+[oxengthesis.cls](oxengthesis.cls) class file. If you want all the sections
 in the front matter to appear, you will need to create the following files:
 
 - **[abstract.tex](abstract.tex)** : If you want the "Abstract" page
@@ -156,6 +156,14 @@ command in the terminal:
 ```shell
 $ ./compile_document.sh  sample_4yp_report.tex
 ```
+
+If you want to delete all the temp or auxiliary files LaTeX created during
+the compilation process, you can run:
+
+```shell
+$ ./remove_latex_aux_files.sh
+```
+
 
 If you are compiling the document manually, you would need to run the
 [latexmk](https://ctan.org/pkg/latexmk?lang=en) build command (already part
@@ -438,3 +446,17 @@ Take a look at the source file
 and the PDF output  
 [sample_4yp_report-review_mode-sample_output.pdf](sample_4yp_report-review_mode-sample_output.pdf)
 to see and example of the ``review'' mode.
+
+### <u>Different colour for section headings</u>
+
+The default font colour for section and subsection heading is black. You can 
+the colour (to blue for example) by adding the following line to your document:
+
+```latex
+\definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
+```
+
+The sample document for a DPhil thesis 
+([sample_dphil_thesis.tex](sample_dphil_thesis.tex)) uses the default black
+colour. The font colour for the section headings for the 4YP report example ([sample_4yp_report.tex](sample_4yp_report.tex)) is blue.
+

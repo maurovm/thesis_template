@@ -717,8 +717,9 @@
 % ____________________________________________________________________________
 
 
+% The font colour for section headings. Default is black
 \@ifundefined{headingcolor}{%
-    \definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
+    \definecolor{headingcolor}{rgb}{0,0,0}
 }{}
 
 
