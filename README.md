@@ -29,12 +29,12 @@ My students have found very helpful to use the LaTeX typesetting system to write
 reports, theses, journal papers or other academic documents. You can write your
 LaTeX documents from scratch, however, it is often easier to start
 with an already written template. This way, you can focus (as your DPhil
-supervisor and your viva panel expect) on the contents of your research 
+supervisor and your viva panel expect) on writing about your exciting research 
 contributions rather than spending time formatting your document or applying 
 other cosmetic changes. To this end, this repository contains a LaTeX
-template that can be used for a 4th year project (4YP) report or a DPhil/PhD 
-thesis. The typical 4YP report contains around 50 pages, whereas a DPhil thesis
-can contain approximately 250 pages. Although the LaTeX template was written and
+template that can be used for a 4th year project (4YP) report or a DPhil / PhD 
+thesis. The typical 4YP report contains around 50 pages, whereas a DPhil / PhD thesis
+is a much larger document. Although this LaTeX template was written and
 formatted for the [Department of Engineering Science](https://www.eng.ox.ac.uk)
 at the [University of Oxford](https://www.ox.ac.uk), it should be easy for you
 to adjust the template to suit the requirements of other academic institution.
@@ -91,12 +91,12 @@ installed locally in your computer is a better option.
 
 You will need a modern LaTeX compiler installed in your system, at minimum
 version 2017. Most modern operating systems use 
-[Tex Live](https://www.tug.org/texlive/) as the preferred LaTeX typesetting
+[TexLive](https://www.tug.org/texlive/) as the preferred LaTeX typesetting
 system. If you are using Linux, LaTeX is already pre-installed or is readily 
 available from your distribution's software repository. For macOS, you can
 download and install the latest [MacTeX](https://tug.org/mactex) distribution. 
 For Microsoft Windows, follow the installation instructions described in
-[Tex Live on Windows](https://tug.org/texlive/windows.html)
+[TexLive on Windows](https://tug.org/texlive/windows.html)
 
 
 Install the Carlito font (if it's not already installed in your system). Follow
@@ -110,10 +110,10 @@ also install the Latin Modern Math font.
 
 There are several editors available that will make your life easier when
 writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a 
-compiling the LaTeX source files). For macOS, you can use
-[TexPad](https://www.texpad.com). Good editors for Linux are
-[Kile](https://apps.kde.org/en-gb/kile/) and 
-[TeXMaker](https://www.xm1math.net/texmaker/).
+compiling the LaTeX source files). For macOS and iOS, you can use
+[Texifier](https://www.texifier.com). Good editors for Linux are
+[Kile](https://apps.kde.org/en-gb/kile) and 
+[TeXMaker](https://www.xm1math.net/texmaker).
 
 After you installed you preferred LaTeX editor, copy either the file 
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) or
@@ -135,9 +135,7 @@ in the front matter to appear, you will need to create the following files:
 
 If any of the files above are missing, that particular page in the front matter
 won't be created. This is useful if you are just preparing a draft for your
-thesis supervisor.
-
-Similarly, add all the BibTeX citations to a file named 
+thesis supervisor. Similarly, add all the BibTeX citations to a file named 
 [references.bib](references.bib) if you want the "Bibliography" section to be
 created at the end of your document. 
 
@@ -166,7 +164,7 @@ $ ./remove_latex_aux_files.sh
 
 
 If you are compiling the document manually, you would need to run the
-[latexmk](https://ctan.org/pkg/latexmk?lang=en) build command (already part
+[latexmk](https://ctan.org/pkg/latexmk) build command (already part
 of your LaTeX distribution) in the following order:
 
 ```shell
@@ -186,7 +184,7 @@ $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 &nbsp;
 
 The [oxengthesis.cls](oxengthesis.cls) class template is based on the
-[memoir](https://ctan.org/pkg/memoir?lang=en) LaTeX package, with the addition
+[memoir](https://ctan.org/pkg/memoir) LaTeX package, with the addition
 of several other packages and features. In this section, I will summarise some
 of them, but take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
 sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
@@ -360,7 +358,7 @@ which will produce the following output:
 ### <u>Glossaries</u>
 
 
-The [glossaries-extra](https://ctan.org/pkg/glossaries-extra?lang=en) package
+The [glossaries-extra](https://ctan.org/pkg/glossaries-extra) package
 is used to automatically add the "List of abbreviations" page in the front
 matter. Simply create a file with the name [glossary.tex](glossary.tex) and 
 add all your definitions. In your main document you can later use tags
@@ -388,7 +386,7 @@ and automatically create the "List of abbreviations" pages:
 ### <u>Cross-referencing labels</u>
 
 
-The [cleveref](https://ctan.org/pkg/cleveref?lang=en) package is used to
+The [cleveref](https://ctan.org/pkg/cleveref) package is used to
 improve cross references to chapters, sections, figures and other common
 LaTeX labels. For example the following text:
 
@@ -431,6 +429,30 @@ sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) /
 complete overview nof what you can do with the provided LaTeX class template.
 
 
+### <u>Mini-table of contents for each chapter</u>
+
+
+If you have a recent version of LaTeX installed (version 2022 works) in your
+system and would like to have a short table of contents at the beginning of 
+each chapter, you can simply add the ``useminitoc'' option to your document
+as in:
+
+```latex
+\documentclass[10pt,a4paper,twoside,openany,useminitoc,final]{oxengthesis}
+```
+
+Below is a sample output for one chapter:
+
+<p align="center">
+    <kbd><img src="./figures/dphil-chap_minitoc.png" alt="Glossary page" width="300" border=1 /></kbd>
+</p>
+
+
+I use the [minitoc](https://ctan.org/pkg/memoir) LaTeX package to create
+the table of contents for each chapter. Previous versions of the minitoc class
+where incompatible with the [memoir](https://ctan.org/pkg/memoir) class. I 
+tested TexLive 2022 and MacTeX 2022, they both work fine.
+
 ### <u>Review editing mode</u>
 
 Your thesis supervisor may request you to print your document with 
@@ -440,12 +462,6 @@ simply add the ``review'' option to your document as in:
 ```latex
 \documentclass[10pt,a4paper,twoside,openany,report,final,review]{oxengthesis}
 ```
-
-Take a look at the source file 
-[sample_4yp_report-review_mode.tex](sample_4yp_report-review_mode.tex)
-and the PDF output  
-[sample_4yp_report-review_mode-sample_output.pdf](sample_4yp_report-review_mode-sample_output.pdf)
-to see and example of the ``review'' mode.
 
 ### <u>Different colour for section headings</u>
 

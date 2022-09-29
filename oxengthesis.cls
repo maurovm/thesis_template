@@ -12,13 +12,13 @@
 % DESCRIPTION :
 %
 % Latex template for a project report based on the 
-% class file for a DPhil thesis of the Engineerind department of 
+% class file for a DPhil thesis of the Engineering department of 
 % the University of Oxford
 % ____________________________________________________________________________
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{oxengthesis}[2022/05/05 v0.8 Oxford Engineering thesis class by Mauricio Villarroel]
+\ProvidesClass{oxengthesis}[2022/05/05 version 0.9 - Oxford Engineering thesis class by Mauricio Villarroel]
 
 
 \newif\if@report
@@ -26,6 +26,9 @@
 
 \newif\if@review
 \DeclareOption{review}{\@reviewtrue}
+
+\newif\if@useminitoc
+\DeclareOption{useminitoc}{\@useminitoctrue}
 
 % Pass all other the options to the memoir class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
@@ -42,6 +45,7 @@
 
 
 \RequirePackage{textcomp}
+\RequirePackage[base]{babel}
 \RequirePackage{lipsum}
 
 % Custom colours
@@ -306,6 +310,16 @@
 
 \RequirePackage[hyperindex=true,colorlinks=true,pagebackref=false,allcolors=black,plainpages=false,pdfpagelabels,bookmarksnumbered]{hyperref}
 
+\if@useminitoc
+    \RequirePackage[tight]{minitoc}
+    \mtcsetdepth{minitoc}{2}
+    %\mtcsetrules{*}{off}
+    \mtcsettitle{minitoc}{Chapter contents}
+    \renewcommand{\mtcSfont}{\normalfont\small}
+    \setlength{\mtcskipamount}{2\bigskipamount}
+    \setlength{\mtcindent}{1.5em}
+\fi
+
 
 % ____________________________________________________________________________
 %
@@ -448,11 +462,9 @@
 
 \newcommand{\makefrontabstractpage}
 {
-    \cleardoublepage
     \pagestyle{emptyFrontMatterPageStyle}
     \begingroup
 
-    %\thispagestyle{empty}
     \renewcommand*{\chapterheadstart}{}
     
     \if@review
@@ -464,7 +476,7 @@
 
     {\Large
     \noindent
-    \begin{minipage}[t]{.6\textwidth}
+    \begin{minipage}[t]{.55\textwidth}
         \raggedright
         \@author \\
         \ifdefined \@college
@@ -587,7 +599,6 @@
 \addtodef{\tableofcontents}
 {
     \cleardoublepage
-    \setcounter{page}{1}
     \setcounter{tocdepth}{2}
     \pagestyle{tocpagestyle}
     \SingleSpacing
@@ -683,13 +694,20 @@
         \include{\glossaryfilename}
         \glsunsetall
     }{}
-    
-    \maketitlepage
+
 
     \if@report
 
     \else
         \IfFileExists{\abstractfilename}{\makefrontabstractpage}{}
+        \cleardoublepage
+    \fi
+
+    \maketitlepage
+
+    \if@report
+
+    \else
         \IfFileExists{\dedicationfilename}{\makededicationpage}{}
         \IfFileExists{\declarationfilename}{\makedeclarationpage}{}
     \fi
@@ -703,9 +721,18 @@
         \IfFileExists{\publicationsfilename}{\makepublicationspage}{}
     \fi
     
-    \tableofcontents
-    \listoffigures
-    \listoftables
+    \if@useminitoc
+        \dominitoc
+        \tableofcontents
+        \listoffigures
+        \adjustmtc[2]
+        \listoftables
+        \adjustmtc[2]
+    \else
+        \tableofcontents
+        \listoffigures
+        \listoftables
+    \fi
     
     \IfFileExists{\glossaryfilename}{\listofabbreviations}{}
 }
@@ -715,6 +742,31 @@
 %
 % MAIN MATTER
 % ____________________________________________________________________________
+
+
+% Enable minitoc for chapters
+
+\if@useminitoc
+
+    \RequirePackage{xparse}
+    
+    \AtBeginDocument
+    {
+      \let\oldchapter\chapter
+      \RenewDocumentCommand{\chapter}{s O{#3} m}
+      {
+        \IfBooleanTF{#1}{%
+          % chapter is starred, no \minitoc
+          \oldchapter*{#3}%
+        }{%
+          \oldchapter[#2]{#3}%
+          \minitoc
+          \mtcskip
+        }%
+      }
+    }
+    
+\fi
 
 
 % The font colour for section headings. Default is black
@@ -741,6 +793,7 @@
     \setsecheadstyle{\large\bfseries\color{headingcolor}}
     \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
     \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
+
 
 \addtodef{\mainmatter}
 {
@@ -859,3 +912,4 @@
 % "memoir" class requires this to be towards the end of the configuration
 
 \RequirePackage[noabbrev]{cleveref}
+
