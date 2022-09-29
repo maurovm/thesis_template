@@ -453,6 +453,32 @@ the table of contents for each chapter. Previous versions of the minitoc class
 where incompatible with the [memoir](https://ctan.org/pkg/memoir) class. I 
 tested TexLive 2022 and MacTeX 2022, they both work fine.
 
+
+
+### <u>Abstract page for Examination Schools</u>
+
+
+When submitting your final thesis to the ``Examination Schools'' (located on
+High Street) at the University of Oxford to schedule your viva examination, 
+you are typically required to submit two printed copies of your thesis 
+(soft-bound) and, additionally, two separate one-page printed copies of your
+abstract. The stand-alone abstract page should contains your name, college 
+affiliation and is NOT meant to be part of the binding of your thesis.
+
+To create this single stand-alone page of your abstract, add the ``frontabstract''
+option to your document as in:
+
+```latex
+\documentclass[10pt,a4paper,twoside,openany,frontabstract,final]{oxengthesis}
+```
+
+The page will be created before the main title page. Below is a sample output:
+
+<p align="center">
+    <kbd><img src="./figures/dphil-front_abstract_page.png" alt="Glossary page" width="300" border=1 /></kbd>
+</p>
+
+
 ### <u>Review editing mode</u>
 
 Your thesis supervisor may request you to print your document with 

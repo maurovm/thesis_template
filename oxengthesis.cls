@@ -27,6 +27,9 @@
 \newif\if@review
 \DeclareOption{review}{\@reviewtrue}
 
+\newif\if@frontabstract
+\DeclareOption{frontabstract}{\@frontabstracttrue}
+
 \newif\if@useminitoc
 \DeclareOption{useminitoc}{\@useminitoctrue}
 
@@ -476,14 +479,14 @@
 
     {\Large
     \noindent
-    \begin{minipage}[t]{.55\textwidth}
+    \begin{minipage}[t]{.6\textwidth}
         \raggedright
         \@author \\
         \ifdefined \@college
             \@college
         \fi
-    \end{minipage}
-    \begin{minipage}[t]{.4\textwidth}
+    \end{minipage}%
+    \begin{minipage}[t]{.39\textwidth}
         \raggedleft
         \@degree \\
         \@degreedate
@@ -493,6 +496,8 @@
     \begin{center}
         \LARGE{\bfseries{\@title}}
     \end{center}
+    
+    \noindent \hrulefill
 
     \input{\abstractfilename}
     
@@ -696,9 +701,7 @@
     }{}
 
 
-    \if@report
-
-    \else
+    \if@frontabstract
         \IfFileExists{\abstractfilename}{\makefrontabstractpage}{}
         \cleardoublepage
     \fi
