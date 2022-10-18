@@ -362,6 +362,7 @@
 %
 
 
+\def\oxfordtitlefilename{titlepage-oxford.tex}
 \def\abstractfilename{abstract.tex}
 \def\glossaryfilename{glossary.tex}
 
@@ -375,9 +376,7 @@
 % Variables used in the front matter
 %
 
-
-% The year and term the thesis is submitted 
-\def\degreedate#1{\gdef\@degreedate{#1}}
+\def\titlepage#1{\gdef\@titlepage{#1}}
 
 % A sentence to appear before the degree
 \def\degreeprefix#1{\gdef\@degreeprefix{#1}}
@@ -402,53 +401,95 @@
 
 
 %
-% The single title page
+% The Title page
 %
+
 
 \newcommand{\maketitlepage}
 {
+
+    % Re define some variables and command
+    
+    
+    \newcommand{\TitleName}{\@title}
+    \newcommand{\AuthorName}{\@author}
+
+    \ifdefined \@date
+        \newcommand{\DegreeDate}{\@date}
+    \else
+        \newcommand{\DegreeDate}{DEGREE DATE}    
+    \fi
+
+    \ifdefined \@degreeprefix
+        \newcommand{\DegreePrefix}{\@degreeprefix}
+    \else
+        \newcommand{\DegreePrefix}{A thesis submitted for the degree of}
+    \fi
+
+    \ifdefined \@degree
+        \newcommand{\DegreeName}{\@degree}
+    \else
+        \newcommand{\DegreeName}{Doctor of Philosophy}
+    \fi
+
+    \ifdefined \@college
+        \newcommand{\CollegeName}{\@college}
+    \else
+        \newcommand{\CollegeName}{}
+    \fi
+
+    \ifdefined \@university
+        \newcommand{\UniversityName}{\@university}
+    \else
+        \newcommand{\UniversityName}{University of Oxford}
+    \fi
+
+    \ifdefined \@universitylogo
+        \newcommand{\UniversityLogo}{\@universitylogo}
+    \else
+        \newcommand{\UniversityLogo}{oxford-logo}
+    \fi
+
+
+    \ifdefined \@department
+        \newcommand{\DepartmentName}{\@department}
+    \else
+        \newcommand{\DepartmentName}{Department of Engineering Science}
+    \fi
+
+    \ifdefined \@supervisor
+        \newcommand{\SupervisorName}{\@supervisor}
+    \else
+        \newcommand{\SupervisorName}{SUPERVISOR NAME}
+    \fi
+
+
+    \ifdefined \@titlepage
+        \newcommand{\titlefilename}{\@titlepage}
+    \else
+        \newcommand{\titlefilename}{\oxfordtitlefilename}
+    \fi
+    
+
+    % The contents of the title page
+    
+
     \begingroup
 
     \thispagestyle{empty}
     \pdfbookmark[0]{Title page}{title}
-    \begin{center}
-
-        {\Huge \bfseries \@title \par}
-
-        \null\vfill
-
-        \ifdefined \@universitylogo
-            \includegraphics[width=0.5\linewidth,keepaspectratio=true]{\@universitylogo}
-            \null\vfill
-        \fi
-
-        {\huge \bfseries \@author \par}
-        \ifdefined \@college
-            {\LARGE \@college \par}
-        \fi
-
-        \null\vfill
-
-        {\Large
-
-        \vspace*{\baselineskip}
-        \ifdefined \@degreeprefix
-            \@degreeprefix \par
-        \fi
-        \@degree
-
-        \vspace*{\baselineskip}
-        Supervised by \\ \@supervisor
-
-        \vspace*{\baselineskip}
-        \@department \\ \@university 
-
-        \null\vfill
-        \@degreedate
-        }
-    \end{center}
     
+    
+    \IfFileExists{\titlefilename}
+    {
+        \include{\titlefilename}
+    }
+    {
+        \include{\oxfordtitlefilename}
+    }
+
     \endgroup
+    
 }
 
 

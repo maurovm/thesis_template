@@ -175,6 +175,95 @@ $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 
 &nbsp;
 
+# The title page
+
+Although this LaTeX template was written and formatted for the
+[Department of Engineering Science](https://www.eng.ox.ac.uk) at the
+[University of Oxford](https://www.ox.ac.uk), it should be easy for you
+to customise this template to suit the requirements of other academic institution.
+
+If the default title page layout does not fulfill your or your university's
+requirements, you can even provide your own title page with a total separate
+layout. 
+
+## Customising the default title page
+
+The [default title page](titlepage-oxford.tex) is simple and customisable. 
+At minimum, you need to provide the following definitions:
+
+
+- **\title{}**:      The main title of the thesis/report
+- **\author{}**:     The author of the thesis/report
+
+
+To customise it, you can define the following optional variables in the 
+preamble of your main LaTeX source file:
+
+- **\supervisor{}**: The name of your thesis supervisor. The default value is:
+    "*SUPERVISOR NAME*"
+- **\college{}**: Your college affiliation, if you are an Oxford student.
+    The default value is: "" (an *empty string*)
+- **\degreeprefix{}**: Text printed before the degree name. The default value
+    is: "*A thesis submitted for the degree of*"
+- **\degree{}**: The name of the degree. The default value is:
+    "*Doctor of Philosophy*"
+- **\department{}**: Your university department. The default value is:
+    "*Department of Engineering Science*"
+- **\university{}**:   The name of your university. The default value is:
+    "*University of Oxford*"
+- **\universitylogo{}**: File name of the university's logo, without the file
+    extension. The default value is: "*oxford-logo*" (which will load the
+    image file [oxford-logo.png](figures/oxford-logo.png))
+- **\date{}**: The date of publication of the thesis, such as
+    "*Hilary Term, 2048*". If you leave it blank, it will print the current date
+    (useful when sending a draft to your supervisor)
+
+
+For examples on how to define the above variables, you can review the files
+[sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
+[sample_4yp_report.tex](sample_4yp_report.tex), depending if you are writing
+a DPhil thesis or a 4YP report respectively. These two files use the default
+title page [titlepage-oxford.tex](titlepage-oxford.tex), which produces the
+following output:
+
+
+<p align="center">
+    <kbd><img src="./figures/dphil-title_page.png" alt="Title page" width="250" border=1 /></kbd>
+    ...
+    <kbd><img src="./figures/4yp-title_page.png" alt="TOC page 1" width="250" border=1 /></kbd>
+</p>
+
+
+## Create your own title page
+
+If you don't provide a custom title page, the [oxengthesis.cls](oxengthesis.cls)
+class template will load the default title file 
+[titlepage-oxford.tex](titlepage-oxford.tex). If the layout of the default title
+page does not fulfill your or your university's requirements, you can create
+your own title page. To do so, you will need to follow the 3 steps described
+below. As an example, we will create a custom title page for a PhD thesis at the Massachusetts Institute of Technology:
+
+1. Create a new LaTeX source file and add your own definitions. We will name
+   this file [titlepage-mit.tex](titlepage-mit.tex)
+
+2. Define the "**\titlepage{}**" variable in the preamble of your main LaTeX
+   source file. For example, after the "\author{}" variable as in:
+
+```latex
+\title    {Title of your thesis}
+\author   {Your name}
+\titlepage{titlepage-mit.tex}
+```
+
+3. Recompile your main LaTeX source file. An example output is:
+
+
+<p align="center">
+    <kbd><img src="./figures/mit_phd-title_page.png" alt="Title page" width="250" border=1 /></kbd>
+</p>
+
+
+
 ---
 
 &nbsp;

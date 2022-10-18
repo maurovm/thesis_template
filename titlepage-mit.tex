@@ -1,0 +1,69 @@
+
+%
+% Variables to redefine
+%
+
+\renewcommand\DegreeName{Doctor of Philosophy}
+\renewcommand\DepartmentName{Department of Electrical Engineering and Computer Science}
+\renewcommand\SupervisorName{Professor Albus Dumbledore}
+\renewcommand\DegreeDate{June 6, 2048}
+
+%
+% New variables
+%
+
+\newcommand\DegreeMonth{June}
+\newcommand\DegreeYear{2048}
+\newcommand\SupervisorTitle{Professor of Electrical Engineering}
+\newcommand\ChairmanName{Arthur C. Smith}
+\newcommand\ChairmanTitle{Chairman, Departmental Committee on Graduate Students}
+
+%
+% Useful macros
+%
+
+\def\signature#1#2{\par\noindent#1\dotfill\null\\*
+  {\raggedleft #2\par}}
+
+
+%
+% The contents of the title page
+%
+
+
+\begin{center}
+    
+    {\Large
+    
+    {\Huge \bfseries \TitleName \par}
+    \vspace*{\baselineskip}
+    by\par
+    \vspace*{\baselineskip}
+    {\huge \AuthorName \par}
+    
+    \vspace*{\baselineskip}
+    Submitted to the \DepartmentName \\
+    in partial fulfillment of the requirements for the degree of \par
+    \vspace*{\baselineskip}
+    {\huge \DegreeName \par}
+
+    \vspace*{\baselineskip}
+    at the \par
+    {\Large MASSACHUSETTS INSTITUTE OF TECHNOLOGY \par}
+    \DegreeMonth\ \DegreeYear \par
+    
+    \vspace*{\baselineskip}
+    \copyright Massachusetts Institute of Technology\ \DegreeYear. All rights reserved. \par
+    
+    \null\vfill
+    \signature{Author}{\DepartmentName \\ \DegreeDate}
+    \par
+    \vfill
+    \signature{Certified by}{\SupervisorName \\ \SupervisorTitle \\ Thesis Supervisor}
+    \par
+    \vfill
+    \signature{Accepted by}{\ChairmanName \\ \ChairmanTitle}
+    
+    }
+           
+\end{center}
