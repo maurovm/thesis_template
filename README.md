@@ -1,21 +1,22 @@
-# Oxford thesis template
+# DPhil / PhD doctoral thesis template
 
 
-OxEngThesis: LaTeX template for an undergraduate 4th year project (4YP) report
-or a DPhil / PhD thesis for a student of the 
+LaTeX template for an undergraduate 4th year project (4YP) report
+or a DPhil thesis for a student of the 
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
-the [University of Oxford](https://www.ox.ac.uk).
+the [University of Oxford](https://www.ox.ac.uk). Although originally created
+for a student at Oxford, I included some examples below for a PhD thesis for the
+Massachussetts Institute of Technology and (cough, cough) the University of 
+Cambridge. It should be easy for you to adjust this template to suit the
+requirements of other academic institutions.
 
 &nbsp;
 
----
-
-"OxEngThesis" is free software: you can redistribute it or modify it
+> "OxEngThesis" is free software: you can redistribute it or modify it
 under the terms of the GNU General Public License as published by the Free 
 Software Foundation, version 2 only. Check the file [COPYING](COPYING) for more
 information on the license and copyright.
 
----
 &nbsp;
 
 As a student at Oxford, a proportion of your time will be devoted to writing
@@ -23,21 +24,18 @@ science in a formal academic style. There are many resources that will help you 
 your thesis, such as [Writing your thesis](https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/completing-your-dphil/writing-up-your-thesis), 
 [Completing your doctorate](https://www.vitae.ac.uk/doing-research/doing-a-doctorate/completing-your-doctorate),
 [Essay and dissertation writing skills](https://www.ox.ac.uk/students/academic/guidance/skills/essay)
-and also other [resources for new students](https://cameralab.eng.ox.ac.uk/resources_new_students.html).
+and also other [resources for new students](https://cameralab.eng.ox.ac.uk/resources_new_students.html). Prof. Steven Pinker's talk on [Linguistics, Style and Writing in the 21st Century](https://youtu.be/OV5J6BfToSw) will provide you with sound advice on writing. 
 
 My students have found very helpful to use the LaTeX typesetting system to write
 reports, theses, journal papers or other academic documents. You can write your
 LaTeX documents from scratch, however, it is often easier to start
-with an already written template. This way, you can focus (as your DPhil
-supervisor and your viva panel expect) on writing about your exciting research 
+with an already written template. This way, you can focus (as your supervisor
+and your viva panel expect) on writing about your exciting research 
 contributions rather than spending time formatting your document or applying 
 other cosmetic changes. To this end, this repository contains a LaTeX
 template that can be used for a 4th year project (4YP) report or a DPhil / PhD 
 thesis. The typical 4YP report contains around 50 pages, whereas a DPhil / PhD thesis
-is a much larger document. Although this LaTeX template was written and
-formatted for the [Department of Engineering Science](https://www.eng.ox.ac.uk)
-at the [University of Oxford](https://www.ox.ac.uk), it should be easy for you
-to adjust the template to suit the requirements of other academic institution.
+is a much larger document.
 
 The main LaTeX class file is [oxengthesis.cls](oxengthesis.cls). Two sample 
 documents are provided: [sample_4yp_report.tex](sample_4yp_report.tex) and
@@ -45,6 +43,7 @@ documents are provided: [sample_4yp_report.tex](sample_4yp_report.tex) and
 writing a 4YP report or a DPhil thesis respectively. The following screenshots
 give you an idea of how the documents looks:
 
+&nbsp;
 
 <p align="center">
     <kbd><img src="./figures/dphil-title_page.png" alt="Title page" width="250" border=1 /></kbd>
@@ -73,7 +72,7 @@ give you an idea of how the documents looks:
     <kbd><img src="./figures/dphil-bib_2.png" alt="Bibliography page 2" width="250" border=1 /></kbd>
 </p>
 
-
+&nbsp;
 
 For a more complete example of the output, you can check the corresponding
 sample PDF documents:
@@ -106,7 +105,7 @@ directory, for example for [Linux](fonts/INSTALL_FONTS_LINUX.md) or
 also install the Latin Modern Math font.
 
 
-## Writing in LaTeX
+## Note on LaTeX editors
 
 There are several editors available that will make your life easier when
 writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a 
@@ -115,14 +114,27 @@ compiling the LaTeX source files). For macOS and iOS, you can use
 [Kile](https://apps.kde.org/en-gb/kile) and 
 [TeXMaker](https://www.xm1math.net/texmaker).
 
+The LaTeX files in this repository require the 
+[LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should 
+allow you to configure LuaLaTeX as the typesetting engine for your document and
+automatically take care of the compilation process to generate the final PDF
+document.
+
+&nbsp;
+
+# Writing your thesis
+
+## Preparing your document
+
 After you installed you preferred LaTeX editor, copy either the file 
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) or
 [sample_4yp_report.tex](sample_4yp_report.tex) to a new file depending
-on if you are writing a DPhil thesis or a 4YP report respectively.
+on if you are writing a DPhil thesis or a 4YP report respectively. I will this
+new file your "*main LaTeX source file*".
 
 The frontmatter section will be automatically created depending on the type
 of document you are writing. If you want more control, you can review how the
-'\makefrontmatterpages' command is defined in the main 
+'\makefrontmatterpages' command is defined in the 
 [oxengthesis.cls](oxengthesis.cls) class file. If you want all the sections
 in the front matter to appear, you will need to create the following files:
 
@@ -134,10 +146,14 @@ in the front matter to appear, you will need to create the following files:
 - **[glossary.tex](glossary.tex)** : If you want the "List of abbreviations" page
 
 If any of the files above are missing, that particular page in the front matter
-won't be created. This is useful if you are just preparing a draft for your
-thesis supervisor. Similarly, add all the BibTeX citations to a file named 
+won't be created. This is useful if you are just preparing a draft version of your
+thesis for your supervisor to correct. 
+
+Similarly, add all the BibTeX citations to a file named 
 [references.bib](references.bib) if you want the "Bibliography" section to be
 created at the end of your document. 
+
+## Creating the PDF output
 
 The LaTeX files in this repository require the 
 [LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should 
@@ -173,31 +189,19 @@ $ makeglossaries sample_4yp_report.tex
 $ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
 ```
 
-&nbsp;
+## Customising the title page
 
-# The title page
-
-Although this LaTeX template was written and formatted for the
-[Department of Engineering Science](https://www.eng.ox.ac.uk) at the
-[University of Oxford](https://www.ox.ac.uk), it should be easy for you
-to customise this template to suit the requirements of other academic institution.
-
-If the default title page layout does not fulfill your or your university's
-requirements, you can even provide your own title page with a total separate
-layout. 
-
-## Customising the default title page
-
-The [default title page](titlepage-oxford.tex) is simple and customisable. 
-At minimum, you need to provide the following definitions:
-
+Although this LaTeX template was written and formatted for a student at the
+University of Oxford, it should be easy for you to customise it to suit the
+requirements of your academic institution. The 
+[default title page](titlepage-oxford.tex) is simple and customisable. The class
+template defines some variables you can use. At minimum, you need to provide
+the following definitions in the preamble of your "*main LaTeX source file*":
 
 - **\title{}**:      The main title of the thesis/report
 - **\author{}**:     The author of the thesis/report
 
-
-To customise it, you can define the following optional variables in the 
-preamble of your main LaTeX source file:
+You can define the following optional variables:
 
 - **\supervisor{}**: The name of your thesis supervisor. The default value is:
     "*SUPERVISOR NAME*"
@@ -224,8 +228,9 @@ For examples on how to define the above variables, you can review the files
 [sample_4yp_report.tex](sample_4yp_report.tex), depending if you are writing
 a DPhil thesis or a 4YP report respectively. These two files use the default
 title page [titlepage-oxford.tex](titlepage-oxford.tex), which produces the
-following output:
+following outputs:
 
+&nbsp;
 
 <p align="center">
     <kbd><img src="./figures/dphil-title_page.png" alt="Title page" width="250" border=1 /></kbd>
@@ -233,44 +238,92 @@ following output:
     <kbd><img src="./figures/4yp-title_page.png" alt="TOC page 1" width="250" border=1 /></kbd>
 </p>
 
+&nbsp;
 
 ## Create your own title page
 
 If you don't provide a custom title page, the [oxengthesis.cls](oxengthesis.cls)
 class template will load the default title file 
-[titlepage-oxford.tex](titlepage-oxford.tex). If the layout of the default title
-page does not fulfill your or your university's requirements, you can create
-your own title page. To do so, you will need to follow the 3 steps described
-below. As an example, we will create a custom title page for a PhD thesis at the Massachusetts Institute of Technology:
+[titlepage-oxford.tex](titlepage-oxford.tex) shown above. If the layout of the
+default title page does not fulfill your or your university's requirements, 
+you can create your own title page. To do so, you will need to follow the 3 
+steps described below. As an example, we will create a custom title page for a
+PhD thesis for a student at the Massachusetts Institute of Technology:
 
 1. Create a new LaTeX source file and add your own definitions. We will name
    this file [titlepage-mit.tex](titlepage-mit.tex)
 
-2. Define the "**\titlepage{}**" variable in the preamble of your main LaTeX
-   source file. For example, after the "\author{}" variable as in:
+2. Define the "**\titlepage{}**" variable in the preamble of your 
+   "*main LaTeX source file*". For example, after the "\author{}" variable as in:
 
 ```latex
-\title    {Title of your thesis}
-\author   {Your name}
+\title    {Protein expression of the X-factor mutator gene in Homo Sapiens}
+\author   {Charles F. Xavier}
 \titlepage{titlepage-mit.tex}
 ```
 
 3. Recompile your main LaTeX source file. An example output is:
 
+&nbsp;
 
 <p align="center">
     <kbd><img src="./figures/mit_phd-title_page.png" alt="Title page" width="250" border=1 /></kbd>
 </p>
 
+&nbsp;
 
+The following text in the preamble of your "*main LaTeX source file*":
 
----
+```latex
+
+\title      {Protein expression of the X-factor mutator gene in Homo Sapiens}
+\author     {Charles F. Xavier}
+\college    {Pembroke College}
+\degreeprefix {A thesis submitted for the degree of}
+\degree     {Doctor of Philosophy}
+\supervisor {Professor Albus Dumbledore}
+\department {Department of Engineering}
+\university {University of Cambridge}
+\universitylogo{cambridge-logo}
+\date       {June 2048}
+\titlepage  {titlepage-cambridge.tex}
+
+```
+
+will use the [titlepage-cambridge.tex](titlepage-cambridge.tex) file to create
+a title page for a student at the University of Cambridge.  An example output is:
 
 &nbsp;
 
-## Usage examples
+<p align="center">
+    <kbd><img src="./figures/cambridge_phd-title_page.png" alt="Title page" width="250" border=1 /></kbd>
+</p>
 
 &nbsp;
+
+The [oxengthesis.cls](oxengthesis.cls) class template defines new commands you
+can use in your new title document based on the variables defined you the 
+preamble of your "*main LaTeX source file*". 
+
+- The **\title{}** in the preamble will map to the command **\TitleName**
+- The **\author{}** in the preamble will map to the command **\AuthorName**
+- The **\supervisor{}** in the preamble will map to the command **\SupervisorName**
+- The **\college{}** in the preamble will map to the command **\CollegeName**
+- The **\degreeprefix{}** in the preamble will map to the command **\DegreePrefix**
+- The **\degree{}** in the preamble will map to the command **\DegreeName**
+- The **\department{}** in the preamble will map to the command **\DepartmentName**
+- The **\university{}** in the preamble will map to the command **\UniversityName**
+- The **\universitylogo{}** in the preamble will map to the command **\UniversityLogo**
+- The **\date{}** in the preamble will map to the command **\DegreeDate**
+
+Check the files [titlepage-oxford.tex](titlepage-oxford.tex),
+[titlepage-mit.tex](titlepage-mit.tex) and 
+[titlepage-cambridge.tex](titlepage-cambridge.tex) for examples on how to use
+the available commands in your new title file.
+
+&nbsp;
+
+# Additional features
 
 The [oxengthesis.cls](oxengthesis.cls) class template is based on the
 [memoir](https://ctan.org/pkg/memoir) LaTeX package, with the addition
@@ -281,7 +334,7 @@ sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) /
 complete overview.
 
 
-### <u>Mark text as TODO</u>
+## Mark text as TODO
 
 
 You can wrap text in "todo" tags, so they appear in red colour in the PDF
@@ -292,7 +345,7 @@ document. For example:
 ```
 
 
-### <u>Figures</u>
+## Figures
 
 
 You can put all figures in a "figures/" folder and you can simply include the 
@@ -356,7 +409,7 @@ You can directly refer to the subplot as in:
  ```
 
 
- ### <u>Tables</u>
+ ## Tables
 
  You can have tables with shaded headers with:
 
@@ -444,7 +497,7 @@ which will produce the following output:
 </p>
 
 
-### <u>Glossaries</u>
+## Glossaries
 
 
 The [glossaries-extra](https://ctan.org/pkg/glossaries-extra) package
@@ -472,7 +525,7 @@ and automatically create the "List of abbreviations" pages:
 </p>
 
 
-### <u>Cross-referencing labels</u>
+## Cross-referencing labels
 
 
 The [cleveref](https://ctan.org/pkg/cleveref) package is used to
@@ -518,7 +571,7 @@ sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) /
 complete overview nof what you can do with the provided LaTeX class template.
 
 
-### <u>Mini-table of contents for each chapter</u>
+## Mini-table of contents for each chapter
 
 
 If you have a recent version of LaTeX installed (version 2022 works) in your
@@ -544,7 +597,7 @@ tested TexLive 2022 and MacTeX 2022, they both work fine.
 
 
 
-### <u>Abstract page for Examination Schools</u>
+## Abstract page for Examination Schools
 
 
 When submitting your final thesis to the ``Examination Schools'' (located on
@@ -568,7 +621,7 @@ The page will be created before the main title page. Below is a sample output:
 </p>
 
 
-### <u>Review editing mode</u>
+## Review editing mode
 
 Your thesis supervisor may request you to print your document with 
 double line spacing so he/she can correct your draft (the red pen!). You can
@@ -578,7 +631,7 @@ simply add the ``review'' option to your document as in:
 \documentclass[10pt,a4paper,twoside,openany,report,final,review]{oxengthesis}
 ```
 
-### <u>Different colour for section headings</u>
+## Different colour for section headings
 
 The default font colour for section and subsection heading is black. You can 
 the colour (to blue for example) by adding the following line to your document:
