@@ -18,7 +18,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{oxengthesis}[2022/05/05 version 0.9 - Oxford Engineering thesis class by Mauricio Villarroel]
+\ProvidesClass{oxengthesis}[2022/10/26 version 0.10 - Oxford Engineering thesis class by Mauricio Villarroel]
 
 
 \newif\if@report
@@ -32,6 +32,9 @@
 
 \newif\if@useminitoc
 \DeclareOption{useminitoc}{\@useminitoctrue}
+
+\newif\if@debuglayout
+\DeclareOption{debuglayout}{\@debuglayouttrue}
 
 % Pass all other the options to the memoir class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
@@ -176,12 +179,9 @@
 
 \setlength{\extrarowheight}{2pt}
 
-\newcommand\smallTableRowHeight{
-  \setlength{\extrarowheight}{0pt}
-}
-\newcommand\singleTableRowHeight{
-  \setlength{\extrarowheight}{2pt}
-}
+\newcommand\smallTableRowHeight{\setlength{\extrarowheight}{0pt}}
+
+\newcommand\singleTableRowHeight{\setlength{\extrarowheight}{2pt}}
 
 \newcolumntype{+}{>{\global\let\currentrowstyle\relax}}
 \newcolumntype{^}{>{\currentrowstyle}}
@@ -194,9 +194,9 @@
   \hline
   \tableheaderstyle
 }
-\newcommand\tableHeaderEnd{
-  \hline
-}
+
+\newcommand\tableHeaderEnd{\hline}
+
 \newcommand\tableHCell[1]{
   {\singleTableRowHeight
    \begin{tabular}{c}
@@ -204,6 +204,7 @@
    \end{tabular}
   }
 }
+
 \newcommand\tableHCellTwoRows[2]{
   {\singleTableRowHeight
    \begin{tabular}{c}
@@ -332,11 +333,15 @@
 % ____________________________________________________________________________
 
 
-% Show overfull errors
-%\overfullrule=15pt
+\if@debuglayout
 
-% Used temporarly for checking layout
-%\RequirePackage{layout}
+    % Used temporarily for checking layout
+    \RequirePackage{layout}
+
+    % Show overfull errors
+    \overfullrule=5pt
+    
+\fi
 
 
 % ____________________________________________________________________________
@@ -347,6 +352,9 @@
 
 \RequirePackage[toc=true,nopostdot=false,noredefwarn=false,nonumberlist,nogroupskip,abbreviations,nomain,automake,shortcuts=abbreviations]{glossaries-extra}
 
+% The colour of the glossary links
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
+
 
 % ____________________________________________________________________________
 %
@@ -356,7 +364,7 @@
 
 \aliaspagestyle{chapter}{empty}
 
-    
+
 %
 % Name of the input files used in the class
 %
@@ -376,7 +384,6 @@
 % Variables used in the front matter
 %
 
-\def\titlepage#1{\gdef\@titlepage{#1}}
 
 % A sentence to appear before the degree
 \def\degreeprefix#1{\gdef\@degreeprefix{#1}}
@@ -390,14 +397,45 @@
 % The name of the university(e.g. University of Oxford)
 \def\university#1{\gdef\@university{#1}}
 
-% The name of the university department(e.g. Department of Engineering Science)
-\def\department#1{\gdef\@department{#1}}
-
 % Filename for the university's logo
 \def\universitylogo#1{\gdef\@universitylogo{#1}}
 
+% The name of the university department(e.g. Department of Engineering Science)
+\def\department#1{\gdef\@department{#1}}
+
 % The name of your supervisor
 \def\supervisor#1{\gdef\@supervisor{#1}}
+
+% Filename of the title page
+\def\titlepage#1{\gdef\@titlepage{#1}}
+
+
+%
+% Front abstract page (for Examination Schools at Oxford)
+%
+
+
+\newcommand{\makefrontabstractpage}
+{
+    {\Large
+    \noindent%
+    \begin{minipage}[t]{.6\textwidth}
+        \raggedright \AuthorName \\ \CollegeName
+    \end{minipage}%
+    \begin{minipage}[t]{.39\textwidth}
+        \raggedleft \DegreeName \\ \DegreeDate
+    \end{minipage}
+    }
+
+    \begin{center}
+        \LARGE{\bfseries{\TitleName}}
+    \end{center}
+    \noindent\hrulefill
+
+    \begingroup
+        \input{\abstractfilename}
+    \endgroup
+}
 
 
 %
@@ -407,141 +445,18 @@
 
 \newcommand{\maketitlepage}
 {
-
-    % Re define some variables and command
-    
-    
-    \newcommand{\TitleName}{\@title}
-    \newcommand{\AuthorName}{\@author}
-
-    \ifdefined \@date
-        \newcommand{\DegreeDate}{\@date}
-    \else
-        \newcommand{\DegreeDate}{DEGREE DATE}    
-    \fi
-
-    \ifdefined \@degreeprefix
-        \newcommand{\DegreePrefix}{\@degreeprefix}
-    \else
-        \newcommand{\DegreePrefix}{A thesis submitted for the degree of}
-    \fi
-
-    \ifdefined \@degree
-        \newcommand{\DegreeName}{\@degree}
-    \else
-        \newcommand{\DegreeName}{Doctor of Philosophy}
-    \fi
-
-    \ifdefined \@college
-        \newcommand{\CollegeName}{\@college}
-    \else
-        \newcommand{\CollegeName}{}
-    \fi
-
-    \ifdefined \@university
-        \newcommand{\UniversityName}{\@university}
-    \else
-        \newcommand{\UniversityName}{University of Oxford}
-    \fi
-
-    \ifdefined \@universitylogo
-        \newcommand{\UniversityLogo}{\@universitylogo}
-    \else
-        \newcommand{\UniversityLogo}{oxford-logo}
-    \fi
-
-
-    \ifdefined \@department
-        \newcommand{\DepartmentName}{\@department}
-    \else
-        \newcommand{\DepartmentName}{Department of Engineering Science}
-    \fi
-
-    \ifdefined \@supervisor
-        \newcommand{\SupervisorName}{\@supervisor}
-    \else
-        \newcommand{\SupervisorName}{SUPERVISOR NAME}
-    \fi
-
-
-    \ifdefined \@titlepage
-        \newcommand{\titlefilename}{\@titlepage}
-    \else
-        \newcommand{\titlefilename}{\oxfordtitlefilename}
-    \fi
-    
-
-    % The contents of the title page
-    
-
-    \begingroup
-
-    \thispagestyle{empty}
     \pdfbookmark[0]{Title page}{title}
     
-    
-    \IfFileExists{\titlefilename}
-    {
-        \include{\titlefilename}
-    }
-    {
-        \include{\oxfordtitlefilename}
-    }
-
-    \endgroup
-    
-}
-
-
-%
-% Frontal abstract page
-%
-
-
-\makepagestyle{emptyFrontMatterPageStyle}
-    \makeevenhead{emptyFrontMatterPageStyle}{}{}{}
-    \makeoddhead {emptyFrontMatterPageStyle}{}{}{}
-    \renewcommand\chapterheadstart{}
-
-
-\newcommand{\makefrontabstractpage}
-{
-    \pagestyle{emptyFrontMatterPageStyle}
     \begingroup
-
-    \renewcommand*{\chapterheadstart}{}
     
-    \if@review
-        \DoubleSpacing
-    \else
-        \OnehalfSpacing
-    \fi    
-    
-
-    {\Large
-    \noindent
-    \begin{minipage}[t]{.6\textwidth}
-        \raggedright
-        \@author \\
-        \ifdefined \@college
-            \@college
-        \fi
-    \end{minipage}%
-    \begin{minipage}[t]{.39\textwidth}
-        \raggedleft
-        \@degree \\
-        \@degreedate
-    \end{minipage}
-    }
-
-    \begin{center}
-        \LARGE{\bfseries{\@title}}
-    \end{center}
-    
-    \noindent \hrulefill
-
-    \input{\abstractfilename}
-    
+        \IfFileExists{\titlefilename}
+        {
+            \include{\titlefilename}
+        }
+        {
+            \include{\oxfordtitlefilename}
+        }
+        
     \endgroup
 }
 
@@ -550,15 +465,13 @@
 % Dedication page
 %
 
+
 \newcommand{\makededicationpage}
 {
     \cleardoublepage
-    \begingroup
-    \thispagestyle{empty}
-    \DoubleSpacing
-    \setlength{\epigraphwidth}{0.5\textwidth}
-    \vspace*{\beforechapskip}
-    \input{\dedicationfilename}
+    
+    \begingroup   
+        \input{\dedicationfilename}
     \endgroup
 }
 
@@ -567,21 +480,15 @@
 % Declaration page
 %
 
+
 \newcommand{\makedeclarationpage}
 {
     \cleardoublepage
     \chapter*{Declaration}
-    \DoubleSpacing
-    \input{\declarationfilename}
     
-    \bigbreak
-    \bigbreak
-
-    \noindent \@author \par
-    \ifdefined \@college
-        \noindent \@college \par
-    \fi
-    
+    \begingroup    
+        \input{\declarationfilename}
+    \endgroup
 }
 
 
@@ -589,13 +496,15 @@
 % Acknowledgements page
 %
 
+
 \newcommand{\makeacknowledgementspage}
 {
     \cleardoublepage
     \chapter*{Acknowledgements}
-    \pagestyle{emptyFrontMatterPageStyle}
-    \OnehalfSpacing
-    \input{\acknowledgementsfilename}
+
+    \begingroup
+        \input{\acknowledgementsfilename}
+    \endgroup
 }
 
 
@@ -603,17 +512,23 @@
 % Abstract page
 %
 
+
 \newcommand{\makeabstractpage}
 {
     \cleardoublepage
     \chapter*{Abstract}
-    \pagestyle{emptyFrontMatterPageStyle}
-    \if@review
-        \DoubleSpacing
-    \else
-        \OnehalfSpacing
-    \fi
-    \input{\abstractfilename}
+    
+    \begingroup
+    
+        \if@review
+            \DoubleSpacing
+        \else
+            \OnehalfSpacing
+        \fi
+    
+        \input{\abstractfilename}
+    
+    \endgroup
 }
 
 
@@ -621,13 +536,15 @@
 % List of publications page
 %
 
+
 \newcommand{\makepublicationspage}
 {
     \cleardoublepage
     \chapter*{List of publications}
-    \pagestyle{emptyFrontMatterPageStyle}
-    \OnehalfSpacing
-    \input{\publicationsfilename}
+    
+    \begingroup
+        \input{\publicationsfilename}
+    \endgroup
 }
 
 
@@ -635,26 +552,26 @@
 % Table of contents page
 %
 
+
 \makepagestyle{tocpagestyle}
     \makeheadrule{tocpagestyle}{\textwidth}{0.3pt}
     \makeevenhead{tocpagestyle}{\thepage}{}{\bfseries{Table of contents}}
     \makeoddhead {tocpagestyle}{\bfseries{Table of contents}}{}{\thepage}
-    \renewcommand{\contentsname}{Table of contents}
-    \renewcommand*{\tocheadstart}{}
 
 \addtodef{\tableofcontents}
 {
     \cleardoublepage
     \setcounter{tocdepth}{2}
     \pagestyle{tocpagestyle}
-    \SingleSpacing
+    \renewcommand{\contentsname}{Table of contents}
+    \renewcommand*{\tocheadstart}{}
     \setlength{\cftbeforechapterskip}{0.8em \@plus\p@}
     \renewcommand*{\cftappendixname}{Appendix\space}
+    \SingleSpacing
 }{}
 
 
 % Fix hbox overfull warnings in TOC
-
 \renewcommand*{\cftdotsep}{1}
 \setpnumwidth{3em}
 \setrmarg{4em}
@@ -669,13 +586,13 @@
     \makeheadrule{lofpagestyle}{\textwidth}{0.3pt}
     \makeevenhead{lofpagestyle}{\thepage}{}{\bfseries{List of figures}}
     \makeoddhead {lofpagestyle}{\bfseries{List of figures}}{}{\thepage}
-    \renewcommand{\listfigurename}{List of figures}
-    \renewcommand*{\lofheadstart}{}
 
 \addtodef{\listoffigures}
 {
     \clearforchapter
     \pagestyle{lofpagestyle}
+    \renewcommand{\listfigurename}{List of figures}
+    \renewcommand*{\lofheadstart}{}
     \SingleSpacing
 }{}
 
@@ -689,13 +606,13 @@
     \makeheadrule{lotpagestyle}{\textwidth}{0.3pt}
     \makeevenhead{lotpagestyle}{\thepage}{}{\bfseries{List of tables}}
     \makeoddhead {lotpagestyle}{\bfseries{List of tables}}{}{\thepage}
-    \renewcommand{\listtablename}{List of tables}
-    \renewcommand*{\lotheadstart}{}
 
 \addtodef{\listoftables}
 {
     \clearforchapter
     \pagestyle{lotpagestyle}
+    \renewcommand{\listtablename}{List of tables}
+    \renewcommand*{\lotheadstart}{}
     \SingleSpacing
 }{}
 
@@ -709,21 +626,17 @@
     \makeheadrule{loapagestyle}{\textwidth}{0.3pt}
     \makeevenhead{loapagestyle}{\thepage}{}{\bfseries{List of abbreviations}}
     \makeoddhead {loapagestyle}{\bfseries{List of abbreviations}}{}{\thepage}
-    \renewcommand*{\chapterheadstart}{}
-  
-\renewcommand*{\abbreviationsname}{List of abbreviations}
 
-% The colour of the glossary links
-
-\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
 
 \newcommand{\listofabbreviations}
 {
     \clearforchapter
     \pagestyle{loapagestyle}
-    \DoubleSpacing
+%    \renewcommand*{\chapterheadstart}{}
+    \renewcommand*{\abbreviationsname}{List of abbreviations}
     \glsfindwidesttoplevelname
     \setglossarystyle{alttree}
+    \DoubleSpacing
     \printabbreviations
     %\renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
 }
@@ -735,6 +648,72 @@
 
 \newcommand*{\makefrontmatterpages}
 {
+
+    % Define shortcuts to front matter variables
+    % with default values
+    
+    
+    \newcommand{\TitleName}{\@title}
+    \newcommand{\AuthorName}{\@author}
+        
+    \ifdefined \@date
+        \newcommand{\DegreeDate}{\@date}
+    \else
+        \newcommand{\DegreeDate}{DEGREE DATE}    
+    \fi
+    
+    \ifdefined \@degreeprefix
+        \newcommand{\DegreePrefix}{\@degreeprefix}
+    \else
+        \newcommand{\DegreePrefix}{A thesis submitted for the degree of}
+    \fi
+    
+    \ifdefined \@degree
+        \newcommand{\DegreeName}{\@degree}
+    \else
+        \newcommand{\DegreeName}{Doctor of Philosophy}
+    \fi
+    
+    \ifdefined \@college
+        \newcommand{\CollegeName}{\@college}
+    \else
+        \newcommand{\CollegeName}{}
+    \fi
+    
+    \ifdefined \@university
+        \newcommand{\UniversityName}{\@university}
+    \else
+        \newcommand{\UniversityName}{University of Oxford}
+    \fi
+    
+    \ifdefined \@universitylogo
+        \newcommand{\UniversityLogo}{\@universitylogo}
+    \else
+        \newcommand{\UniversityLogo}{oxford-logo}
+    \fi
+    
+    \ifdefined \@department
+        \newcommand{\DepartmentName}{\@department}
+    \else
+        \newcommand{\DepartmentName}{Department of Engineering Science}
+    \fi
+    
+    \ifdefined \@supervisor
+        \newcommand{\SupervisorName}{\@supervisor}
+    \else
+        \newcommand{\SupervisorName}{SUPERVISOR NAME}
+    \fi
+    
+    \ifdefined \@titlepage
+        \newcommand{\titlefilename}{\@titlepage}
+    \else
+        \newcommand{\titlefilename}{\oxfordtitlefilename}
+    \fi
+    
+    
+    % Load the glossary definitions
+    
+
     \IfFileExists{\glossaryfilename}
     {
         \include{\glossaryfilename}
@@ -742,27 +721,57 @@
     }{}
 
 
+    % Format the front matter pages
+    
+    
+    \pagestyle{empty}
+    \renewcommand\chapterheadstart{}
+    \OnehalfSpacing
+    
+    
+    % Include the front matter sections if available
+        
     \if@frontabstract
-        \IfFileExists{\abstractfilename}{\makefrontabstractpage}{}
-        \cleardoublepage
+        \IfFileExists{\abstractfilename}
+        {
+            \makefrontabstractpage
+            \cleardoublepage
+        }{}
     \fi
 
     \maketitlepage
 
     \if@report
-
+        % Do nothing
     \else
-        \IfFileExists{\dedicationfilename}{\makededicationpage}{}
-        \IfFileExists{\declarationfilename}{\makedeclarationpage}{}
+        \IfFileExists{\dedicationfilename}
+        {
+            \makededicationpage
+        }{}
+        
+        \IfFileExists{\declarationfilename}
+        {
+            \makedeclarationpage
+        }{}
     \fi
     
-    \IfFileExists{\acknowledgementsfilename}{\makeacknowledgementspage}{}
-    \IfFileExists{\abstractfilename}{\makeabstractpage}{}
-
+    \IfFileExists{\acknowledgementsfilename}
+    {
+        \makeacknowledgementspage
+    }{}
+    
+    \IfFileExists{\abstractfilename}
+    {
+        \makeabstractpage
+    }{}
+    
     \if@report
-
+        % Do nothing
     \else
-        \IfFileExists{\publicationsfilename}{\makepublicationspage}{}
+        \IfFileExists{\publicationsfilename}
+        {
+            \makepublicationspage
+        }{}
     \fi
     
     \if@useminitoc
@@ -778,7 +787,10 @@
         \listoftables
     \fi
     
-    \IfFileExists{\glossaryfilename}{\listofabbreviations}{}
+    \IfFileExists{\glossaryfilename}
+    {
+        \listofabbreviations
+    }{}
 }
 
 
@@ -808,6 +820,7 @@
           \mtcskip
         }%
       }
+      
     }
     
 \fi
@@ -831,23 +844,32 @@
     \makeevenhead{mainpagestyle}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
     \makeoddhead {mainpagestyle}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
     \makeheadrule{mainpagestyle}{\textwidth}{0.3pt}
-    \renewcommand\chapterheadstart{}
-    \setlength\beforechapskip{0\baselineskip}
-    \setlength\midchapskip{0\baselineskip}
-    \setsecheadstyle{\large\bfseries\color{headingcolor}}
-    \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
-    \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
 
 
 \addtodef{\mainmatter}
 {
     \clearforchapter
     \pagestyle{mainpagestyle}
+    
+    \renewcommand\chapterheadstart{}
+    \setlength\beforechapskip{0\baselineskip}
+    \setlength\midchapskip{0\baselineskip}
+    \setsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
+        
     \if@review
         \DoubleSpacing
     \else
         \OnehalfSpacing
     \fi
+    
+    % Uncomment the following lines to temporarily check/debug page layout
+    
+    %\if@debuglayout
+    %    \layout
+    %\fi
+
 }{}
 
 
@@ -863,18 +885,19 @@
      \makeevenhead{appendixpagestyle}{\thepage}{}{\bfseries{\thesection.~\Sectionname}}
      \makeoddhead {appendixpagestyle}{\bfseries{\appendixname~\thechapter.~\Chaptername}}{}{\thepage}
      \makeheadrule{appendixpagestyle}{\textwidth}{0.3pt}
-     \renewcommand\chapterheadstart{}
-     \setlength\beforechapskip{0\baselineskip}
-     \setlength\midchapskip{0\baselineskip}
-     \setsecheadstyle{\large\bfseries\color{headingcolor}}
-     \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
-     \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
-
 
 \addtodef{\appendix}
 {
     \clearforchapter
-    \pagestyle{appendixpagestyle}
+    \pagestyle{appendixpagestyle}    
+    
+    \renewcommand\chapterheadstart{}
+    \setlength\beforechapskip{0\baselineskip}
+    \setlength\midchapskip{0\baselineskip}
+    \setsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
+    
     \if@review
         \DoubleSpacing
     \else
@@ -891,7 +914,8 @@
 
 \addtodef{\backmatter}
 {
-    \clearforchapter
+    \pagestyle{empty}
+    \renewcommand\chapterheadstart{}
     \SingleSpacing
 }{}
 
@@ -905,32 +929,30 @@
 \def\bibliographyfilename{references}
 
 
-\RequirePackage[numbers,square,comma,sort]{natbib}
-
-\setlength{\bibsep}{1pt plus 1ex}
-
 \makepagestyle{bibliopagestyle}
     \makeheadrule{bibliopagestyle}{\textwidth}{0.3pt}
     \makeevenhead{bibliopagestyle}{\thepage}{}{\bfseries{Bibliography}}
     \makeoddhead {bibliopagestyle}{\bfseries{Bibliography}}{}{\thepage}
-  
-% Param 1 : bibliography file
-\newcommand{\listofreferences}[1]
+
+
+% Param 1 : bibliography style
+\newcommand{\listofreferences}[1][ieeetr]
 {
     \clearforchapter
     \pagestyle{bibliopagestyle}
+    \bibliographystyle{#1}
     \SingleSpacing
-    \apptocmd{\sloppy}{\hbadness 10000\relax}{}{} % Fix hbox warnings on bibtex entries
-    \renewcommand*{\chapterheadstart}{\vspace{0em}}
-    \bibliographystyle{plainnat}
-    \IfFileExists{\bibliographyfilename.bib}{\bibliography{\bibliographyfilename}}{}    
-    \renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{1pt plus 1ex}
+    
+    % Fix hbox warnings on bibtex entries
+    \apptocmd{\sloppy}{\hbadness 10000\relax}{}{} 
+    
+    \IfFileExists{\bibliographyfilename.bib}
+    {
+        \bibliography{\bibliographyfilename}
+    }{}
 }
-
-% Fix hbox warnings on bibtex entries
-
-%\apptocmd{\thebibliography}{\raggedright}{}{}
-%\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 
 
 % ____________________________________________________________________________

@@ -41,11 +41,14 @@ template that can be used for a 4th year project (4YP) report or a DPhil / PhD
 thesis. The typical 4YP report contains around 50 pages, whereas a DPhil / PhD
 thesis is a much larger document.
 
-The main LaTeX class file is [oxengthesis.cls](oxengthesis.cls). Two sample 
+The main class file is [oxengthesis.cls](oxengthesis.cls). Two sample 
 documents are provided: [sample_4yp_report.tex](sample_4yp_report.tex) and
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) depending on if you are 
-writing a 4YP report or a DPhil thesis respectively. The following screenshots
-give you an idea of how the documents looks:
+writing a 4YP report or a DPhil thesis respectively. You can check the 
+output of corresponding PDF documents 
+[sample_4yp_report-sample_output.pdf](sample_4yp_report-sample_output.pdf) and
+[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf).
+The following screenshots give you an idea of how the documents looks:
 
 &nbsp;
 
@@ -78,25 +81,20 @@ give you an idea of how the documents looks:
 
 &nbsp;
 
-For a more complete example of the output, you can check the corresponding
-sample PDF documents:
-[sample_4yp_report-sample_output.pdf](sample_4yp_report-sample_output.pdf) and
-[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf).
-
-
-
 ## Requirements
 
 There are several options for writing in LaTeX, including online versions such
-as Overleaf. I don't recommend Overleaf, as you will be writing long documents
-with several figures, tables and other elements. In my experience, having LaTeX
-installed locally in your computer is a better option.
+as Overleaf. I don't recommend online editors, as you will be writing long
+documents with several figures, tables and other elements. In my experience, 
+having LaTeX installed locally in your computer is a better option.
 
 You will need a modern LaTeX compiler installed in your system, at minimum
 version 2017. Most modern operating systems use 
 [TexLive](https://www.tug.org/texlive/) as the preferred LaTeX typesetting
-system. If you are using Linux, LaTeX is already pre-installed or is readily 
-available from your distribution's software repository. For macOS, you can
+system. If you are using Linux, TexLive is already pre-installed or is readily 
+available from your distribution's software repository, for example: 
+[LaTeX in Fedora](https://docs.fedoraproject.org/en-US/neurofedora/latex/) and
+[LaTeX in Ubuntu](https://help.ubuntu.com/community/LaTeX). For macOS, you can
 download and install the latest [MacTeX](https://tug.org/mactex) distribution. 
 For Microsoft Windows, follow the installation instructions described in
 [TexLive on Windows](https://tug.org/texlive/windows.html)
@@ -109,7 +107,7 @@ or [macOS](fonts/INSTALL_FONTS_macOS.md). If you are using Microsoft Windows,
 also install the Latin Modern Math font.
 
 
-## Note on LaTeX editors
+## LaTeX editors
 
 There are several editors available that will make your life easier when
 writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a 
@@ -130,17 +128,17 @@ PDF document.
 
 ## Preparing your document
 
-After you installed you preferred LaTeX editor, copy either the file 
+After you installed your preferred LaTeX editor, copy either the file 
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) or
 [sample_4yp_report.tex](sample_4yp_report.tex) to a new file depending
-on if you are writing a DPhil thesis or a 4YP report respectively. I will call
-this new file througout this tutorial your "*main LaTeX source file*".
+on if you are writing a DPhil thesis or a 4YP report respectively. Throughout
+this tutorial, I will call this new file your "*main LaTeX source file*".
 
-The frontmatter section will be automatically created depending on the type
+The *frontmatter* section will be automatically created depending on the type
 of document you are writing. If you want more control, you can review how the
-'\makefrontmatterpages' command is defined in the 
+'\makefrontmatterpages' command is defined in the
 [oxengthesis.cls](oxengthesis.cls) class file. If you want all the sections
-in the front matter to appear, you will need to create the following files:
+in the *frontmatter* to appear, you will need to create the following files:
 
 - **[abstract.tex](abstract.tex)** : If you want the "Abstract" page
 - **[dedication.tex](dedication.tex)** : If you want the "Dedication" page
@@ -152,9 +150,9 @@ in the front matter to appear, you will need to create the following files:
 - **[glossary.tex](glossary.tex)** : If you want the
   "List of abbreviations" page
 
-If any of the files above are missing, that particular page in the front matter
-won't be created. This is useful if you are just preparing a draft version of your
-thesis for your supervisor to correct. 
+If any of the files above are missing, that particular secton won't be created
+in the *frontmatter*. This is useful if you are just preparing a draft version
+of your thesis for your supervisor to correct. 
 
 Similarly, add all the BibTeX citations to a file named 
 [references.bib](references.bib) if you want the "Bibliography" section to be
@@ -171,8 +169,8 @@ PDF document from your "*main LaTeX source file*".
 If you want to compile your "*main LaTeX source file*" from the command line, 
 you can use the script [compile_document.sh](compile_document.sh) provided in 
 this repository. This script only works in a Linux or macOS system. For
-example, to compile the sample 4YP report document, you will execute the
-following command in the terminal:
+example, to compile the sample 4YP report, you will execute the following
+command in the terminal:
 
 ```shell
 $ ./compile_document.sh  sample_4yp_report.tex
@@ -233,7 +231,7 @@ You can define the following optional variables:
 
 For examples on how to define the above variables, you can review the files
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
-[sample_4yp_report.tex](sample_4yp_report.tex), depending if you are writing
+[sample_4yp_report.tex](sample_4yp_report.tex), depending on if you are writing
 a DPhil thesis or a 4YP report respectively. These two files use the default
 title page [titlepage-oxford.tex](titlepage-oxford.tex), which produces the
 following outputs:
@@ -271,12 +269,12 @@ PhD thesis for a student at the Massachusetts Institute of Technology:
 \titlepage{titlepage-mit.tex}
 ```
 
-3. Recompile your "*main LaTeX source file*". An example output is:
+3. Recompile your "*main LaTeX source file*". An example of the output is:
 
 &nbsp;
 
 <p align="center">
-    <kbd><img src="./figures/mit_phd-title_page.png" alt="Title page" width="250" border=1 /></kbd>
+    <kbd><img src="./figures/mit_phd-title_page.png" alt="Title page" width="350" border=1 /></kbd>
 </p>
 
 &nbsp;
@@ -307,14 +305,14 @@ The sample output is shown below:
 &nbsp;
 
 <p align="center">
-    <kbd><img src="./figures/cambridge_phd-title_page.png" alt="Title page" width="250" border=1 /></kbd>
+    <kbd><img src="./figures/cambridge_phd-title_page.png" alt="Title page" width="350" border=1 /></kbd>
 </p>
 
 &nbsp;
 
 The [oxengthesis.cls](oxengthesis.cls) class template makes available new LaTeX
 commands you can use in your new custom title document. These new commands are 
-based on the variables defined you the preamble of your
+based on the variables defined in the preamble of your
 "*main LaTeX source file*":
 
 - The **\title{}** variable in the preamble will map to the command **\TitleName**
@@ -331,7 +329,7 @@ based on the variables defined you the preamble of your
 Check the files [titlepage-oxford.tex](titlepage-oxford.tex),
 [titlepage-mit.tex](titlepage-mit.tex) and 
 [titlepage-cambridge.tex](titlepage-cambridge.tex) for examples on how to use
-the available commands in your new title file.
+the available commands in your new title page.
 
 &nbsp;
 
@@ -360,7 +358,7 @@ document. For example:
 ## Figures
 
 
-I used the [graphicx](https://ctan.org/pkg/graphicx) LaTeX package to include
+I use the [graphicx](https://ctan.org/pkg/graphicx) LaTeX package to include
 figures. You can put all figures in a "figures/" folder and you can simply 
 include the image file directly without the file extension, as in:
 
@@ -376,7 +374,7 @@ include the image file directly without the file extension, as in:
 \end{figure}
 ```
 
-will insert the image file "./figures/dummy_image.png".
+the code above will insert the image file "./figures/dummy_image.png".
 
 You can create a figure with sub plots with:
 
@@ -548,15 +546,14 @@ the lens ...
 
 ```
 
-&nbsp;
 
 ## Glossaries
 
 
-The [glossaries-extra](https://ctan.org/pkg/glossaries-extra) package
-is used to automatically add the "List of abbreviations" page in the front
-matter. Simply create a file with the name [glossary.tex](glossary.tex) and 
-add all your definitions. For example:
+I use the [glossaries-extra](https://ctan.org/pkg/glossaries-extra) package
+to automatically add the "List of abbreviations" page in the *frontmatter*. 
+Simply create a file with the name [glossary.tex](glossary.tex) and add all
+your definitions. For example:
 
 ```latex
 \newabbreviation[longplural={heart rates},description={Heart rate}]{hr}{HR}{heart rate}
@@ -565,7 +562,7 @@ add all your definitions. For example:
 
 ```
 
-In your main document you can later use tags, such as:
+In your main document, you can later use tags such as:
 
 ```latex
 The standard vital signs include temperature, \af{hr}, \af{rr}, 
@@ -603,17 +600,17 @@ provided. For the rest of the instances, only the acronym will be used. The
 "List of abbreviations" page will be automatically created in the frontmatter:
 
 <p align="center">
-    <kbd><img src="./figures/dphil-glossary.png" alt="Glossary page" width="300" border=1 /></kbd>
+    <kbd><img src="./figures/dphil-glossary.png" alt="Glossary page" width="350" border=1 /></kbd>
 </p>
 
 
 ## Mini-table of contents for each chapter
 
 
-If you have a recent version of LaTeX installed (version 2022 works) in your
-system and would like to have a short table of contents at the beginning of 
-each chapter, you can simply add the ``useminitoc'' option to your document
-as in:
+If you have a recent version of LaTeX installed (TeXLive version 2022 works)
+in your system and would like to have a short table of contents at the 
+beginning of each chapter, you can simply add the "*useminitoc*" option to
+your document:
 
 ```latex
 \documentclass[10pt,a4paper,twoside,openany,useminitoc,final]{oxengthesis}
@@ -622,7 +619,7 @@ as in:
 Below is a sample output for one chapter:
 
 <p align="center">
-    <kbd><img src="./figures/dphil-chap_minitoc.png" alt="Glossary page" width="300" border=1 /></kbd>
+    <kbd><img src="./figures/dphil-chap_minitoc.png" alt="Glossary page" width="350" border=1 /></kbd>
 </p>
 
 
@@ -631,20 +628,17 @@ the table of contents for each chapter. Previous versions of the minitoc class
 where incompatible with the [memoir](https://ctan.org/pkg/memoir) class. I 
 tested TexLive 2022 and MacTeX 2022, they both work fine.
 
+## Abstract page for the Examination Schools
 
 
-## Abstract page for Examination Schools
-
-
-When submitting your final thesis to the ``Examination Schools'' (located on
+When submitting your final thesis to the "Examination Schools" (located on
 High Street) at the University of Oxford to schedule your viva examination, 
 you are typically required to submit two printed copies of your thesis 
-(soft-bound) and, additionally, two separate one-page printed copies of your
-abstract. The stand-alone abstract page should contains your name, college 
-affiliation and is NOT meant to be part of the binding of your thesis.
-
-To create this single stand-alone page of your abstract, add the
-``frontabstract'' option to your document as in:
+(soft-bound). Additionally, you are required to provide two separate one-page
+printed copies of your abstract. The stand-alone abstract page should contains
+your name, college affiliation and is NOT meant to be part of the binding of
+your thesis. To create this single stand-alone page of your abstract, add the
+"*frontabstract*" option to your document, as in:
 
 ```latex
 \documentclass[10pt,a4paper,twoside,openany,frontabstract,final]{oxengthesis}
@@ -653,7 +647,7 @@ To create this single stand-alone page of your abstract, add the
 The page will be created before the main title page. Below is a sample output:
 
 <p align="center">
-    <kbd><img src="./figures/dphil-front_abstract_page.png" alt="Glossary page" width="300" border=1 /></kbd>
+    <kbd><img src="./figures/dphil-front_abstract_page.png" alt="Glossary page" width="350" border=1 /></kbd>
 </p>
 
 
@@ -661,7 +655,7 @@ The page will be created before the main title page. Below is a sample output:
 
 Your thesis supervisor may request you to print your document with 
 double line spacing so he/she can correct your draft (the red pen!). You can
-simply add the ``review'' option to your document as in:
+simply add the "*review*" option to your document:
 
 ```latex
 \documentclass[10pt,a4paper,twoside,openany,report,final,review]{oxengthesis}
@@ -669,27 +663,114 @@ simply add the ``review'' option to your document as in:
 
 ## Different colour for section headings
 
-The default font colour for section and subsection heading is black. You can 
-the colour (to blue for example) by adding the following line to your document:
+The default font colour for section and subsection headings is black. You can 
+change the colour (to blue for example) by adding the following line to your
+document:
 
 ```latex
 \definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
 ```
 
-The sample document for a DPhil thesis 
-([sample_dphil_thesis.tex](sample_dphil_thesis.tex)) uses the default black
-colour. The font colour for the section headings for the 4YP report example
-([sample_4yp_report.tex](sample_4yp_report.tex)) is blue.
+## Debug "Overfull \hbox" errors
 
+When compiling a LaTeX document, you will could get a warning similar to:
+
+```
+    Overfull \hbox (22.49216pt too wide) in paragraph at lines 4--5
+```
+
+This often occurs when a line of your document could not fit within the
+designated horizontal space for text in the current page layout. The LaTeX
+compiler tries its best to fit text within the page limits, but sometimes it
+just cannot do it appropriately. This typically results in some text hanging
+out past the page margin due to long words, acronyms or long equations.
+
+Sometimes, it is difficult to know where these errors occur in your document.
+You can add the "*debuglayout*" option to your document:
+
+```latex
+\documentclass[10pt,a4paper,twoside,openany,debuglayout,final]{oxengthesis}
+```
+
+A black box will be shown next to the affected lines. Below is a sample output:
+
+<p align="center">
+    <kbd>
+    <img src="./figures/overfull_hbox_warning.png" alt="Glossary page"
+    width="350" border=1 />
+    </kbd>
+</p>
+
+
+The [oxengthesis.cls](oxengthesis.cls) class file is already takes advantage
+of other packages (such as
+[microtype](https://ctan.org/pkg/microtype?lang=en)) to deal with common
+issues such as character protrusion, font expansion and inter-word spacing.
+I recommend you slightly rephrase your guilty senteces instead of changing the
+class template. This is usually the first approach many of my students take.
+
+## Bibliography styles
+
+The default style for the references is "*ieeetr*". For example, the
+following LaTeX source:
+
+```latex
+...Finding reliable correspondences in two images of a scene taken from arbitrary viewpoints viewed with possibly different cameras and in different illumination conditions is a difficult and critical step towards fully automatic reconstruction of 3D scenes \cite{hartley2003multiple}...
+```
+
+will produce the following output in the content pages:
+
+```
+...Finding reliable correspondences in two images of a scene taken from arbitrary viewpoints viewed with possibly different cameras and in different illumination conditions is a difficult and critical step towards fully automatic reconstruction of 3D scenes [8]...
+```
+
+and the bibliography section will read:
+
+```
+Bibliography
+...
+[8] R. Hartley and A. Zisserman, Multiple view geometry in computer vision.
+    Cambridge university press, 2003.
+...
+```
+
+You can specify a custom bibliography style as an argument to the
+"*listofreferences*" command in your "*main LaTeX source file*". For example,
+the following command:
+
+
+```latex
+\listofreferences[apalike]
+```
+
+will use the [apalike](https://www.bibtex.com/s/bibliography-style-base-apalike/)
+BibTeX style and produce the following output in the content pages:
+
+```
+...Finding reliable correspondences in two images of a scene taken from arbitrary viewpoints viewed with possibly different cameras and in different illumination conditions is a difficult and critical step towards fully automatic reconstruction of 3D scenes [Hartley and Zisserman, 2003]...
+```
+
+and the bibliography section will read:
+
+```
+Bibliography
+...
+[Hartley and Zisserman, 2003] Hartley, R. and Zisserman, A. (2003). Multiple
+    view geometry in computer vision. Cambridge university press.
+...
+```
+
+Take a look at the available styles at [The quick BibTeX guide](https://www.bibtex.com/styles/) online.
 
 # Suggestions and feedback
 
 Take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
 sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
 [sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
-complete overview nof what you can do with the provided LaTeX class template.
+complete overview of what you can do with the provided LaTeX class template.
+Additionally, review the documentation of the 
+[memoir](https://ctan.org/pkg/memoir) LaTeX package. It is quite customisable
+and provides many extra features not described here.
 
-Additionally, review the [memoir](https://ctan.org/pkg/memoir) LaTeX package.
-It is quite customisable and provides many extra features not described here.
 If you have any suggestions to improve the class template, don't hesitate
 to contact me.
