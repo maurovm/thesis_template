@@ -6,7 +6,7 @@ or a DPhil thesis for a student of the
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
 the [University of Oxford](https://www.ox.ac.uk). Although originally created
 for a student at Oxford, I included some examples below for a PhD thesis for
-the Massachussetts Institute of Technology and (cough, cough) the University
+the Massachusetts Institute of Technology and (cough, cough) the University
 of Cambridge. It should be easy for you to adjust this template to suit the
 requirements of other academic institutions.
 
@@ -19,7 +19,7 @@ more information on the license and copyright.
 
 &nbsp;
 
-As a student at Oxford, a proportion of your time will be devoted to writing
+As a research student, a proportion of your time will be devoted to writing
 science in a formal academic style. There are many resources that will help
 you write your thesis, such as 
 [Writing your thesis](https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/completing-your-dphil/writing-up-your-thesis), 
@@ -33,16 +33,16 @@ will provide you with sound advice on writing.
 My students have found very helpful to use the LaTeX typesetting system to write
 reports, theses, journal papers or other academic documents. You can write your
 LaTeX documents from scratch, however, it is often easier to start
-with an already written template. This way, you can focus (as your supervisor
-and your viva panel expect) on writing about your exciting research 
-contributions rather than spending time formatting your document or applying 
-other cosmetic changes. To this end, this repository contains a LaTeX
-template that can be used for a 4th year project (4YP) report or a DPhil / PhD 
-thesis. The typical 4YP report contains around 50 pages, whereas a DPhil / PhD
-thesis is a much larger document.
+with an already written template. This way, you can focus on (as your supervisor
+expects) on writing about your exciting research contributions rather than 
+spending time formatting your document or applying other cosmetic changes that
+just distract the reader. 
 
-The main class file is [oxengthesis.cls](oxengthesis.cls). Two sample 
-documents are provided: [sample_4yp_report.tex](sample_4yp_report.tex) and
+This repository contains a LaTeX class that can be used for a 4th year project
+(4YP) report or a DPhil / PhD thesis. The typical 4YP report contains around 50
+pages, whereas a DPhil / PhD thesis is a much larger document. The main class
+file is [oxengthesis.cls](oxengthesis.cls). Two sample documents are provided:
+[sample_4yp_report.tex](sample_4yp_report.tex) and
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) depending on if you are 
 writing a 4YP report or a DPhil thesis respectively. You can check the 
 output of corresponding PDF documents 
@@ -80,6 +80,8 @@ The following screenshots give you an idea of how the documents looks:
 </p>
 
 &nbsp;
+
+
 
 ## Requirements
 
@@ -150,7 +152,7 @@ in the *frontmatter* to appear, you will need to create the following files:
 - **[glossary.tex](glossary.tex)** : If you want the
   "List of abbreviations" page
 
-If any of the files above are missing, that particular secton won't be created
+If any of the files above are missing, that particular section won't be created
 in the *frontmatter*. This is useful if you are just preparing a draft version
 of your thesis for your supervisor to correct. 
 
@@ -251,7 +253,7 @@ following outputs:
 If you don't provide a custom title page, the [oxengthesis.cls](oxengthesis.cls)
 class template will load the default title file 
 [titlepage-oxford.tex](titlepage-oxford.tex) shown above. If the layout of the
-default title page does not fulfill your or your university's requirements, 
+default title page does not fulfil your or your university's requirements, 
 you can create your own title page. To do so, you will need to follow the 3 
 steps described below. As an example, we will create a custom title page for a
 PhD thesis for a student at the Massachusetts Institute of Technology:
@@ -342,6 +344,68 @@ of them, but take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
 sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
 [sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
 complete overview.
+
+
+## Default package options
+
+By default, the class is formatted to produce a doctoral thesis for the
+University of Oxford. If you don't provide any package options, such as:
+
+```latex
+\documentclass{oxengthesis}
+```
+
+the output document will be created with the following options
+
+```latex
+\documentclass[10pt,a4paper,openany,onecolumn,twoside,final,font=Carlito,mathfont="Latin Modern Math",headingcolour={0,0,0},leftmargin=4cm,rightmargin=2cm,topmargin=2cm,bottommargin=2.5cm]{oxengthesis}
+```
+
+- 10pt font size
+- A4 paper size
+- Page margins as required by Oxford
+- Chapters will start on either recto or verso pages (openany)
+
+Note that the options "[onecolumn,twoside,final]" cannot be changed. Review
+the documentation of the [memoir](https://ctan.org/pkg/memoir) package. It is 
+quite customisable and provides many extra features not described here.
+
+## Page size and margins
+
+
+By default, the page size and margins are set to comply with the requirements of
+the University of Oxford. Other institutions have different requirements. For
+example, the requirements for a thesis at the Massachusetts Institute of 
+Technology are ([taken from MIT libraries](https://libraries.mit.edu/distinctive-collections/thesis-specs)):
+
+```
+... For the main body of the text, including appendices and front matter, font size should be at least 11-point ...
+
+... Top, bottom, and both side margins must be at least an inch wide (1″) to allow for binding and trimming....
+```
+
+Therefore, you would configure the class with the following options (Note that 
+the left margin is larger):
+
+
+```latex
+\documentclass[11pt, letterpaper,leftmargin=1.5in,rightmargin=1in,topmargin=1in,bottommargin=1in]{oxengthesis}
+```
+
+
+## Fonts
+
+By default the main font is 10 point
+"[Carlito](https://ctan.org/tex-archive/fonts/carlito?lang=en)" and the font 
+for equations and formulas is 
+"[Latin Modern Math](https://ctan.org/tex-archive/fonts/lm-math?lang=en)". You
+can change to, for example, 11pt Arial as the main font and "tex-gyre-math-termes" as
+the font for the equations:
+
+```latex
+\documentclass[11pt,font=Arial,mathfont="TeX Gyre Termes Math"]{oxengthesis}
+```
+
 
 
 ## Mark text as TODO
@@ -514,7 +578,7 @@ which will produce the following output:
 
 The [cleveref](https://ctan.org/pkg/cleveref) package is used to
 improve cross references to chapters, sections, figures and other common
-LaTeX labels. For example the following text:
+LaTeX labels. For example, the following text:
 
 ```latex
 \Cref{chapter:literature_review} discusses .... is presented in 
@@ -609,11 +673,11 @@ provided. For the rest of the instances, only the acronym will be used. The
 
 If you have a recent version of LaTeX installed (TeXLive version 2022 works)
 in your system and would like to have a short table of contents at the 
-beginning of each chapter, you can simply add the "*useminitoc*" option to
+beginning of each chapter, you can simply add the "*chaptertoc*" option to
 your document:
 
 ```latex
-\documentclass[10pt,a4paper,twoside,openany,useminitoc,final]{oxengthesis}
+\documentclass[chaptertoc]{oxengthesis}
 ```
 
 Below is a sample output for one chapter:
@@ -635,13 +699,13 @@ When submitting your final thesis to the "Examination Schools" (located on
 High Street) at the University of Oxford to schedule your viva examination, 
 you are typically required to submit two printed copies of your thesis 
 (soft-bound). Additionally, you are required to provide two separate one-page
-printed copies of your abstract. The stand-alone abstract page should contains
+printed copies of your abstract. The stand-alone abstract page should contain
 your name, college affiliation and is NOT meant to be part of the binding of
 your thesis. To create this single stand-alone page of your abstract, add the
 "*frontabstract*" option to your document, as in:
 
 ```latex
-\documentclass[10pt,a4paper,twoside,openany,frontabstract,final]{oxengthesis}
+\documentclass[frontabstract]{oxengthesis}
 ```
 
 The page will be created before the main title page. Below is a sample output:
@@ -658,25 +722,26 @@ double line spacing so he/she can correct your draft (the red pen!). You can
 simply add the "*review*" option to your document:
 
 ```latex
-\documentclass[10pt,a4paper,twoside,openany,report,final,review]{oxengthesis}
+\documentclass[review]{oxengthesis}
 ```
 
 ## Different colour for section headings
 
 The default font colour for section and subsection headings is black. You can 
-change the colour (to blue for example) by adding the following line to your
-document:
+change the colour (to blue for example) by adding the "*headingcolour*"
+class option:
 
 ```latex
-\definecolor{headingcolor}{rgb}{0.25,0.45,0.76}
+\documentclass[headingcolour={0.25,0.45,0.76}]{oxengthesis}
 ```
+
 
 ## Debug "Overfull \hbox" errors
 
-When compiling a LaTeX document, you will could get a warning similar to:
+When compiling a LaTeX document, you could get a warning similar to:
 
 ```
-    Overfull \hbox (22.49216pt too wide) in paragraph at lines 4--5
+Overfull \hbox (22.49216pt too wide) in paragraph at lines 4--5
 ```
 
 This often occurs when a line of your document could not fit within the
@@ -689,7 +754,7 @@ Sometimes, it is difficult to know where these errors occur in your document.
 You can add the "*debuglayout*" option to your document:
 
 ```latex
-\documentclass[10pt,a4paper,twoside,openany,debuglayout,final]{oxengthesis}
+\documentclass[debuglayout]{oxengthesis}
 ```
 
 A black box will be shown next to the affected lines. Below is a sample output:
@@ -706,8 +771,38 @@ The [oxengthesis.cls](oxengthesis.cls) class file is already takes advantage
 of other packages (such as
 [microtype](https://ctan.org/pkg/microtype?lang=en)) to deal with common
 issues such as character protrusion, font expansion and inter-word spacing.
-I recommend you slightly rephrase your guilty senteces instead of changing the
+I recommend you slightly rephrase your guilty sentences instead of changing the
 class template. This is usually the first approach many of my students take.
+
+## Formatting source code
+
+Often, we want to show pseudo code, source code or other verbatim content in
+our document. For this, I use the
+[listings](https://ctan.org/pkg/listings?lang=en) package. The extra cutom
+styles are defined in the class file to show 
+
+C/C++ source code:
+
+<p align="center">
+    <img src="./figures/listing_style-c.png" alt="C/C++ source code"
+    width="350" border=1 />
+</p>
+
+BASH scripts or commands:
+
+<p align="center">
+    <img src="./figures/listing_style-bash.png" alt="BASH code"
+    width="350" border=1 />
+</p>
+
+or other verbatim content:
+
+<p align="center">
+    <img src="./figures/listing_style-verbatim.png" alt="Verbatim content"
+    width="350" border=1 />
+</p>
+
+
 
 ## Bibliography styles
 

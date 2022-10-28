@@ -11,9 +11,7 @@
 %
 % DESCRIPTION :
 %
-% Latex template for a project report based on the 
-% class file for a DPhil thesis of the Engineering department of 
-% the University of Oxford
+% Latex template for a DPhil / PhD thesis or a project report
 % ____________________________________________________________________________
 
 
@@ -21,32 +19,89 @@
 \ProvidesClass{oxengthesis}[2022/10/26 version 0.10 - Oxford Engineering thesis class by Mauricio Villarroel]
 
 
-\newif\if@report
-\DeclareOption{report}{\@reporttrue}
+% ____________________________________________________________________________
+%
+% Configure the package options for memoir
+% ____________________________________________________________________________
 
-\newif\if@review
-\DeclareOption{review}{\@reviewtrue}
 
-\newif\if@frontabstract
-\DeclareOption{frontabstract}{\@frontabstracttrue}
+\DeclareOption{10pt}{
+    \PassOptionsToClass{\CurrentOption}{memoir}
+}
 
-\newif\if@useminitoc
-\DeclareOption{useminitoc}{\@useminitoctrue}
+\DeclareOption{a4paper}{
+    \PassOptionsToClass{\CurrentOption}{memoir}
+}
 
-\newif\if@debuglayout
-\DeclareOption{debuglayout}{\@debuglayouttrue}
+\DeclareOption{openany}{
+    \PassOptionsToClass{\CurrentOption}{memoir}
+}
+
 
 % Pass all other the options to the memoir class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
 
+\ExecuteOptions{10pt,a4paper,openany}
+
 \ProcessOptions\relax
 
-\LoadClass{memoir}
+\LoadClass[onecolumn,twoside,final]{memoir}
 
 
 % ____________________________________________________________________________
 %
-% BASIC LATEX CONFIGURATION
+% Local package options
+% ____________________________________________________________________________
+
+
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions%
+{
+    family=OxEngThesis,
+    prefix=OxEngThesis@
+}
+
+
+% Option to format a 4th Year Project (4YP) report
+% If not declared, the default will be to format the document for a 
+% DPhil thesis
+\DeclareBoolOption{report}
+
+% Review mode, which will format the text in \DoubleSpacing
+\DeclareBoolOption{review}
+
+% Include a short table of contents in each chapter
+\DeclareBoolOption{chaptertoc}
+
+% To show page layout errors
+\DeclareBoolOption{debuglayout}
+
+% Create the stand-alone abstract page for Oxford's Examination Schools
+\DeclareBoolOption{frontabstract}
+
+% Main font for all the text
+\DeclareStringOption[Carlito]{font}
+
+% Font for equations
+\DeclareStringOption[Latin Modern Math]{mathfont}
+
+% Colour for section and subsection headings
+\DeclareStringOption[{0,0,0}]{headingcolour}
+
+% Page layout margins
+\DeclareStringOption[4cm]{leftmargin}
+\DeclareStringOption[2cm]{rightmargin}
+\DeclareStringOption[2cm]{topmargin}
+\DeclareStringOption[2.5cm]{bottommargin}
+
+
+\ProcessKeyvalOptions{OxEngThesis}
+
+
+% ____________________________________________________________________________
+%
+% Basic LaTeX configuration
 % ____________________________________________________________________________
 
 
@@ -72,7 +127,7 @@
 % Font configuration
 
 \RequirePackage{fontspec}
-\setmainfont{Carlito}
+\setmainfont{\OxEngThesis@font}
 
 % No hyphenation
 
@@ -82,7 +137,7 @@
 
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
-\setmathfont{Latin Modern Math}
+\setmathfont{\OxEngThesis@mathfont}
 
 % Import external files
 
@@ -108,10 +163,10 @@
 \newlength{\mytopmargin}
 \newlength{\mybottommargin}
 
-\setlength{\myleftmargin}{4cm}
-\setlength{\myrightmargin}{2cm}
-\setlength{\mytopmargin}{2cm}
-\setlength{\mybottommargin}{2.5cm}
+\setlength{\myleftmargin}{\OxEngThesis@leftmargin}
+\setlength{\myrightmargin}{\OxEngThesis@rightmargin}
+\setlength{\mytopmargin}{\OxEngThesis@topmargin}
+\setlength{\mybottommargin}{\OxEngThesis@bottommargin}
 
 % Setup the page layout
 
@@ -314,7 +369,7 @@
 
 \RequirePackage[hyperindex=true,colorlinks=true,pagebackref=false,allcolors=black,plainpages=false,pdfpagelabels,bookmarksnumbered]{hyperref}
 
-\if@useminitoc
+\ifOxEngThesis@chaptertoc
     \RequirePackage[tight]{minitoc}
     \mtcsetdepth{minitoc}{2}
     %\mtcsetrules{*}{off}
@@ -327,13 +382,11 @@
 
 % ____________________________________________________________________________
 %
-% Debugging
-%
-% DO NOT DELETE: Uncomment the lines below to have more verbose diagnostics
+% Debugging page layout
 % ____________________________________________________________________________
 
 
-\if@debuglayout
+\ifOxEngThesis@debuglayout
 
     % Used temporarily for checking layout
     \RequirePackage{layout}
@@ -520,7 +573,7 @@
     
     \begingroup
     
-        \if@review
+        \ifOxEngThesis@review
             \DoubleSpacing
         \else
             \OnehalfSpacing
@@ -632,13 +685,11 @@
 {
     \clearforchapter
     \pagestyle{loapagestyle}
-%    \renewcommand*{\chapterheadstart}{}
     \renewcommand*{\abbreviationsname}{List of abbreviations}
     \glsfindwidesttoplevelname
     \setglossarystyle{alttree}
     \DoubleSpacing
     \printabbreviations
-    %\renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
 }
 
 
@@ -731,7 +782,7 @@
     
     % Include the front matter sections if available
         
-    \if@frontabstract
+    \ifOxEngThesis@frontabstract
         \IfFileExists{\abstractfilename}
         {
             \makefrontabstractpage
@@ -741,7 +792,7 @@
 
     \maketitlepage
 
-    \if@report
+    \ifOxEngThesis@report
         % Do nothing
     \else
         \IfFileExists{\dedicationfilename}
@@ -765,7 +816,7 @@
         \makeabstractpage
     }{}
     
-    \if@report
+    \ifOxEngThesis@report
         % Do nothing
     \else
         \IfFileExists{\publicationsfilename}
@@ -774,7 +825,7 @@
         }{}
     \fi
     
-    \if@useminitoc
+    \ifOxEngThesis@chaptertoc
         \dominitoc
         \tableofcontents
         \listoffigures
@@ -802,7 +853,7 @@
 
 % Enable minitoc for chapters
 
-\if@useminitoc
+\ifOxEngThesis@chaptertoc
 
     \RequirePackage{xparse}
     
@@ -827,9 +878,7 @@
 
 
 % The font colour for section headings. Default is black
-\@ifundefined{headingcolor}{%
-    \definecolor{headingcolor}{rgb}{0,0,0}
-}{}
+\definecolor{headingcolour}{rgb}{\OxEngThesis@headingcolour}
 
 
 \let\Chaptermark\chaptermark
@@ -854,11 +903,11 @@
     \renewcommand\chapterheadstart{}
     \setlength\beforechapskip{0\baselineskip}
     \setlength\midchapskip{0\baselineskip}
-    \setsecheadstyle{\large\bfseries\color{headingcolor}}
-    \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
-    \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsecheadstyle{\large\bfseries\color{headingcolour}}
+    \setsubsecheadstyle{\large\bfseries\color{headingcolour}}
+    \setsubsubsecheadstyle{\large\bfseries\color{headingcolour}}
         
-    \if@review
+    \ifOxEngThesis@review
         \DoubleSpacing
     \else
         \OnehalfSpacing
@@ -866,7 +915,7 @@
     
     % Uncomment the following lines to temporarily check/debug page layout
     
-    %\if@debuglayout
+    %\ifOxEngThesis@debuglayout
     %    \layout
     %\fi
 
@@ -894,11 +943,11 @@
     \renewcommand\chapterheadstart{}
     \setlength\beforechapskip{0\baselineskip}
     \setlength\midchapskip{0\baselineskip}
-    \setsecheadstyle{\large\bfseries\color{headingcolor}}
-    \setsubsecheadstyle{\large\bfseries\color{headingcolor}}
-    \setsubsubsecheadstyle{\large\bfseries\color{headingcolor}}
+    \setsecheadstyle{\large\bfseries\color{headingcolour}}
+    \setsubsecheadstyle{\large\bfseries\color{headingcolour}}
+    \setsubsubsecheadstyle{\large\bfseries\color{headingcolour}}
     
-    \if@review
+    \ifOxEngThesis@review
         \DoubleSpacing
     \else
         \OnehalfSpacing
