@@ -787,23 +787,42 @@ C/C++ source code:
 
 <p align="center">
     <img src="./figures/listing_style-c.png" alt="C/C++ source code"
-    width="350" border=1 />
+    width="400" border=1 />
 </p>
 
 BASH scripts or commands:
 
 <p align="center">
     <img src="./figures/listing_style-bash.png" alt="BASH code"
-    width="350" border=1 />
+    width="400" border=1 />
 </p>
 
 or other verbatim content:
 
 <p align="center">
     <img src="./figures/listing_style-verbatim.png" alt="Verbatim content"
-    width="350" border=1 />
+    width="400" border=1 />
 </p>
 
+## Chapter heading styles
+
+The default style for chapter headings is simple and gives you enough space
+to write your content. You can take advantage of different chapter styles
+defined in the [memoir](https://ctan.org/pkg/memoir) package by passing
+the "*chapterstyle*" option. For example, the following settings:
+
+
+```latex
+\documentclass[chapterstyle=southall]{oxengthesis}
+```
+
+will use the "*southall*" chapter style. An example of the output is shown
+below:
+
+<p align="center">
+    <img src="./figures/chapterstyle-southall.png" alt="southall chapter style"
+    width="350" border=1 />
+</p>
 
 
 ## Bibliography styles

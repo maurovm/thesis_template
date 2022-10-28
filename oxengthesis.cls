@@ -96,6 +96,8 @@
 \DeclareStringOption[2.5cm]{bottommargin}
 
 
+\DeclareStringOption[defaultchapterstyle]{chapterstyle}
+
 \ProcessKeyvalOptions{OxEngThesis}
 
 
@@ -894,19 +896,17 @@
     \makeoddhead {mainpagestyle}{\bfseries{\chaptername~\thechapter.~\Chaptername}}{}{\thepage}
     \makeheadrule{mainpagestyle}{\textwidth}{0.3pt}
 
-
-\addtodef{\mainmatter}
-{
-    \clearforchapter
-    \pagestyle{mainpagestyle}
-
+\makechapterstyle{defaultchapterstyle}
+{ 
+    \chapterstyle{default}
+    
     \renewcommand\chapterheadstart{}
     \setlength\beforechapskip{0\baselineskip}
     \setlength\midchapskip{0\baselineskip}
     \setsecheadstyle{\large\bfseries\color{headingcolour}}
     \setsubsecheadstyle{\large\bfseries\color{headingcolour}}
     \setsubsubsecheadstyle{\large\bfseries}
-
+    
     \ifOxEngThesis@review
         \DoubleSpacing
     \else
@@ -918,7 +918,13 @@
     %\ifOxEngThesis@debuglayout
     %    \layout
     %\fi
+}
 
+\addtodef{\mainmatter}
+{
+    \clearforchapter
+    \pagestyle{mainpagestyle}
+    \chapterstyle{\OxEngThesis@chapterstyle}
 }{}
 
 
@@ -938,20 +944,8 @@
 \addtodef{\appendix}
 {
     \clearforchapter
-    \pagestyle{appendixpagestyle}    
-    
-    \renewcommand\chapterheadstart{}
-    \setlength\beforechapskip{0\baselineskip}
-    \setlength\midchapskip{0\baselineskip}
-    \setsecheadstyle{\large\bfseries\color{headingcolour}}
-    \setsubsecheadstyle{\large\bfseries\color{headingcolour}}
-    \setsubsubsecheadstyle{\large\bfseries\color{headingcolour}}
-    
-    \ifOxEngThesis@review
-        \DoubleSpacing
-    \else
-        \OnehalfSpacing
-    \fi
+    \pagestyle{appendixpagestyle}
+    \chapterstyle{\OxEngThesis@chapterstyle}
 }{}
 
 
