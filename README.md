@@ -735,6 +735,8 @@ class option:
 \documentclass[headingcolour={0.25,0.45,0.76}]{oxengthesis}
 ```
 
+Note that the colour of subsubsection headings will be black regardless of the
+setting above.
 
 ## Debug "Overfull \hbox" errors
 
