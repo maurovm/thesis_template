@@ -1,14 +1,14 @@
-# DPhil / PhD doctoral thesis template
+# DPhil / PhD doctoral thesis class template
 
 
-LaTeX template for an undergraduate 4th year project (4YP) report
+LaTeX class template for an undergraduate 4th year project (4YP) report
 or a DPhil thesis for a student of the 
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
-the [University of Oxford](https://www.ox.ac.uk). Although originally created
-for a student at Oxford, I included some examples below for a PhD thesis for
-the Massachusetts Institute of Technology and (cough, cough) the University
-of Cambridge. It should be easy for you to adjust this template to suit the
-requirements of other academic institutions.
+the [University of Oxford](https://www.ox.ac.uk). Although I originally created
+this class for a student at Oxford, I also include some examples for a PhD 
+thesis for the Massachusetts Institute of Technology and the University of 
+Cambridge. It should be easy for you to adjust this class to suit the 
+requirements your academic institution.
 
 &nbsp;
 
@@ -40,27 +40,22 @@ just distract the reader.
 
 This repository contains a LaTeX class that can be used for a 4th year project
 (4YP) report or a DPhil / PhD thesis. The typical 4YP report contains around 50
-pages, whereas a DPhil / PhD thesis is a much larger document. The main class
-file is [oxengthesis.cls](oxengthesis.cls). Two sample documents are provided:
-[sample_4yp_report.tex](sample_4yp_report.tex) and
-[sample_dphil_thesis.tex](sample_dphil_thesis.tex) depending on if you are 
-writing a 4YP report or a DPhil thesis respectively. You can check the 
-output of corresponding PDF documents 
-[sample_4yp_report-sample_output.pdf](sample_4yp_report-sample_output.pdf) and
-[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf).
-The following screenshots give you an idea of how the documents looks:
+pages, whereas a doctoral thesis is a much larger document. The main class
+file is [oxengthesis.cls](oxengthesis.cls). One sample source file is provided:
+[sample_dphil_thesis.tex](sample_dphil_thesis.tex). You can check the 
+[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf) 
+sample file to review an example of the output PDF document for a a DPhil
+thesis. The following screenshots give you an idea of how the documents looks:
 
 &nbsp;
 
 <p align="center">
     <kbd><img src="./figures/dphil-title_page.png" alt="Title page" width="250" border=1 /></kbd>
-    ...
     <kbd><img src="./figures/dphil-toc_1.png" alt="TOC page 1" width="250" border=1 /></kbd>
 </p>
 <h2> <p align="center"> ... </p> </h2>
 <p align="center">
     <kbd><img src="./figures/dphil-toc_2.png" alt="TOC page 2" width="250" border=1 /></kbd>
-    ...
     <kbd><img src="./figures/dphil-chap_1_1.png" alt="Chapter 1 page 1" width="250" border=1 /></kbd>
 </p>
 <h2> <p align="center"> ... </p> </h2>
@@ -81,6 +76,9 @@ The following screenshots give you an idea of how the documents looks:
 
 &nbsp;
 
+This tutorial is replicated as "Chapter 0 The OxEngThesis LaTeX class" in the 
+[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf),
+so you can review examples on how to write your LaTeX document.
 
 
 ## Requirements
@@ -99,7 +97,7 @@ available from your distribution's software repository, for example:
 [LaTeX in Ubuntu](https://help.ubuntu.com/community/LaTeX). For macOS, you can
 download and install the latest [MacTeX](https://tug.org/mactex) distribution. 
 For Microsoft Windows, follow the installation instructions described in
-[TexLive on Windows](https://tug.org/texlive/windows.html)
+[TexLive on Windows](https://tug.org/texlive/windows.html).
 
 
 Install the Carlito font (if it's not already installed in your system).
@@ -128,13 +126,25 @@ PDF document.
 
 # Writing your thesis
 
+This tutorial is replicated as "Chapter 0 The OxEngThesis LaTeX class" in the 
+[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf),
+so you can review examples on how to write your LaTeX document.
+
+
 ## Preparing your document
 
-After you installed your preferred LaTeX editor, copy either the file 
-[sample_dphil_thesis.tex](sample_dphil_thesis.tex) or
-[sample_4yp_report.tex](sample_4yp_report.tex) to a new file depending
-on if you are writing a DPhil thesis or a 4YP report respectively. Throughout
-this tutorial, I will call this new file your "*main LaTeX source file*".
+After you installed your preferred LaTeX editor, make a copy of the 
+[sample_dphil_thesis.tex](sample_dphil_thesis.tex) sample file provided in this
+repository. Throughout this tutorial, I will call this new file your
+"*main LaTeX source file*".
+
+From your "*main LaTeX source file*", remove the line that includes the
+OxEngThesis class documentation. It is a line similar to:
+
+
+```latex
+\include{oxengthesis_class_documentation}
+```
 
 The *frontmatter* section will be automatically created depending on the type
 of document you are writing. If you want more control, you can review how the
@@ -160,6 +170,30 @@ Similarly, add all the BibTeX citations to a file named
 [references.bib](references.bib) if you want the "Bibliography" section to be
 created at the end of your document. 
 
+## Writing a 4th Year Project (4YP) report
+
+
+If you are an undergraduate student at the University of Oxford reading 
+[Engineering Science](https://eng.ox.ac.uk/study/undergraduate/your-degree)
+you will carry out a self-led project in your fourth year. It usually involves
+original research or significant design and construction work, undertaken in 
+close consultation with an academic supervisor. 
+
+At the end of your project (usually by the beginning of Trinity term), you will
+need to submit a report with all the details of your research contributions. 
+This document is often about 50 pages in length and does not need all the 
+sections that a doctoral thesis has. You can write a 4YP report by providing 
+the "*report*" option when you load the OxEngThesis class, as in:
+
+
+```latex
+\documentclass[report]{oxengthesis}
+```
+
+The "*report*" package option is just a shortcut to not include the dedication,
+declaration and publications pages and format the title page accordingly.
+
+
 ## Creating the PDF output
 
 The LaTeX files in this repository require the 
@@ -171,11 +205,11 @@ PDF document from your "*main LaTeX source file*".
 If you want to compile your "*main LaTeX source file*" from the command line, 
 you can use the script [compile_document.sh](compile_document.sh) provided in 
 this repository. This script only works in a Linux or macOS system. For
-example, to compile the sample 4YP report, you will execute the following
+example, to compile the sample thesis provided, you will execute the following
 command in the terminal:
 
 ```shell
-$ ./compile_document.sh  sample_4yp_report.tex
+$ ./compile_document.sh  sample_dphil_thesis.tex
 ```
 
 If you want to delete all the temp or auxiliary files LaTeX created during
@@ -191,20 +225,19 @@ If you are compiling the document manually, you would need to run the
 of your LaTeX distribution) in the following order:
 
 ```shell
-$ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
-$ makeglossaries sample_4yp_report.tex
-$ latexmk -pdflatex=lualatex -pdf  sample_4yp_report.tex
+$ latexmk -pdflatex=lualatex -pdf  sample_dphil_thesis.tex
+$ makeglossaries sample_dphil_thesis.tex
+$ latexmk -pdflatex=lualatex -pdf  sample_dphil_thesis.tex
 ```
 
 ## Customising the title page
 
-Although this LaTeX template was written and formatted for a student at the
-University of Oxford, it should be easy for you to customise it to suit the
-requirements of your academic institution. The 
-[default title page](titlepage-oxford.tex) is simple and customisable. The
-class template defines some variables you can use. At minimum, you need to
-provide the following definitions in the preamble of your 
-"*main LaTeX source file*":
+Although I originally wrote this LaTeX template for a student at the University
+of Oxford, it should be easy for you to customise it to suit the requirements
+of your academic institution. The [default title page](titlepage-oxford.tex) 
+is simple and customisable. The class template defines some variables you can
+use. At minimum, you need to provide the following definitions in the preamble
+of your "*main LaTeX source file*":
 
 - **\title{}**:      The main title of the thesis/report
 - **\author{}**:     The author of the thesis/report
@@ -231,18 +264,43 @@ You can define the following optional variables:
     current date (useful when sending a draft to your supervisor)
 
 
-For examples on how to define the above variables, you can review the files
-[sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
-[sample_4yp_report.tex](sample_4yp_report.tex), depending on if you are writing
-a DPhil thesis or a 4YP report respectively. These two files use the default
-title page [titlepage-oxford.tex](titlepage-oxford.tex), which produces the
-following outputs:
+The title pages for a DPhil/PhD thesis and for a 4YP report can be created with
+very similar code. They both use the default title page 
+[titlepage-oxford.tex](titlepage-oxford.tex). The only difference is the use
+of the ``\verb|report|'' package option. For example, the title page for the
+DPhil thesis can be created with the following code:
+
+
+```latex
+\documentclass{oxengthesis}
+
+\title{The long-term effects of climate change on farming in Middle Earth}
+\author    {Samwise Gamgee}
+\college   {Jesus College}
+\supervisor{Professor J.R.R. Tolkien}
+\date      {Hilary Term, 2048}
+```
+
+
+The title page for the 4YP report can becreated with the following code:
+
+
+```
+\documentclass[report]{oxengthesis}
+
+\title{The long-term effects of climate change on farming in Middle Earth}
+\author    {Samwise Gamgee}
+\college   {Jesus College}
+\supervisor{Professor J.R.R. Tolkien}
+\date      {Hilary Term, 2048}
+```
+
+The code above produces the following outputs:
 
 &nbsp;
 
 <p align="center">
     <kbd><img src="./figures/dphil-title_page.png" alt="Title page" width="250" border=1 /></kbd>
-    ...
     <kbd><img src="./figures/4yp-title_page.png" alt="TOC page 1" width="250" border=1 /></kbd>
 </p>
 
@@ -313,7 +371,7 @@ The sample output is shown below:
 &nbsp;
 
 The [oxengthesis.cls](oxengthesis.cls) class template makes available new LaTeX
-commands you can use in your new custom title document. These new commands are 
+commands that you can use in your new custom title document. These new commands are 
 based on the variables defined in the preamble of your
 "*main LaTeX source file*":
 
@@ -335,15 +393,7 @@ the available commands in your new title page.
 
 &nbsp;
 
-# Additional features
-
-The [oxengthesis.cls](oxengthesis.cls) class template is based on the
-[memoir](https://ctan.org/pkg/memoir) LaTeX package, with the addition
-of several other packages and features. In this section, I will summarise some
-of them, but take a look at the [oxengthesis.cls](oxengthesis.cls) file and the
-sample [sample_dphil_thesis.tex](sample_dphil_thesis.tex) / 
-[sample_4yp_report.tex](sample_4yp_report.tex) documents for a more 
-complete overview.
+# Package options
 
 
 ## Default package options
@@ -361,14 +411,16 @@ the output document will be created with the following options
 \documentclass[10pt,a4paper,openany,onecolumn,twoside,final,font=Carlito,mathfont="Latin Modern Math",headingcolour={0,0,0},leftmargin=4cm,rightmargin=2cm,topmargin=2cm,bottommargin=2.5cm]{oxengthesis}
 ```
 
-- 10pt font size
-- A4 paper size
-- Page margins as required by Oxford
-- Chapters will start on either recto or verso pages (openany)
+which will produce a thesis using a 10-point Carlito font on A4 paper size. 
+Page margins will be formatted as required by Oxford. Chapters will start on 
+either recto or verso pages (openany). Note that the options 
+"[onecolumn,twoside,final]" cannot be changed. 
 
-Note that the options "[onecolumn,twoside,final]" cannot be changed. Review
-the documentation of the [memoir](https://ctan.org/pkg/memoir) package. It is 
-quite customisable and provides many extra features not described here.
+
+The OxEngThesis class template is based on the
+[memoir](https://ctan.org/pkg/memoir) LaTeX package. As such, you can pass 
+most of the memoir's option and, therefore, customise your document even further.
+
 
 ## Page size and margins
 
@@ -395,28 +447,121 @@ the left margin is larger):
 
 ## Fonts
 
-By default the main font is 10 point
+By default, the main font is 10-point
 "[Carlito](https://ctan.org/tex-archive/fonts/carlito?lang=en)" and the font 
 for equations and formulas is 
 "[Latin Modern Math](https://ctan.org/tex-archive/fonts/lm-math?lang=en)". You
 can change to, for example, 11pt Arial as the main font and "tex-gyre-math-termes" as
-the font for the equations:
+the font for equations with the following package options:
 
 ```latex
 \documentclass[11pt,font=Arial,mathfont="TeX Gyre Termes Math"]{oxengthesis}
 ```
 
 
+## Mini-table of contents for each chapter
 
-## Mark text as TODO
 
-
-You can wrap text in "todo" tags, so they appear in red colour in the PDF
-document. For example: 
+If you have a recent version of LaTeX installed (TeXLive version 2022 works)
+in your system and would like to have a short table of contents at the 
+beginning of each chapter, you can simply add the "*chaptertoc*" option to
+your document:
 
 ```latex
-    \todo{Add a citation to reference the latest research}
+\documentclass[chaptertoc]{oxengthesis}
 ```
+
+Below is a sample output for one chapter:
+
+<p align="center">
+    <kbd><img src="./figures/dphil-chap_minitoc.png" alt="Mini-table of contents for each chapter" width="350" border=1 /></kbd>
+</p>
+
+
+I use the [minitoc](https://ctan.org/pkg/memoir) LaTeX package to create
+the table of contents for each chapter. Previous versions of the minitoc class
+where incompatible with the [memoir](https://ctan.org/pkg/memoir) class. I 
+tested TexLive 2022 and MacTeX 2022, they both work fine.
+
+## Abstract page for the Examination Schools
+
+
+When submitting your final thesis to the "Examination Schools" (located on
+High Street) at the University of Oxford to schedule your viva examination, 
+you are typically required to submit two printed copies of your thesis 
+(soft-bound). Additionally, you are required to provide two separate one-page
+printed copies of your abstract. The stand-alone abstract page should contain
+your name, college affiliation and is NOT meant to be part of the binding of
+your thesis. To create this single stand-alone page of your abstract, add the
+"*frontabstract*" option to your document, as in:
+
+```latex
+\documentclass[frontabstract]{oxengthesis}
+```
+
+The page will be created before the main title page. Below is a sample output:
+
+<p align="center">
+    <kbd><img src="./figures/dphil-front_abstract_page.png" alt="Abstract page for the Examination Schools" width="350" border=1 /></kbd>
+</p>
+
+
+## Review editing mode
+
+Your thesis supervisor may request you to print your document with 
+double line spacing so he/she can correct your draft (the red pen!). You can
+simply add the "*review*" option to your document:
+
+```latex
+\documentclass[review]{oxengthesis}
+```
+
+## Different colour for section headings
+
+The default font colour for section and subsection headings is black. You can 
+change the colour (to blue for example) by adding the "*headingcolour*"
+class option:
+
+```latex
+\documentclass[headingcolour={0.25,0.45,0.76}]{oxengthesis}
+```
+
+Note that the colour of subsubsection headings will be black regardless of the
+setting above.
+
+
+## Chapter heading styles
+
+The default style for chapter headings is simple and gives you enough space
+to write your content. You can take advantage of different chapter styles
+defined in the [memoir](https://ctan.org/pkg/memoir) package by passing
+the "*chapterstyle*" option. For example, the following settings:
+
+
+```latex
+\documentclass[chapterstyle=southall]{oxengthesis}
+```
+
+will use the "*southall*" chapter style. An example of the output is shown
+below:
+
+<p align="center">
+    <img src="./figures/chapterstyle-southall.png" alt="southall chapter style"
+    width="350" border=1 />
+</p>
+
+&nbsp;
+
+
+
+# Additional features
+
+
+
+This section describes some of the additional features available in the
+OxEngThesis class. Refer to the official documentation of the
+[memoir](https://ctan.org/pkg/memoir) LaTeX package to customise your document
+even further.
 
 
 ## Figures
@@ -425,6 +570,7 @@ document. For example:
 I use the [graphicx](https://ctan.org/pkg/graphicx) LaTeX package to include
 figures. You can put all figures in a "figures/" folder and you can simply 
 include the image file directly without the file extension, as in:
+
 
 ```latex
 \begin{figure}
@@ -611,7 +757,7 @@ the lens ...
 ```
 
 
-## Glossaries
+## Glossary, acronyms and abbreviations
 
 
 I use the [glossaries-extra](https://ctan.org/pkg/glossaries-extra) package
@@ -668,164 +814,9 @@ provided. For the rest of the instances, only the acronym will be used. The
 </p>
 
 
-## Mini-table of contents for each chapter
-
-
-If you have a recent version of LaTeX installed (TeXLive version 2022 works)
-in your system and would like to have a short table of contents at the 
-beginning of each chapter, you can simply add the "*chaptertoc*" option to
-your document:
-
-```latex
-\documentclass[chaptertoc]{oxengthesis}
-```
-
-Below is a sample output for one chapter:
-
-<p align="center">
-    <kbd><img src="./figures/dphil-chap_minitoc.png" alt="Glossary page" width="350" border=1 /></kbd>
-</p>
-
-
-I use the [minitoc](https://ctan.org/pkg/memoir) LaTeX package to create
-the table of contents for each chapter. Previous versions of the minitoc class
-where incompatible with the [memoir](https://ctan.org/pkg/memoir) class. I 
-tested TexLive 2022 and MacTeX 2022, they both work fine.
-
-## Abstract page for the Examination Schools
-
-
-When submitting your final thesis to the "Examination Schools" (located on
-High Street) at the University of Oxford to schedule your viva examination, 
-you are typically required to submit two printed copies of your thesis 
-(soft-bound). Additionally, you are required to provide two separate one-page
-printed copies of your abstract. The stand-alone abstract page should contain
-your name, college affiliation and is NOT meant to be part of the binding of
-your thesis. To create this single stand-alone page of your abstract, add the
-"*frontabstract*" option to your document, as in:
-
-```latex
-\documentclass[frontabstract]{oxengthesis}
-```
-
-The page will be created before the main title page. Below is a sample output:
-
-<p align="center">
-    <kbd><img src="./figures/dphil-front_abstract_page.png" alt="Glossary page" width="350" border=1 /></kbd>
-</p>
-
-
-## Review editing mode
-
-Your thesis supervisor may request you to print your document with 
-double line spacing so he/she can correct your draft (the red pen!). You can
-simply add the "*review*" option to your document:
-
-```latex
-\documentclass[review]{oxengthesis}
-```
-
-## Different colour for section headings
-
-The default font colour for section and subsection headings is black. You can 
-change the colour (to blue for example) by adding the "*headingcolour*"
-class option:
-
-```latex
-\documentclass[headingcolour={0.25,0.45,0.76}]{oxengthesis}
-```
-
-Note that the colour of subsubsection headings will be black regardless of the
-setting above.
-
-## Debug "Overfull \hbox" errors
-
-When compiling a LaTeX document, you could get a warning similar to:
-
-```
-Overfull \hbox (22.49216pt too wide) in paragraph at lines 4--5
-```
-
-This often occurs when a line of your document could not fit within the
-designated horizontal space for text in the current page layout. The LaTeX
-compiler tries its best to fit text within the page limits, but sometimes it
-just cannot do it appropriately. This typically results in some text hanging
-out past the page margin due to long words, acronyms or long equations.
-
-Sometimes, it is difficult to know where these errors occur in your document.
-You can add the "*debuglayout*" option to your document:
-
-```latex
-\documentclass[debuglayout]{oxengthesis}
-```
-
-A black box will be shown next to the affected lines. Below is a sample output:
-
-<p align="center">
-    <kbd>
-    <img src="./figures/overfull_hbox_warning.png" alt="Glossary page"
-    width="350" border=1 />
-    </kbd>
-</p>
-
-
-The [oxengthesis.cls](oxengthesis.cls) class file is already takes advantage
-of other packages (such as
-[microtype](https://ctan.org/pkg/microtype?lang=en)) to deal with common
-issues such as character protrusion, font expansion and inter-word spacing.
-I recommend you slightly rephrase your guilty sentences instead of changing the
-class template. This is usually the first approach many of my students take.
-
-## Formatting source code
-
-Often, we want to show pseudo code, source code or other verbatim content in
-our document. For this, I use the
-[listings](https://ctan.org/pkg/listings?lang=en) package. The extra cutom
-styles are defined in the class file to show 
-
-C/C++ source code:
-
-<p align="center">
-    <img src="./figures/listing_style-c.png" alt="C/C++ source code"
-    width="400" border=1 />
-</p>
-
-BASH scripts or commands:
-
-<p align="center">
-    <img src="./figures/listing_style-bash.png" alt="BASH code"
-    width="400" border=1 />
-</p>
-
-or other verbatim content:
-
-<p align="center">
-    <img src="./figures/listing_style-verbatim.png" alt="Verbatim content"
-    width="400" border=1 />
-</p>
-
-## Chapter heading styles
-
-The default style for chapter headings is simple and gives you enough space
-to write your content. You can take advantage of different chapter styles
-defined in the [memoir](https://ctan.org/pkg/memoir) package by passing
-the "*chapterstyle*" option. For example, the following settings:
-
-
-```latex
-\documentclass[chapterstyle=southall]{oxengthesis}
-```
-
-will use the "*southall*" chapter style. An example of the output is shown
-below:
-
-<p align="center">
-    <img src="./figures/chapterstyle-southall.png" alt="southall chapter style"
-    width="350" border=1 />
-</p>
-
 
 ## Bibliography styles
+
 
 The default style for the references is "*ieeetr*". For example, the
 following LaTeX source:
@@ -877,6 +868,96 @@ Bibliography
 ```
 
 Take a look at the available styles at [The quick BibTeX guide](https://www.bibtex.com/styles/) online.
+
+
+
+## Mark text as TODO
+
+
+You can wrap text in "todo" tags, so they appear in red colour in the PDF
+document. For example: 
+
+```latex
+    \todo{Add a citation to reference the latest research}
+```
+
+
+
+## Formatting source code
+
+Often, we want to show pseudo code, source code or other verbatim content in
+our document. For this, I use the
+[listings](https://ctan.org/pkg/listings) package. The extra cutom
+styles are defined in the class file to show 
+
+C/C++ source code:
+
+<p align="center">
+    <img src="./figures/listing_style-c.png" alt="C/C++ source code"
+    width="400" border=1 />
+</p>
+
+BASH scripts or commands:
+
+<p align="center">
+    <img src="./figures/listing_style-bash.png" alt="BASH code"
+    width="400" border=1 />
+</p>
+
+or other verbatim content:
+
+<p align="center">
+    <img src="./figures/listing_style-verbatim.png" alt="Verbatim content"
+    width="400" border=1 />
+</p>
+
+
+&nbsp;
+
+# Troubleshooting common errors
+
+
+## Text beyond page limits
+
+When compiling a LaTeX document, you could get a warning similar to:
+
+```
+Overfull \hbox (22.49216pt too wide) in paragraph at lines 4--5
+```
+
+This often occurs when a line of your document could not fit within the
+designated horizontal space for text in the current page layout. The LaTeX
+compiler tries its best to fit text within the page limits, but sometimes it
+just cannot do it appropriately. This typically results in some text hanging
+out past the page margin due to long words, acronyms or long equations.
+
+Sometimes, it is difficult to know where these errors occur in your document.
+You can add the "*debuglayout*" option to your document:
+
+```latex
+\documentclass[debuglayout]{oxengthesis}
+```
+
+A black box will be shown next to the affected lines. Below is a sample output:
+
+<p align="center">
+    <kbd>
+    <img src="./figures/overfull_hbox_warning.png" alt="Overfull paragraph errors"
+    width="350" border=1 />
+    </kbd>
+</p>
+
+
+The [oxengthesis.cls](oxengthesis.cls) class file already takes advantage
+of other packages (such as
+[microtype](https://ctan.org/pkg/microtype)) to deal with common
+issues such as character protrusion, font expansion and inter-word spacing.
+I recommend you slightly rephrase your guilty sentences instead of changing the
+class template. This is usually the first approach many of my students take.
+
+
+
+&nbsp;
 
 # Suggestions and feedback
 

@@ -11,12 +11,12 @@
 %
 % DESCRIPTION :
 %
-% Latex template for a DPhil / PhD thesis or a project report
+% Latex template for a DPhil/PhD thesis or a project report
 % ____________________________________________________________________________
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{oxengthesis}[2022/10/26 version 0.10 - Oxford Engineering thesis class by Mauricio Villarroel]
+\ProvidesClass{oxengthesis}[2022/11/09 version 0.11 - Oxford Engineering thesis class by Mauricio Villarroel]
 
 
 % ____________________________________________________________________________
@@ -111,29 +111,29 @@
 \RequirePackage[base]{babel}
 \RequirePackage{lipsum}
 
+
 % Custom colours
 
 \RequirePackage{color}
 
+
 % TODO tags
+
 \newcommand{\todo}[1]{\textcolor{red}{@TODO: #1}}
 
-% Common measurement units
-
-\RequirePackage{siunitx}
-\DeclareSIUnit\year{yr}
-\DeclareSIUnit\hours{hrs}
-\DeclareSIUnit\bpm{beats/min}
-\DeclareSIUnit\brpm{breaths/min}
 
 % Font configuration
 
 \RequirePackage{fontspec}
 \setmainfont{\OxEngThesis@font}
 
-% No hyphenation
 
-\RequirePackage[none]{hyphenat}
+% No hyphenation for the main text,
+% but allow hyphenation for text typeset via either \texttt or \ttfamily
+% such as source code listings
+
+\RequirePackage[htt]{hyphenat}
+
 
 % Configure math environment
 
@@ -141,13 +141,15 @@
 \RequirePackage{unicode-math}
 \setmathfont{\OxEngThesis@mathfont}
 
-% Import external files
-
-\RequirePackage{listings}
 
 % Don't let figures and other floats past their sections
 
 \RequirePackage[section,below]{placeins}
+
+
+% Define a generic space
+
+\RequirePackage{xspace}
 
 
 % ____________________________________________________________________________
@@ -157,6 +159,7 @@
 
 
 \settypeoutlayoutunit{cm}
+
 
 % Define the margins
 
@@ -169,6 +172,7 @@
 \setlength{\myrightmargin}{\OxEngThesis@rightmargin}
 \setlength{\mytopmargin}{\OxEngThesis@topmargin}
 \setlength{\mybottommargin}{\OxEngThesis@bottommargin}
+
 
 % Setup the page layout
 
@@ -190,6 +194,7 @@
 \addtolength{\textheight}{-\uppermargin}
 \addtolength{\textheight}{-\lowermargin}
 
+
 %% footnote settings
 
 \setlength{\footskip}{\onelineskip}
@@ -210,11 +215,25 @@
 
 \setlength{\parindent}{2em}
 
+
 % Widows and orphans
 
 \RequirePackage{nowidow}
 
 \flushbottom
+
+
+% Debugging page layout
+
+\ifOxEngThesis@debuglayout
+
+    % Used temporarily for checking layout
+    \RequirePackage{layout}
+
+    % Show overfull errors
+    \overfullrule=5pt
+    
+\fi
 
 
 % ____________________________________________________________________________
@@ -228,9 +247,11 @@
 \RequirePackage[table]{xcolor}
 \RequirePackage{array}
 
+
 % Custom background colour for headers
 
 \definecolor{TableHeaderBackColor}{rgb}{0.9,0.9,0.9}
+
 
 % Standard table row heights
 
@@ -279,20 +300,24 @@
 
 \RequirePackage{graphicx}
 
+
 % Default folder for figures
 
 \graphicspath{{figures/}}
 
-% Subfigure link
+
+% Colour of subfigure references
 
 \newcommand{\oxfigsubplot}[1]{\textcolor{black}{(#1)}}
 
-% Configure captions
+
+% Figure captions
 
 \captionnamefont{\small} 
 \captiontitlefont{\small} 
 \changecaptionwidth
 \captionwidth{0.9\textwidth}  
+
 
 % Allow subfloats in figure environment
 
@@ -307,13 +332,21 @@
 
 \RequirePackage{enumitem}
 
-\setlist[itemize]{itemsep=1pt}
+\ifOxEngThesis@review
+    % Do nothing
+\else
+    \setlist[itemize]{itemsep=1pt}
+\fi
+
 
 
 % ____________________________________________________________________________
 %
 % Custom styles for source code listings
 % ____________________________________________________________________________
+
+
+\RequirePackage{listings}
 
 
 \lstdefinestyle{custom-c}{
@@ -351,16 +384,74 @@
   keepspaces=true
 }
 
+\lstdefinestyle{custom-latex}{
+  breaklines=true,
+  xleftmargin=\parindent,
+  aboveskip=1\baselineskip,
+  belowskip=1\baselineskip,
+  language=[LaTeX]{TeX},
+  showstringspaces=false,
+  basicstyle=\small\ttfamily,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  keywordstyle=\color{blue}, % identifierstyle=\color{green},
+  commentstyle=\color{red},
+  stringstyle=\color{orange}
+}
+
+
+\lstdefinestyle{custom-text}{
+  breaklines=true,
+  breakautoindent=true,
+  breakindent=0pt,
+  xleftmargin=\parindent,
+  aboveskip=2\baselineskip,
+  belowskip=2\baselineskip,
+  showstringspaces=false,
+  frame=L,
+  basicstyle=\ttfamily
+}
+
 
 % ____________________________________________________________________________
 %
-% Character protrusion, font expansion and interword spacing
+% Common measurement units
 % ____________________________________________________________________________
+
+
+\RequirePackage{siunitx}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\hours{hrs}
+\DeclareSIUnit\bpm{beats/min}
+\DeclareSIUnit\brpm{breaths/min}
+
+
+% ____________________________________________________________________________
+%
+% Glossaries
+% ____________________________________________________________________________
+
+
+\RequirePackage[nonumberlist,abbreviations,shortcuts=abbreviations]{glossaries-extra}
+
+
+% The colour of the glossary links
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
+
+
+% Show the full description of the acronym the first time it gets used
+\setabbreviationstyle{long-short}
+
+
+%% ____________________________________________________________________________
+%%
+%% Character protrusion, font expansion and inter-word spacing
+%% ____________________________________________________________________________
 
 
 \RequirePackage[activate={true,nocompatibility},final,tracking=true]{microtype}
 
 \microtypecontext{spacing=nonfrench}
+
 
 
 % ____________________________________________________________________________
@@ -371,6 +462,42 @@
 
 \RequirePackage[hyperindex=true,colorlinks=true,pagebackref=false,allcolors=black,plainpages=false,pdfpagelabels,bookmarksnumbered]{hyperref}
 
+
+% ____________________________________________________________________________
+%
+% Coloured boxes
+% ____________________________________________________________________________
+
+
+\RequirePackage{tcolorbox}
+
+\tcbuselibrary{skins}
+
+% A warning box in red with a title
+
+\newtcolorbox{OxWarningBox}[2][]{enhanced,drop fuzzy shadow,colback=red!5!white,colframe=red!75!black,toptitle=2mm,bottomtitle=2mm,top=5mm,bottom=5mm,beforeafter skip balanced=1cm,leftright skip=0.5cm,fonttitle=\bfseries\Large,title={#2},#1}
+
+% An informational box in gray with a title
+
+\newtcolorbox{OxInfoBox}[2][]{enhanced,drop fuzzy shadow,toptitle=2mm,bottomtitle=2mm,top=5mm,bottom=5mm,beforeafter skip balanced=1cm,leftright skip=0.5cm,fonttitle=\bfseries\Large,title={#2},#1}
+
+
+% ____________________________________________________________________________
+%
+% Shorcuts to typical latex logos
+% ____________________________________________________________________________
+
+
+\newcommand{\latex}{{\fontfamily{cmr}\selectfont\LaTeX}\xspace}
+\newcommand{\tex}{\TeX\xspace}
+
+
+% ____________________________________________________________________________
+%
+% Table of contents for chapters
+% ____________________________________________________________________________
+
+
 \ifOxEngThesis@chaptertoc
     \RequirePackage[tight]{minitoc}
     \mtcsetdepth{minitoc}{2}
@@ -380,35 +507,6 @@
     \setlength{\mtcskipamount}{2\bigskipamount}
     \setlength{\mtcindent}{1.5em}
 \fi
-
-
-% ____________________________________________________________________________
-%
-% Debugging page layout
-% ____________________________________________________________________________
-
-
-\ifOxEngThesis@debuglayout
-
-    % Used temporarily for checking layout
-    \RequirePackage{layout}
-
-    % Show overfull errors
-    \overfullrule=5pt
-    
-\fi
-
-
-% ____________________________________________________________________________
-%
-% Glossaries
-% ____________________________________________________________________________
-
-
-\RequirePackage[toc=true,nopostdot=false,noredefwarn=false,nonumberlist,nogroupskip,abbreviations,nomain,automake,shortcuts=abbreviations]{glossaries-extra}
-
-% The colour of the glossary links
-\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
 
 
 % ____________________________________________________________________________
@@ -687,7 +785,7 @@
 {
     \clearforchapter
     \pagestyle{loapagestyle}
-    \renewcommand*{\abbreviationsname}{List of abbreviations}
+    \renewcommand*{\abbreviationsname}{Glossary}
     \glsfindwidesttoplevelname
     \setglossarystyle{alttree}
     \DoubleSpacing
@@ -718,13 +816,21 @@
     \ifdefined \@degreeprefix
         \newcommand{\DegreePrefix}{\@degreeprefix}
     \else
-        \newcommand{\DegreePrefix}{A thesis submitted for the degree of}
+        \ifOxEngThesis@report
+            \newcommand{\DegreePrefix}{}
+        \else
+            \newcommand{\DegreePrefix}{A thesis submitted for the degree of}
+        \fi
     \fi
     
     \ifdefined \@degree
         \newcommand{\DegreeName}{\@degree}
     \else
-        \newcommand{\DegreeName}{Doctor of Philosophy}
+        \ifOxEngThesis@report
+            \newcommand{\DegreeName}{{\huge 4$^{th}$ Year Project Report}}
+        \else
+            \newcommand{\DegreeName}{Doctor of Philosophy}
+        \fi
     \fi
     
     \ifdefined \@college
@@ -765,12 +871,11 @@
     
     
     % Load the glossary definitions
-    
+
 
     \IfFileExists{\glossaryfilename}
     {
         \include{\glossaryfilename}
-        \glsunsetall
     }{}
 
 
@@ -922,6 +1027,7 @@
 
 \addtodef{\mainmatter}
 {
+    \glsresetall
     \clearforchapter
     \pagestyle{mainpagestyle}
     \chapterstyle{\OxEngThesis@chapterstyle}
