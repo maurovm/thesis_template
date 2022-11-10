@@ -44,7 +44,7 @@ The LaTeX files in this repository require the \textit{LuaLaTeX}\footnote{\url{h
 
 After you installed your preferred \latex editor, make a copy of the \verb|sample_thesis.tex| sample file provided in this repository. Throughout this tutorial, I will call this new file your ``\textit{main LaTeX source file}''.
 
-The \textit{frontmatter} section will be automatically created depending on the type of document you are writing. If you want more control, you can review how the \verb|\makefrontmatterpages| command is defined in the \verb|oxengthesis.cls| class file. If you want all the sections in the \textit{frontmatter} to appear, you will need to create the following files:
+The \textit{frontmatter} of the thesis will be automatically created depending on the type of document you are writing (either a doctoral thesis or a project report). If you want more control, you can review how the \verb|\makefrontmatterpages| command is defined in the \verb|oxengthesis.cls| class file. If you want all the sections in the \textit{frontmatter} to appear, you will need to create the following files:
 
 \begin{itemize}
     \item \verb|abstract.tex|: If you want the ``Abstract'' page
@@ -55,15 +55,17 @@ The \textit{frontmatter} section will be automatically created depending on the 
     \item \verb|glossary.tex|: If you want the ``List of abbreviations'' page
 \end{itemize}
 
-If any of the files above is missing, that particular section won't be created in the \textit{frontmatter}. This is useful if you are just preparing a draft version of your thesis for your supervisor to correct. 
+If any of the files above is missing, that particular page won't be created in the \textit{frontmatter}. This is useful if you are just preparing a draft version of your thesis for your supervisor to correct. 
 
-Similarly, add all the BibTeX citations to a file named \verb|references.bib| if you want the ``Bibliography'' section to be created at the end of your document. 
+Similarly for the \textit{backmatter} part of your thesis, add all the BibTeX citations to a file named \verb|references.bib| if you want the ``Bibliography'' section to be created at the end of your document. 
 
 
 \subsection{Writing a 4$^{th}$ Year Project (4YP) report}
 
 
-If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}} you will carry out a self-led project in your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has. You can write a 4YP report by providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, as in:
+If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}}, you will carry out a self-led project in your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
+
+You can write a 4YP report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, as shown in the following code:
 
 
 \begin{lstlisting}[style=custom-latex]
@@ -155,7 +157,7 @@ You can define the following optional variables:
 \end{figure}
 
 
-\Cref{fig:ch0:title_page} shows examples of the title pages for a DPhil thesis and for a 4YP report using the default title page source file``\verb|titlepage-oxford.tex|''. Both title pages were created with similar code with the ``\verb|report|'' package option as the only difference. The title page for the DPhil thesis (see \cref{fig:ch0:title_page:dphil}) was created with the following code:
+\Cref{fig:ch0:title_page} shows examples of the title pages for a DPhil thesis and for a 4YP report using the default title page (file``\verb|titlepage-oxford.tex|''). Both title pages were created with similar code with the ``\verb|report|'' package option as the only difference. The title page for the DPhil thesis (see \cref{fig:ch0:title_page:dphil}) was created with the following code:
 
 
 \begin{lstlisting}[style=custom-latex]
@@ -169,7 +171,7 @@ You can define the following optional variables:
 \end{lstlisting}
 
 
-The title page for the 4YP report (see \cref{fig:ch0:title_page:4yp}) was created with the following code:
+\noindent The title page for the 4YP report (see \cref{fig:ch0:title_page:4yp}) was created with the following code:
 
 
 \begin{lstlisting}[style=custom-latex]

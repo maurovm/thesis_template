@@ -806,11 +806,11 @@
     
     \newcommand{\TitleName}{\@title}
     \newcommand{\AuthorName}{\@author}
-        
+
     \ifdefined \@date
         \newcommand{\DegreeDate}{\@date}
     \else
-        \newcommand{\DegreeDate}{DEGREE DATE}    
+        \newcommand{\DegreeDate}{DEGREE DATE}
     \fi
     
     \ifdefined \@degreeprefix

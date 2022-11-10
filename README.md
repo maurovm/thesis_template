@@ -145,12 +145,23 @@ OxEngThesis class documentation. It is a line similar to:
 ```latex
 \include{oxengthesis_class_documentation}
 ```
+&nbsp;
 
-The *frontmatter* section will be automatically created depending on the type
-of document you are writing. If you want more control, you can review how the
-'\makefrontmatterpages' command is defined in the
-[oxengthesis.cls](oxengthesis.cls) class file. If you want all the sections
-in the *frontmatter* to appear, you will need to create the following files:
+>**NOTE**: The line above line includes the LaTeX version of this README file. 
+It shows how you can use the features provided by the OxEngThesis class in your
+document. It is numbered as "Chapter 0" in the sample PDF file 
+[sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf)
+so not to change the flow of the rest of the document.
+
+&nbsp;
+
+
+The *frontmatter* of the thesis will be automatically created depending on the
+type of document you are writing (either a doctoral thesis or a project report).
+If you want more control, you can review how the '\makefrontmatterpages' 
+command is defined in the [oxengthesis.cls](oxengthesis.cls) class file. If 
+you want all the sections in the *frontmatter* to appear, you will need to 
+create the following files:
 
 - **[abstract.tex](abstract.tex)** : If you want the "Abstract" page
 - **[dedication.tex](dedication.tex)** : If you want the "Dedication" page
@@ -162,28 +173,29 @@ in the *frontmatter* to appear, you will need to create the following files:
 - **[glossary.tex](glossary.tex)** : If you want the
   "List of abbreviations" page
 
-If any of the files above are missing, that particular section won't be created
+If any of the files above are missing, that particular page won't be created
 in the *frontmatter*. This is useful if you are just preparing a draft version
 of your thesis for your supervisor to correct. 
 
-Similarly, add all the BibTeX citations to a file named 
-[references.bib](references.bib) if you want the "Bibliography" section to be
-created at the end of your document. 
+Similarly for the *backmatter* part of your thesis, add all the BibTeX citations
+to a file named [references.bib](references.bib) if you want the "Bibliography"
+section to be created at the end of your document. 
 
 ## Writing a 4th Year Project (4YP) report
 
 
 If you are an undergraduate student at the University of Oxford reading 
-[Engineering Science](https://eng.ox.ac.uk/study/undergraduate/your-degree)
+[Engineering Science](https://eng.ox.ac.uk/study/undergraduate/your-degree),
 you will carry out a self-led project in your fourth year. It usually involves
 original research or significant design and construction work, undertaken in 
-close consultation with an academic supervisor. 
+close consultation with an academic supervisor. At the end of your project
+(usually by the beginning of Trinity term), you will need to submit a report 
+with all the details of your research contributions. This document is often 
+around 50 pages in length and does not need all the sections that a doctoral
+thesis has (i.e. declaration, dedication or list of publications). 
 
-At the end of your project (usually by the beginning of Trinity term), you will
-need to submit a report with all the details of your research contributions. 
-This document is often about 50 pages in length and does not need all the 
-sections that a doctoral thesis has. You can write a 4YP report by providing 
-the "*report*" option when you load the OxEngThesis class, as in:
+You can write a 4YP report by simpy providing the "*report*" option when you 
+load the OxEngThesis class, as shown in the following code:
 
 
 ```latex
@@ -266,7 +278,7 @@ You can define the following optional variables:
 
 The title pages for a DPhil/PhD thesis and for a 4YP report can be created with
 very similar code. They both use the default title page 
-[titlepage-oxford.tex](titlepage-oxford.tex). The only difference is the use
+"[titlepage-oxford.tex](titlepage-oxford.tex)". The only difference is the use
 of the ``\verb|report|'' package option. For example, the title page for the
 DPhil thesis can be created with the following code:
 
@@ -282,7 +294,7 @@ DPhil thesis can be created with the following code:
 ```
 
 
-The title page for the 4YP report can becreated with the following code:
+The title page for the 4YP report can be created with the following code:
 
 
 ```
@@ -340,7 +352,7 @@ PhD thesis for a student at the Massachusetts Institute of Technology:
 &nbsp;
 
 The following text in the preamble of your "*main LaTeX source file*" will use
-the [titlepage-cambridge.tex](titlepage-cambridge.tex) file to create a title
+the "[titlepage-cambridge.tex](titlepage-cambridge.tex)" file to create a title
 page for a student at the University of Cambridge:
 
 ```latex
@@ -370,9 +382,9 @@ The sample output is shown below:
 
 &nbsp;
 
-The [oxengthesis.cls](oxengthesis.cls) class template makes available new LaTeX
-commands that you can use in your new custom title document. These new commands are 
-based on the variables defined in the preamble of your
+The [oxengthesis.cls](oxengthesis.cls) class makes available new LaTeX commands
+that you can use in your new custom title document. These new commands are
+based on the variables defined in the preamble of your 
 "*main LaTeX source file*":
 
 - The **\title{}** variable in the preamble will map to the command **\TitleName**
