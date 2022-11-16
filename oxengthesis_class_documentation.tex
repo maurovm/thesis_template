@@ -13,9 +13,16 @@ Remove this chapter when you are writing your own thesis or report. It is number
 \section{Introduction}
 
 
-The OxEngThesis class defines a \latex class for an undergraduate 4$^{th}$ Year Project (4YP) report or a DPhil thesis for a student of the Department of Engineering Science at the University of Oxford. Although I originally created this class for a student at Oxford, I also include some examples for a PhD thesis for the Massachusetts Institute of Technology and the University of Cambridge. It should be easy for you to adjust this class to suit the requirements your academic institution.
+This repository contains a \latex class (OxEngThesis) for an undergraduate 4$^{th}$ Year Project (4YP) report or a DPhil thesis for a student of the Department of Engineering Science at the University of Oxford. The typical 4YP report contains around 50 pages, whereas a doctoral thesis is a much larger document. Although I originally created this class for a student at Oxford, I also included in this repository some examples for a PhD thesis for the Massachusetts Institute of Technology and the University of Cambridge. It should be easy for you to adjust this class to suit the requirements of your academic institution.
 
-The OxEngThesis class is based on the \textit{memoir}\footnote{\url{https://ctan.org/pkg/memoir}} package, with the addition of several other packages and extra features useful to format a typical academic document. In this chapter, I will summarise some of them, but take a look at the \verb|oxengthesis.cls| file and the rest of this sample thesis document for a more complete overview.
+As a research student, a proportion of your time will be devoted to writing science in a formal academic style. There are many resources that will help you to write your thesis, such as ``Writing your thesis''\footnote{\url{https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/completing-your-dphil/writing-up-your-thesis}}, ``Completing your doctorate''\footnote{\url{https://www.vitae.ac.uk/doing-research/doing-a-doctorate/completing-your-doctorate}}, ``Essay and dissertation writing skills''\footnote{\url{https://www.ox.ac.uk/students/academic/guidance/skills/essay}} and also ``Resources for new students''\footnote{\url{https://cameralab.eng.ox.ac.uk/resources_new_students.html}}. Steven Pinker's talk on ``Linguistics, Style and Writing in the 21st Century''\footnote{\url{https://youtu.be/OV5J6BfToSw}} will provide you with sound advice on writing. 
+
+My students have found very helpful to use the LaTeX typesetting system to write reports, theses, journal papers or other academic documents. You can write your LaTeX documents from scratch, however, it is often easier to start with an already written class template. This way you can focus on (as your supervisor expects) writing about your exciting research contributions, rather than spending time formatting your document or applying other cosmetic changes that just distract the reader. 
+
+The OxEngThesis class is based on the \textit{memoir}\footnote{\url{https://ctan.org/pkg/memoir}} package, with the addition of several other packages and extra features useful to format a typical academic document. The main class file is \verb|oxengthesis.cls|. One sample source file is provided (\verb|sample_dphil_thesis.tex|). You can check this sample
+PDF file to review an example of the output of a doctoral thesis.
+
+In this chapter, I will summarise some of the features available in the OxEngThesis class. Take a look at the \verb|oxengthesis.cls| file and the rest of this sample thesis document for a more complete overview.
 
 
 \section{Requirements}
@@ -32,7 +39,7 @@ Install the \textit{Carlito} font\footnote{\url{https://ctan.org/tex-archive/fon
 \section{LaTeX editors}
 
 
-There are several editors available that will make your life easier when writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a compiling the LaTeX source files). For macOS and iOS, you can use Texifier\footnote{\url{https://www.texifier.com}}. Good editors for Linux are Kile\footnote{\url{https://apps.kde.org/en-gb/kile}} and TeXMaker\footnote{\url{https://www.xm1math.net/texmaker}}.
+There are several editors available that will make your life easier when writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a compiling the LaTeX source files). For macOS and iOS, Texifier\footnote{\url{https://www.texifier.com}} works really well. Good editors for Linux are Kile\footnote{\url{https://apps.kde.org/en-gb/kile}} and TeXMaker\footnote{\url{https://www.xm1math.net/texmaker}}.
 
 The LaTeX files in this repository require the \textit{LuaLaTeX}\footnote{\url{https://en.wikipedia.org/wiki/LuaTeX}} engine. You editor should allow you to configure LuaLaTeX as the typesetting engine for your document and automatically take care of the compilation process to generate the final PDF document.
 
@@ -42,9 +49,18 @@ The LaTeX files in this repository require the \textit{LuaLaTeX}\footnote{\url{h
 
 \subsection{Preparing your document}
 
-After you installed your preferred \latex editor, make a copy of the \verb|sample_thesis.tex| sample file provided in this repository. Throughout this tutorial, I will call this new file your ``\textit{main LaTeX source file}''.
+After you installed your preferred \latex editor, make a copy of the \verb|sample_thesis.tex| sample file provided in this repository. Throughout this tutorial, I will call this new file your ``\textit{main LaTeX source file}''. From your ``\textit{main LaTeX source file}'', remove the line that includes this chapter. It is a line similar to:
 
-The \textit{frontmatter} of the thesis will be automatically created depending on the type of document you are writing (either a doctoral thesis or a project report). If you want more control, you can review how the \verb|\makefrontmatterpages| command is defined in the \verb|oxengthesis.cls| class file. If you want all the sections in the \textit{frontmatter} to appear, you will need to create the following files:
+
+\begin{lstlisting}[style=custom-latex]
+\include{oxengthesis_class_documentation}
+\end{lstlisting}
+
+
+Note that the line above includes the chapter you are currently reading. It is only meant to showcase the features provided by the OxEngThesis class. It is numbered as ``Chapter 0''
+so not to change the flow of the rest of the document.
+
+The \textit{frontmatter} of the thesis will be automatically created depending on the type of document you are writing, either a doctoral thesis or a project report. If you want more control, you can review how the \verb|\makefrontmatterpages| command is defined in the \verb|oxengthesis.cls| class file. If you want all the sections in the \textit{frontmatter} to appear, you will need to create the following files:
 
 \begin{itemize}
     \item \verb|abstract.tex|: If you want the ``Abstract'' page
@@ -63,7 +79,7 @@ Similarly for the \textit{backmatter} part of your thesis, add all the BibTeX ci
 \subsection{Writing a 4$^{th}$ Year Project (4YP) report}
 
 
-If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}}, you will carry out a self-led project in your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
+If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}}, you will carry out a self-led project during your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
 
 You can write a 4YP report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, as shown in the following code:
 
@@ -78,7 +94,7 @@ The ``\verb|report|'' package option is just a shortcut to not include the dedic
 \subsection{Creating the PDF output}
 
 
-As mentioned before, the source files in this repository require the LuaLaTeX engine. You editor should allow you to configure LuaLaTeX as the typesetting engine for your document and automatically take care of the compilation process to generate the final PDF document from your ``\textit{main LaTeX source file}''.
+The source files in this repository require the LuaLaTeX engine. You editor should allow you to configure LuaLaTeX as the typesetting engine for your document and automatically take care of the compilation process to generate the final PDF document from your ``\textit{main LaTeX source file}''.
 
 If you want to compile your ``\textit{main LaTeX source file}'' from the command line, you can use the ``\verb|compile_document.sh|'' script provided in this repository. This script only works in a Linux or macOS system. For example, to compile the sample thesis provided, you will execute the following command in the terminal:
 

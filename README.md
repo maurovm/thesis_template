@@ -1,14 +1,15 @@
-# DPhil / PhD doctoral thesis class template
+# DPhil / PhD doctoral thesis LaTeX class
 
 
-LaTeX class template for an undergraduate 4th year project (4YP) report
-or a DPhil thesis for a student of the 
+This repository contains a LaTeX class (OxEngThesis) for an undergraduate 
+4<sup>th</sup> year project (4YP) report or a DPhil thesis for a student of the 
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
-the [University of Oxford](https://www.ox.ac.uk). Although I originally created
-this class for a student at Oxford, I also include some examples for a PhD 
-thesis for the Massachusetts Institute of Technology and the University of 
-Cambridge. It should be easy for you to adjust this class to suit the 
-requirements your academic institution.
+the [University of Oxford](https://www.ox.ac.uk). The typical 4YP report 
+contains around 50 pages, whereas a doctoral thesis is a much larger document.
+Although I originally created this class for a student at Oxford, I also 
+included in this repository some examples for a PhD thesis for the Massachusetts
+Institute of Technology and the University of Cambridge. It should be easy for
+you to adjust this class to suit the requirements of your academic institution.
 
 &nbsp;
 
@@ -21,7 +22,7 @@ more information on the license and copyright.
 
 As a research student, a proportion of your time will be devoted to writing
 science in a formal academic style. There are many resources that will help
-you write your thesis, such as 
+you to write your thesis, such as 
 [Writing your thesis](https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/completing-your-dphil/writing-up-your-thesis), 
 [Completing your doctorate](https://www.vitae.ac.uk/doing-research/doing-a-doctorate/completing-your-doctorate),
 [Essay and dissertation writing skills](https://www.ox.ac.uk/students/academic/guidance/skills/essay)
@@ -33,19 +34,23 @@ will provide you with sound advice on writing.
 My students have found very helpful to use the LaTeX typesetting system to write
 reports, theses, journal papers or other academic documents. You can write your
 LaTeX documents from scratch, however, it is often easier to start
-with an already written template. This way, you can focus on (as your supervisor
-expects) on writing about your exciting research contributions rather than 
-spending time formatting your document or applying other cosmetic changes that
-just distract the reader. 
+with an already written class template. This way you can focus on (as your
+supervisor expects) writing about your exciting research contributions, rather
+than spending time formatting your document or applying other cosmetic changes
+that just distract the reader. 
 
-This repository contains a LaTeX class that can be used for a 4th year project
-(4YP) report or a DPhil / PhD thesis. The typical 4YP report contains around 50
-pages, whereas a doctoral thesis is a much larger document. The main class
-file is [oxengthesis.cls](oxengthesis.cls). One sample source file is provided:
+The OxEngThesis class is based on the [memoir](https://ctan.org/pkg/memoir)
+package, with the addition of several other packages and extra features useful
+to format a typical academic document. The main class file is 
+[oxengthesis.cls](oxengthesis.cls). One sample source file is provided:
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex). You can check the 
 [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf) 
-sample file to review an example of the output PDF document for a a DPhil
-thesis. The following screenshots give you an idea of how the documents looks:
+sample file to review an example of the output PDF document for a doctoral
+thesis. This tutorial summarises some of the features available in the 
+OxEngThesis class. Take a look at the [oxengthesis.cls](oxengthesis.cls) 
+file and the [sample_dphil_thesis.tex](sample_dphil_thesis.tex) source file 
+for a more complete overview. The following screenshots give you an idea of 
+how the document looks:
 
 &nbsp;
 
@@ -111,9 +116,9 @@ also install the Latin Modern Math font.
 
 There are several editors available that will make your life easier when
 writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a 
-compiling the LaTeX source files). For macOS and iOS, you can use
-[Texifier](https://www.texifier.com). Good editors for Linux are
-[Kile](https://apps.kde.org/en-gb/kile) and 
+compiling the LaTeX source files). For macOS and iOS, 
+[Texifier](https://www.texifier.com) works really well. Good editors for Linux
+are [Kile](https://apps.kde.org/en-gb/kile) and 
 [TeXMaker](https://www.xm1math.net/texmaker).
 
 The LaTeX files in this repository require the 
@@ -136,10 +141,8 @@ so you can review examples on how to write your LaTeX document.
 After you installed your preferred LaTeX editor, make a copy of the 
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) sample file provided in this
 repository. Throughout this tutorial, I will call this new file your
-"*main LaTeX source file*".
-
-From your "*main LaTeX source file*", remove the line that includes the
-OxEngThesis class documentation. It is a line similar to:
+"*main LaTeX source file*". From your "*main LaTeX source file*", remove the
+line that includes the OxEngThesis class documentation. It is a line similar to:
 
 
 ```latex
@@ -147,7 +150,7 @@ OxEngThesis class documentation. It is a line similar to:
 ```
 &nbsp;
 
->**NOTE**: The line above line includes the LaTeX version of this README file. 
+>**NOTE**: The line above includes the LaTeX version of this README file. 
 It shows how you can use the features provided by the OxEngThesis class in your
 document. It is numbered as "Chapter 0" in the sample PDF file 
 [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf)
@@ -157,7 +160,7 @@ so not to change the flow of the rest of the document.
 
 
 The *frontmatter* of the thesis will be automatically created depending on the
-type of document you are writing (either a doctoral thesis or a project report).
+type of document you are writing, either a doctoral thesis or a project report.
 If you want more control, you can review how the '\makefrontmatterpages' 
 command is defined in the [oxengthesis.cls](oxengthesis.cls) class file. If 
 you want all the sections in the *frontmatter* to appear, you will need to 
@@ -181,12 +184,12 @@ Similarly for the *backmatter* part of your thesis, add all the BibTeX citations
 to a file named [references.bib](references.bib) if you want the "Bibliography"
 section to be created at the end of your document. 
 
-## Writing a 4th Year Project (4YP) report
+## Writing a 4<sup>th</sup> Year Project (4YP) report
 
 
 If you are an undergraduate student at the University of Oxford reading 
 [Engineering Science](https://eng.ox.ac.uk/study/undergraduate/your-degree),
-you will carry out a self-led project in your fourth year. It usually involves
+you will carry out a self-led project during your fourth year. It usually involves
 original research or significant design and construction work, undertaken in 
 close consultation with an academic supervisor. At the end of your project
 (usually by the beginning of Trinity term), you will need to submit a report 
@@ -208,7 +211,7 @@ declaration and publications pages and format the title page accordingly.
 
 ## Creating the PDF output
 
-The LaTeX files in this repository require the 
+The source files in this repository require the 
 [LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should 
 allow you to configure LuaLaTeX as the typesetting engine for your document
 and automatically take care of the compilation process to generate the final
@@ -297,7 +300,7 @@ DPhil thesis can be created with the following code:
 The title page for the 4YP report can be created with the following code:
 
 
-```
+```latex
 \documentclass[report]{oxengthesis}
 
 \title{The long-term effects of climate change on farming in Middle Earth}
