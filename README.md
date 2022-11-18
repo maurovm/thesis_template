@@ -775,49 +775,33 @@ the lens ...
 ## Glossary, acronyms and abbreviations
 
 
-I use the [glossaries-extra](https://ctan.org/pkg/glossaries-extra) package
-to automatically add the "List of abbreviations" page in the *frontmatter*. 
-Simply create a file with the name [glossary.tex](glossary.tex) and add all
-your definitions. For example:
+I use the [glossaries-extra](https://ctan.org/pkg/glossaries-extra) packages
+to define acronyms and automatically add the "Glossary" page in the 
+*frontmatter*. Simply create a file with the name [glossary.tex](glossary.tex)
+and add all your definitions to it. For example:
 
 ```latex
 \newabbreviation[longplural={heart rates},description={Heart rate}]{hr}{HR}{heart rate}
 \newabbreviation[description={Respiratory rate}]{rr}{RR}{respiratory rate}
 \newabbreviation[sort=SpO2, description={Peripheral oxygen saturation, as measured by a pulse oximeter}]{spo2}{\ensuremath{SpO_2}}{peripheral oxygen saturation}
-
 ```
 
-In your main document, you can later use tags such as:
+Note that the first time you use an acronym, its full definition will be 
+provided. For the rest of the instances, only the abbreviation will be used. 
+The following paragraphs show how to define and use acronyms.
 
 ```latex
-The standard vital signs include temperature, \af{hr}, \af{rr}, 
-blood pressure and, when appropriate, \af{spo2}...
+The standard vital signs include temperature, \ab{hr}, \ab{rr}, \ab{bp} and, when appropriate, \ab{spo2}. The routine measurement and interpretation of these vital signs is a core component of the physiological assessment of most patients \cite{prior1977physical,goldberg2005practical} as they can provide critical information about the underlying state of their health. 
 
-...
-
-\Cref{fig:phenylephrine_response} shows the typical vital-sign response
-to the phenylephrine infusion for a 28-year-old female. As the dose 
-increased, \af{hr} decreased, whereas \af{bp} and \af{pep} typically 
-increased. \af{spo2} and \af{rr} had no significant correlations to the
-dose of phenylephrine...
-
+We included all study types looking at monitoring of \ab{hr}, \ab{bp}, \ab{rr} or \ab{spo2} using image analysis with comparison to a reference device. We did not restrict based on clinical setting and included all age groups. Only non-contact methods using cameras were included. All unpublished studies found were included wherever possible to minimise publication bias.
 ```
 
 which will automatically create the following output:
 
 ```
-The standard vital signs include temperature, heart rate (HR), 
-respiratory rate (RR), blood pressure and, when appropriate, 
-peripheral oxygen saturation (SpO2)...
+The standard vital signs include temperature, heart rate (HR), respiratory rate (RR), blood pressure (BP) and, when appropriate, peripheral oxygen saturation (SpO2). The routine measurement and interpretation of these vital signs is a core component of the physiological assessment of most patients [1,2] as they can provide critical information about the underlying state of their health. 
 
-...
-
-Figure 2 shows the typical vital-sign response to the 
-phenylephrine infusion for a 28-year-old female. As the dose 
-increased, HR decreased, whereas blood pressure (BP) and
-pre-ejection period (PEP) typically increased. SpO2 and RR 
-had no significant correlations to the dose of phenylephrine...
-
+We included all study types looking at monitoring of HR, BP, RR or SpO2 using image analysis with comparison to a reference device. We did not restrict based on clinical setting and included all age groups. Only non-contact methods using cameras were included. All unpublished studies found were included wherever possible to minimise publication bias.
 ```
 
 Note that the first time you use an acronym, its full definition will be
