@@ -791,17 +791,35 @@ provided. For the rest of the instances, only the abbreviation will be used.
 The following paragraphs show how to define and use acronyms.
 
 ```latex
-The standard vital signs include temperature, \ab{hr}, \ab{rr}, \ab{bp} and, when appropriate, \ab{spo2}. The routine measurement and interpretation of these vital signs is a core component of the physiological assessment of most patients \cite{prior1977physical,goldberg2005practical} as they can provide critical information about the underlying state of their health. 
+The standard vital signs include temperature, \ab{hr}, \ab{rr}, \ab{bp} and,
+when appropriate, \ab{spo2}. The routine measurement and interpretation of 
+these vital signs is a core component of the physiological assessment of most 
+patients \cite{prior1977physical,goldberg2005practical} as they can provide 
+critical information about the underlying state of their health. 
 
-We included all study types looking at monitoring of \ab{hr}, \ab{bp}, \ab{rr} or \ab{spo2} using image analysis with comparison to a reference device. We did not restrict based on clinical setting and included all age groups. Only non-contact methods using cameras were included. All unpublished studies found were included wherever possible to minimise publication bias.
+We included all study types looking at monitoring of \ab{hr}, \ab{bp}, \ab{rr}
+ or \ab{spo2} using image analysis with comparison to a reference device. We 
+ did not restrict based on clinical setting and included all age groups. Only 
+ non-contact methods using cameras were included. All unpublished studies 
+ found were included wherever possible to minimise publication bias.
 ```
 
 which will automatically create the following output:
 
 ```
-The standard vital signs include temperature, heart rate (HR), respiratory rate (RR), blood pressure (BP) and, when appropriate, peripheral oxygen saturation (SpO2). The routine measurement and interpretation of these vital signs is a core component of the physiological assessment of most patients [1,2] as they can provide critical information about the underlying state of their health. 
+The standard vital signs include temperature, heart rate (HR), 
+respiratory rate (RR), blood pressure (BP) and, when appropriate, 
+peripheral oxygen saturation (SpO2). The routine measurement and 
+interpretation of these vital signs is a core component of the 
+physiological assessment of most patients [1,2] as they can provide 
+critical information about the underlying state of their health. 
 
-We included all study types looking at monitoring of HR, BP, RR or SpO2 using image analysis with comparison to a reference device. We did not restrict based on clinical setting and included all age groups. Only non-contact methods using cameras were included. All unpublished studies found were included wherever possible to minimise publication bias.
+We included all study types looking at monitoring of HR, BP, RR or 
+SpO2 using image analysis with comparison to a reference device. 
+We did not restrict based on clinical setting and included all age 
+groups. Only non-contact methods using cameras were included. All 
+unpublished studies found were included wherever possible to 
+minimise publication bias.
 ```
 
 Note that the first time you use an acronym, its full definition will be
