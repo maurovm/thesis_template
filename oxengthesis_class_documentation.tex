@@ -76,19 +76,80 @@ If any of the files above is missing, that particular page won't be created in t
 Similarly for the \textit{backmatter} part of your thesis, add all the BibTeX citations to a file named \verb|references.bib| if you want the ``Bibliography'' section to be created at the end of your document. 
 
 
-\subsection{Writing a 4$^{th}$ Year Project (4YP) report}
+\subsection{Writing a ``Transfer of Status'' or ``Confirmation of Status'' report}
 
 
-If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}}, you will carry out a self-led project during your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
+There are two Key milestones\footnote{\url{https://www.ox.ac.uk/students/academic/guidance/graduate/research/status/DPhil}}
+for which DPhil students are expected to submit substantial piece of written 
+research work, or reports. They are the
+``Transfer of Status''\footnote{\url{https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/transfer-of-status}}
+at the end of your first year, and the
+``Confirmation of Status''\footnote{\url{https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/confirmation-of-status}}
+at the end of your second year. 
 
-You can write a 4YP report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, as shown in the following code:
+For these milestones, you will often be required to submit a report 
+with all the details of your research contributions. This document is often 
+around 50-60 pages in length and does not need all the sections that a doctoral
+thesis has (i.e. declaration, dedication or list of publications). 
+
+You can write a \textit{Transfer of Status} report by simply providing the ``\verb|report|'' 
+option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable
+as shown in the following code snippet:
 
 
 \begin{lstlisting}[style=custom-latex]
 \documentclass[report]{oxengthesis}
+
+\title       {The title of your report}
+\author      {Your name}
+\degree      {{\huge Transfer of Status Report}}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
 \end{lstlisting}
 
-The ``\verb|report|'' package option is just a shortcut to not include the dedication, declaration and publications pages and format the title page accordingly.
+
+You can write a \textit{Confirmation of Status} report by simply providing the ``\verb|report|'' 
+option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable
+as shown in the following code snippet:
+
+
+\begin{lstlisting}[style=custom-latex]
+\documentclass[report]{oxengthesis}
+
+\title       {The title of your report}
+\author      {Your name}
+\degree      {{\huge Confirmation of Status Report}}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
+\end{lstlisting}
+
+Note that the "*report*" package option is just a shortcut to not include the
+dedication, declaration and publications pages and format the title page 
+accordingly.
+
+
+
+\subsection{Writing a 4$^{th}$-Year Project (4YP) report}
+
+
+If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}}, you will carry out a self-led project during your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
+
+You can write a 4YP report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable as shown in  the
+following code snippet:
+
+
+\begin{lstlisting}[style=custom-latex]
+\documentclass[report]{oxengthesis}
+
+\title       {The title of your report}
+\author      {Your name}
+\degree      {{\huge 4$^{th}$ Year Project Report}}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
+\end{lstlisting}
 
 
 \subsection{Creating the PDF output}

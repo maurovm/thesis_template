@@ -827,7 +827,7 @@
         \newcommand{\DegreeName}{\@degree}
     \else
         \ifOxEngThesis@report
-            \newcommand{\DegreeName}{{\huge 4$^{th}$ Year Project Report}}
+            \newcommand{\DegreeName}{{\huge Define the type of report}}
         \else
             \newcommand{\DegreeName}{Doctor of Philosophy}
         \fi

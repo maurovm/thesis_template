@@ -141,7 +141,21 @@ so you can review examples on how to write your LaTeX document.
 After you installed your preferred LaTeX editor, make a copy of the 
 [sample_dphil_thesis.tex](sample_dphil_thesis.tex) sample file provided in this
 repository. Throughout this tutorial, I will call this new file your
-"*main LaTeX source file*". From your "*main LaTeX source file*", remove the
+"*main LaTeX source file*". The minimum content you need is:
+
+
+```latex
+\documentclass{oxengthesis}
+
+\title       {The title of your thesis}
+\author      {Your name}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
+```
+
+
+From your "*main LaTeX source file*", remove the
 line that includes the OxEngThesis class documentation. It is a line similar to:
 
 
@@ -184,7 +198,62 @@ Similarly for the *backmatter* part of your thesis, add all the BibTeX citations
 to a file named [references.bib](references.bib) if you want the "Bibliography"
 section to be created at the end of your document. 
 
-## Writing a 4<sup>th</sup> Year Project (4YP) report
+
+## Writing a "Transfer of Status" or "Confirmation of Status" report
+
+
+There are two [Key milestones](https://www.ox.ac.uk/students/academic/guidance/graduate/research/status/DPhil)
+for which DPhil students are expected to submit substantial piece of written 
+research work, or reports. They are the
+"[Transfer of Status](https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/transfer-of-status)" 
+at the end of your first year, and the
+"[Confirmation of Status](https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/confirmation-of-status)"
+at the end of your second year. 
+
+For these milestones, you will often be required to submit a report 
+with all the details of your research contributions. This document is often 
+around 50-60 pages in length and does not need all the sections that a doctoral
+thesis has (i.e. declaration, dedication or list of publications). 
+
+You can write a *Transfer of Status* report by simply providing the "*report*" 
+option when you load the OxEngThesis class, and defining the "*degree*" variable
+as shown in the following code snippet:
+
+
+```latex
+\documentclass[report]{oxengthesis}
+
+\title       {The title of your report}
+\author      {Your name}
+\degree      {{\huge Transfer of Status Report}}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
+```
+
+
+You can write a *Confirmation of Status* report by simply providing the "*report*" 
+option when you load the OxEngThesis class, and defining the "*degree*" variable
+as shown in the following code snippet:
+
+
+```latex
+\documentclass[report]{oxengthesis}
+
+\title       {The title of your report}
+\author      {Your name}
+\degree      {{\huge Confirmation of Status Report}}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
+```
+
+Note that the "*report*" package option is just a shortcut to not include the
+dedication, declaration and publications pages and format the title page 
+accordingly.
+
+
+## Writing a 4<sup>th</sup>-Year Project (4YP) report
 
 
 If you are an undergraduate student at the University of Oxford reading 
@@ -197,19 +266,25 @@ with all the details of your research contributions. This document is often
 around 50 pages in length and does not need all the sections that a doctoral
 thesis has (i.e. declaration, dedication or list of publications). 
 
-You can write a 4YP report by simpy providing the "*report*" option when you 
-load the OxEngThesis class, as shown in the following code:
+You can write a 4YP report by simply providing the "*report*" option when you 
+load the OxEngThesis class, and defining the "*degree*" variable as shown in 
+the following code snippet:
 
 
 ```latex
 \documentclass[report]{oxengthesis}
-```
 
-The "*report*" package option is just a shortcut to not include the dedication,
-declaration and publications pages and format the title page accordingly.
+\title       {The title of your report}
+\author      {Your name}
+\degree      {{\huge 4$^{th}$ Year Project Report}}
+\college     {The name of your college}
+\supervisor  {The name(s) of your supervisor(s)}
+\date        {The academic term of submission}
+```
 
 
 ## Creating the PDF output
+
 
 The source files in this repository require the 
 [LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should 
@@ -305,6 +380,7 @@ The title page for the 4YP report can be created with the following code:
 
 \title{The long-term effects of climate change on farming in Middle Earth}
 \author    {Samwise Gamgee}
+\degree    {{\huge 4$^{th}$ Year Project Report}}
 \college   {Jesus College}
 \supervisor{Professor J.R.R. Tolkien}
 \date      {Hilary Term, 2048}
