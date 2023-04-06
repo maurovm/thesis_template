@@ -1,15 +1,21 @@
 # DPhil / PhD doctoral thesis LaTeX class
 
 
-This repository contains a LaTeX class (OxEngThesis) for an undergraduate 
-4<sup>th</sup> year project (4YP) report or a DPhil thesis for a student of the 
+This repository contains a LaTeX class (OxEngThesis) to write formal academic 
+documents or reports for a student of the 
 [Department of Engineering Science](https://www.eng.ox.ac.uk) at 
-the [University of Oxford](https://www.ox.ac.uk). The typical 4YP report 
+the [University of Oxford](https://www.ox.ac.uk). For example, my undergraduate
+students have used this class to write 4<sup>th</sup>-year project (4YP) reports.
+My doctoral students have typically used this class to write their 1st-year
+Transfer of Status report, 2nd-year Confirmation of Status report and their
+final DPhil thesis. The typical 4YP report 
 contains around 50 pages, whereas a doctoral thesis is a much larger document.
+
 Although I originally created this class for a student at Oxford, I also 
 included in this repository some examples for a PhD thesis for the Massachusetts
-Institute of Technology and the University of Cambridge. It should be easy for
-you to adjust this class to suit the requirements of your academic institution.
+Institute of Technology and (cough, cough) the University of Cambridge. It 
+should be easy for you to adjust this class to suit the requirements of your
+academic institution.
 
 &nbsp;
 
@@ -116,10 +122,12 @@ also install the Latin Modern Math font.
 
 There are several editors available that will make your life easier when
 writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a 
-compiling the LaTeX source files). For macOS and iOS, 
+compiling the LaTeX source files). For macOS, 
 [Texifier](https://www.texifier.com) works really well. Good editors for Linux
 are [Kile](https://apps.kde.org/en-gb/kile) and 
-[TeXMaker](https://www.xm1math.net/texmaker).
+[TeXMaker](https://www.xm1math.net/texmaker). I don't use Microsoft Windows. If 
+you know what software is good for this operating system, let me know so
+I cand add it to my recommendaiton list.
 
 The LaTeX files in this repository require the 
 [LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should 
@@ -276,7 +284,7 @@ the following code snippet:
 
 \title       {The title of your report}
 \author      {Your name}
-\degree      {{\huge 4$^{th}$ Year Project Report}}
+\degree      {{\huge 4$^{th}$-Year Project Report}}
 \college     {The name of your college}
 \supervisor  {The name(s) of your supervisor(s)}
 \date        {The academic term of submission}
@@ -380,7 +388,7 @@ The title page for the 4YP report can be created with the following code:
 
 \title{The long-term effects of climate change on farming in Middle Earth}
 \author    {Samwise Gamgee}
-\degree    {{\huge 4$^{th}$ Year Project Report}}
+\degree    {{\huge 4$^{th}$-Year Project Report}}
 \college   {Jesus College}
 \supervisor{Professor J.R.R. Tolkien}
 \date      {Hilary Term, 2048}
