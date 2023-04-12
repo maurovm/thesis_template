@@ -76,11 +76,6 @@ how the document looks:
 </p>
 <h2> <p align="center"> ... </p> </h2>
 <p align="center">
-    <kbd><img src="./figures/dphil-app_a_1.png" alt="Appendix A page 1" width="250" border=1 /></kbd>
-    <kbd><img src="./figures/dphil-app_a_2.png" alt="Appendix A page 2" width="250" border=1 /></kbd>
-</p>
-<h2> <p align="center"> ... </p> </h2>
-<p align="center">
     <kbd><img src="./figures/dphil-bib_1.png" alt="Bibliography page 1" width="250" border=1 /></kbd>
     <kbd><img src="./figures/dphil-bib_2.png" alt="Bibliography page 2" width="250" border=1 /></kbd>
 </p>
@@ -284,7 +279,7 @@ the following code snippet:
 
 \title       {The title of your report}
 \author      {Your name}
-\degree      {{\huge 4$^{th}$-Year Project Report}}
+\degree      { {\huge 4$^{th}$-Year Project Report} }
 \college     {The name of your college}
 \supervisor  {The name(s) of your supervisor(s)}
 \date        {The academic term of submission}
@@ -388,7 +383,7 @@ The title page for the 4YP report can be created with the following code:
 
 \title{The long-term effects of climate change on farming in Middle Earth}
 \author    {Samwise Gamgee}
-\degree    {{\huge 4$^{th}$-Year Project Report}}
+\degree    { {\huge 4$^{th}$-Year Project Report} }
 \college   {Jesus College}
 \supervisor{Professor J.R.R. Tolkien}
 \date      {Hilary Term, 2048}
