@@ -13,7 +13,11 @@ Remove this chapter when you are writing your own thesis or report. It is number
 \section{Introduction}
 
 
-This repository contains a \latex class (OxEngThesis) for an undergraduate 4$^{th}$ Year Project (4YP) report or a DPhil thesis for a student of the Department of Engineering Science at the University of Oxford. The typical 4YP report contains around 50 pages, whereas a doctoral thesis is a much larger document. Although I originally created this class for a student at Oxford, I also included in this repository some examples for a PhD thesis for the Massachusetts Institute of Technology and the University of Cambridge. It should be easy for you to adjust this class to suit the requirements of your academic institution.
+This repository contains a \latex class (OxEngThesis) to write formal academic documents for a student of the Department of Engineering Science at the University of Oxford. For example, my undergraduate students have used this class to write 4$^{th}$-year project (4YP) reports. My doctoral students have typically used this class to write their 1$^{st}$-year Transfer of Status report, 2$^{nd}$-year Confirmation of Status report and their final DPhil thesis. The typical 4YP report contains around 50 pages, whereas a doctoral thesis is a much larger document.
+
+Although I originally created this class for a student at Oxford, I also included in this repository some examples for a PhD thesis for the Massachusetts Institute of Technology and (cough, cough) the University of Cambridge. It should be easy for you to adjust this class to suit the requirements of your academic institution.
+
+LaTex itself is very portable. However, I developed this class under Linux and macOS environments using the latest LaTeX distributions. I have not tested compiling a LaTeX document in Microsoft Windows, but some of my students reported that it works. If you find any problems for Windows, please report any issues to me. Event better, I encourage you to contribute your fixes.
 
 As a research student, a proportion of your time will be devoted to writing science in a formal academic style. There are many resources that will help you to write your thesis, such as ``Writing your thesis''\footnote{\url{https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/completing-your-dphil/writing-up-your-thesis}}, ``Completing your doctorate''\footnote{\url{https://www.vitae.ac.uk/doing-research/doing-a-doctorate/completing-your-doctorate}}, ``Essay and dissertation writing skills''\footnote{\url{https://www.ox.ac.uk/students/academic/guidance/skills/essay}} and also ``Resources for new students''\footnote{\url{https://cameralab.eng.ox.ac.uk/resources_new_students.html}}. Steven Pinker's talk on ``Linguistics, Style and Writing in the 21st Century''\footnote{\url{https://youtu.be/OV5J6BfToSw}} will provide you with sound advice on writing. 
 
@@ -30,8 +34,7 @@ In this chapter, I will summarise some of the features available in the OxEngThe
 
 There are several options for writing in LaTeX, including online versions such as Overleaf. I don't recommend online editors, as you will be writing long documents with several figures, tables and other elements. In my experience, having LaTeX installed locally in your computer is a better option.
 
-You will need a modern LaTeX compiler installed in your system, at minimum version 2017. Most modern operating systems use \textit{TexLive}\footnote{\url{https://www.tug.org/texlive}} as the preferred LaTeX typesetting system. If you are using Linux, TexLive is already pre-installed or is readily 
-available from your distribution's software repository (for example Fedora\footnote{\url{https://docs.fedoraproject.org/en-US/neurofedora/latex}} or Ubuntu\footnote{\url{https://help.ubuntu.com/community/LaTeX}}). For macOS, you can download and install the latest MacTeX distribution\footnote{\url{https://tug.org/mactex}}. For Microsoft Windows, follow the installation instructions described in TexLive\footnote{\url{https://tug.org/texlive/windows.html}}.
+You will need a modern LaTeX compiler installed in your system, at minimum version 2017. Most modern operating systems use \textit{TexLive}\footnote{\url{https://www.tug.org/texlive}} as the preferred LaTeX typesetting system. If you are using Linux, TexLive is already pre-installed or is readily available from your distribution's software repository (for example Fedora\footnote{\url{https://docs.fedoraproject.org/en-US/neurofedora/latex}} or Ubuntu\footnote{\url{https://help.ubuntu.com/community/LaTeX}}). For macOS, you can download and install the latest MacTeX distribution\footnote{\url{https://tug.org/mactex}}. For Microsoft Windows, follow the installation instructions described in TexLive\footnote{\url{https://tug.org/texlive/windows.html}}.
 
 Install the \textit{Carlito} font\footnote{\url{https://ctan.org/tex-archive/fonts/carlito}} (if it's not already installed in your system). Follow the instructions for your particular operating system in the \verb|./fonts/| directory in this repository. If you are using Microsoft Windows, also install the ``\textit{Latin Modern Math}''\footnote{\url{https://ctan.org/tex-archive/fonts/lm-math}} font, also available in the \verb|./fonts/| directory in this repository.
 
@@ -57,10 +60,10 @@ After you installed your preferred \latex editor, make a copy of the \verb|sampl
 \end{lstlisting}
 
 
-Note that the line above includes the chapter you are currently reading. It is only meant to showcase the features provided by the OxEngThesis class. It is numbered as ``Chapter 0''
-so not to change the flow of the rest of the document.
+Note that the line above includes the chapter you are currently reading. It is only meant to showcase the features provided by the OxEngThesis class. It is numbered as ``Chapter 0'' so not to change the flow of the rest of the document.
 
 The \textit{frontmatter} of the thesis will be automatically created depending on the type of document you are writing, either a doctoral thesis or a project report. If you want more control, you can review how the \verb|\makefrontmatterpages| command is defined in the \verb|oxengthesis.cls| class file. If you want all the sections in the \textit{frontmatter} to appear, you will need to create the following files:
+
 
 \begin{itemize}
     \item \verb|abstract.tex|: If you want the ``Abstract'' page
@@ -71,6 +74,7 @@ The \textit{frontmatter} of the thesis will be automatically created depending o
     \item \verb|glossary.tex|: If you want the ``List of abbreviations'' page
 \end{itemize}
 
+
 If any of the files above is missing, that particular page won't be created in the \textit{frontmatter}. This is useful if you are just preparing a draft version of your thesis for your supervisor to correct. 
 
 Similarly for the \textit{backmatter} part of your thesis, add all the BibTeX citations to a file named \verb|references.bib| if you want the ``Bibliography'' section to be created at the end of your document. 
@@ -79,22 +83,11 @@ Similarly for the \textit{backmatter} part of your thesis, add all the BibTeX ci
 \subsection{Writing a ``Transfer of Status'' or ``Confirmation of Status'' report}
 
 
-There are two Key milestones\footnote{\url{https://www.ox.ac.uk/students/academic/guidance/graduate/research/status/DPhil}}
-for which DPhil students are expected to submit substantial piece of written 
-research work, or reports. They are the
-``Transfer of Status''\footnote{\url{https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/transfer-of-status}}
-at the end of your first year, and the
-``Confirmation of Status''\footnote{\url{https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/confirmation-of-status}}
-at the end of your second year. 
+There are two Key milestones\footnote{\url{https://www.ox.ac.uk/students/academic/guidance/graduate/research/status/DPhil}} for which DPhil students are expected to submit substantial piece of written research work, or reports. They are the ``Transfer of Status''\footnote{\url{https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/transfer-of-status}} at the end of your first year, and the ``Confirmation of Status''\footnote{\url{https://www.mpls.ox.ac.uk/graduate-school/information-and-resources-for-supervisors/confirmation-of-status}} at the end of your second year. 
 
-For these milestones, you will often be required to submit a report 
-with all the details of your research contributions. This document is often 
-around 50-60 pages in length and does not need all the sections that a doctoral
-thesis has (i.e. declaration, dedication or list of publications). 
+For these milestones, you will often be required to submit a report with all the details of your research contributions. This document is often around 50-60 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
 
-You can write a \textit{Transfer of Status} report by simply providing the ``\verb|report|'' 
-option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable
-as shown in the following code snippet:
+You can write a \textit{Transfer of Status} report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable as shown in the following code snippet:
 
 
 \begin{lstlisting}[style=custom-latex]
@@ -109,9 +102,7 @@ as shown in the following code snippet:
 \end{lstlisting}
 
 
-You can write a \textit{Confirmation of Status} report by simply providing the ``\verb|report|'' 
-option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable
-as shown in the following code snippet:
+You can write a \textit{Confirmation of Status} report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable as shown in the following code snippet:
 
 
 \begin{lstlisting}[style=custom-latex]
@@ -125,10 +116,8 @@ as shown in the following code snippet:
 \date        {The academic term of submission}
 \end{lstlisting}
 
-Note that the "*report*" package option is just a shortcut to not include the
-dedication, declaration and publications pages and format the title page 
-accordingly.
 
+Note that the "*report*" package option is just a shortcut to not include the dedication, declaration and publications pages and format the title page accordingly.
 
 
 \subsection{Writing a 4$^{th}$-Year Project (4YP) report}
@@ -136,8 +125,7 @@ accordingly.
 
 If you are an undergraduate student at the University of Oxford reading Engineering Science\footnote{\url{https://eng.ox.ac.uk/study/undergraduate/your-degree}}, you will carry out a self-led project during your fourth year. It usually involves original research or significant design and construction work, undertaken in close consultation with an academic supervisor. At the end of your project (usually by the beginning of Trinity term), you will need to submit a report with all the details of your research contributions. This document is often about 50 pages in length and does not need all the sections that a doctoral thesis has (i.e. declaration, dedication or list of publications). 
 
-You can write a 4YP report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable as shown in  the
-following code snippet:
+You can write a 4YP report by simply providing the ``\verb|report|'' option when you load the \verb|OxEngThesis| class, and defining the ``\verb|degree|'' variable as shown in  the following code snippet:
 
 
 \begin{lstlisting}[style=custom-latex]
@@ -164,7 +152,9 @@ If you want to compile your ``\textit{main LaTeX source file}'' from the command
 $ ./compile_document.sh  sample_dphil_thesis.tex
 \end{lstlisting}
 
+
 If you want to delete all the temp or auxiliary files LaTeX created during the compilation process, you can run:
+
 
 \begin{lstlisting}[style=custom-bash]
 $ ./remove_latex_aux_files.sh
@@ -172,6 +162,7 @@ $ ./remove_latex_aux_files.sh
 
 
 If you are compiling the document manually, you would need to run the \textit{latexmk}\footnote{\url{https://ctan.org/pkg/latexmk}} build command (already part of your LaTeX distribution) in the following order:
+
 
 \begin{lstlisting}[style=custom-bash]
 $ latexmk -pdflatex=lualatex -pdf  sample_dphil_thesis.tex
@@ -185,10 +176,10 @@ $ latexmk -pdflatex=lualatex -pdf  sample_dphil_thesis.tex
 
 Although I originally wrote this LaTeX template for a student at the University of Oxford, it should be easy for you to customise it to suit the requirements of your academic institution. The default title page ``\verb|titlepage-oxford.tex|'' is simple and customisable. The class template defines some variables you can use. At minimum, you need to provide the following definitions in the preamble of your ``\textit{main LaTeX source file}'':
 
+
 \begin{itemize}
 
     \item \verb|\title{}|: The main title of the thesis/report
-
     \item \verb|\author{}|: The author of the thesis/report
 
 \end{itemize}
@@ -265,15 +256,14 @@ You can define the following optional variables:
 \subsection{Creating your own title page}
 
 
-If you don't provide a custom title page, the OxEngThesis class will load the default title file 
-``\verb|titlepage-oxford.tex|'' shown above. If the layout of the default title page does not fulfil your or your university's requirements, you can create your own title page. To do so, you will need to follow the 3 steps described below. As an example, we will create a custom title page for a
-PhD thesis for a student at the Massachusetts Institute of Technology:
+If you don't provide a custom title page, the OxEngThesis class will load the default title file ``\verb|titlepage-oxford.tex|'' shown above. If the layout of the default title page does not fulfil your or your university's requirements, you can create your own title page. To do so, you will need to follow the 3 steps described below. As an example, we will create a custom title page for a PhD thesis for a student at the Massachusetts Institute of Technology:
 
 \begin{enumerate}
 
     \item Create a new LaTeX source file and add your own definitions, such as the example file ``\verb|titlepage-mit.tex|''
 
     \item Define the \verb|\titlepage{}| variable in the preamble of your ``\textit{main LaTeX source file}''. For example, after the \verb|\author{}| variable as in:
+
 
 \begin{lstlisting}[style=custom-latex]
 \title{Protein expression of the X-factor mutator gene in Homo Sapiens}
@@ -302,6 +292,7 @@ PhD thesis for a student at the Massachusetts Institute of Technology:
 
 The text below uses the \verb|titlepage-cambridge.tex| file to create a title page for a student at the University of Cambridge. The output is shown in \cref{fig:ch0:cambridge_phd-title_page}.
 
+
 \begin{lstlisting}[style=custom-latex]
 \title{Protein expression of the X-factor mutator gene in Homo Sapiens}
 \author     {Charles F. Xavier}
@@ -329,6 +320,7 @@ The text below uses the \verb|titlepage-cambridge.tex| file to create a title pa
 
 
 The OxEngThesis class makes available new LaTeX commands that you can use in your new custom title document. These new commands are based on the variables defined in the preamble of your ``\textit{main LaTeX source file}'':
+
 
 \begin{itemize}
 
@@ -514,7 +506,9 @@ The default style for chapter headings is simple and gives you enough space to w
 
 \section{Additional features}
 
+
 This section describes some of the additional features available in the OxEngThesis class. Refer to the official documentation of the \textit{memoir}\footnote{\url{https://ctan.org/pkg/memoir}} LaTeX package to customise your document even further.
+
 
 \subsection{Figures}
 
@@ -650,14 +644,17 @@ We included all study types looking at monitoring of \ab{hr}, \ab{bp}, \ab{rr} o
 
 \subsection{Citations and references}
 
+
 This section contains example on how to cite papers, journals and other documents:
 
 It is widely reported, notably by the World Health Organisation \cite{stroetmann2010can}, that global changes in population demographics, the increased incidence of chronic diseases and the unmet needs for more personalised care are trends that need new integrated approaches to health and social care. \cite{brooks1984infrared}
+
 
 \lipsum[1]\cite{barker1987pulse,peacock1998oxygen,moller1993randomized}
 
 
 Finding reliable correspondences in two images of a scene taken from arbitrary viewpoints viewed with possibly different cameras and in different illumination conditions is a difficult and critical step towards fully automatic reconstruction of 3D scenes\cite{hartley2003multiple}.
+
 
 \lipsum[7]\cite{priya2012transition,haralick1973textural,Grass2012Online,NoninPulseOxOnline}
 
@@ -722,6 +719,7 @@ Often, we want to show pseudo code, source code or other verbatim content in our
 
 Example on displaying C/C++ source code:
 
+
 \begin{lstlisting}[style=custom-c,caption={Function to balance a matrix.}]
 extern PE_SIGPROC_API void pesig_balance(
         const size_t    n,
@@ -730,7 +728,9 @@ extern PE_SIGPROC_API void pesig_balance(
         );
 \end{lstlisting}
 
+
 Example on displaying BASH/Console scripts:
+
 
 \begin{lstlisting}[style=custom-bash,caption={A script in bash.}]
 $ mkdir -p $HOME/code/pebase/realtime
@@ -738,7 +738,9 @@ $ cd $HOME/code/pebase/realtime
 $ git clone git@github.com:maurovm/thesis_template.git repository
 \end{lstlisting}
 
+
 Example of displaying text as ``verbatim'' mode:
+
 
 \begin{lstlisting}[style=custom-verbatim,caption={License information.}]
 OxEngThesis is provided under:
@@ -760,15 +762,19 @@ for more details.
 
 \subsection{Coloured boxes}
 
+
 I use the \textit{tcolorbox}\footnote{\url{https://ctan.org/pkg/tcolorbox}} package to show coloured and framed text boxes with an optional heading line. Some examples include:
 
 \noindent Standard box:
+
 
 \begin{tcolorbox}
 \lipsum[1]
 \end{tcolorbox}
 
+
 \noindent Standard box with title:
+
 
 \begin{tcolorbox}[title=Box title]
 \lipsum[1]
@@ -777,21 +783,20 @@ I use the \textit{tcolorbox}\footnote{\url{https://ctan.org/pkg/tcolorbox}} pack
 
 \noindent A small box following text:\dotfill\tcbox[nobeforeafter,colframe=blue!50!black,colback=white,colupper=red!50!black]{Hello World}\hfill
 
+
 Read the documentation of the \verb|tcolorbox| package to see an extensive description of the configuration options and what you can do with the \verb|tcolorbox| class, it is quite customisable. The OxEngThesis class defines some environment commands for some predefined boxes. For example, the following is a warning box:
 
+
 \begin{OxWarningBox}{Warning box title}
-
 Warning box content: \lipsum[1]
-
 \end{OxWarningBox}
 
 
 The following example shows an information box:
 
+
 \begin{OxInfoBox}{Informational box title}
-
 Warning box content: \lipsum[1]
-
 \end{OxInfoBox}
 
 
@@ -828,6 +833,5 @@ This often occurs when a line of your document could not fit within the designat
 \end{figure}
 
 
-A black box will be shown next to the affected lines, as shown in \cref{fig:ch0:overfull_hbox_warning}. The \url{oxengthesis.cls} class file already takes advantage of other packages (such as
-\textit{microtype}\footnote{https://ctan.org/pkg/microtype}) to deal with common issues such as character protrusion, font expansion and inter-word spacing. I recommend you slightly rephrase your guilty sentences instead of changing the class template. This is usually the first approach many of my students take.
+A black box will be shown next to the affected lines, as shown in \cref{fig:ch0:overfull_hbox_warning}. The \url{oxengthesis.cls} class file already takes advantage of other packages (such as \textit{microtype}\footnote{https://ctan.org/pkg/microtype}) to deal with common issues such as character protrusion, font expansion and inter-word spacing. I recommend you slightly rephrase your guilty sentences instead of changing the class template. This is usually the first approach many of my students take.
 
