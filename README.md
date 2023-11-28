@@ -13,13 +13,13 @@ LaTex itself is very portable. However, I developed this class under Linux and m
 
 &nbsp;
 
-As a research student, a proportion of your time will be devoted to writing science in a formal academic style. There are many resources that will help you to write your thesis, such as [Writing your thesis](https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/ ompleting-your-dphil/writing-up-your-thesis), [Completing your doctorate](https://www.vitae.ac.uk/doing-research/doing-a-doctorate/completing-your-doctorate), [Essay and dissertation writing skills](https://www.ox.ac.uk/students/academic/guidance/skills/essay) and also other [resources for new students](https://cameralab.eng.ox.ac.uk/resources_new_students.html). Steven Pinker's talk on [Linguistics, Style and Writing in the 21st Century](https://youtu.be/OV5J6BfToSw) will provide you with sound advice on writing. 
+As a research student, a proportion of your time will be devoted to writing science in a formal academic style. There are many resources that will help you to write your thesis, such as [Writing your thesis](https://www.mpls.ox.ac.uk/training/resources-for-researcher-and-career-development/completing-your-dphil/writing-up-your-thesis), [Completing your doctorate](https://www.vitae.ac.uk/doing-research/doing-a-doctorate/completing-your-doctorate), [Essay and dissertation writing skills](https://www.ox.ac.uk/students/academic/guidance/skills/essay) and also other [resources for new students](https://cameralab.eng.ox.ac.uk/resources_new_students.html). Steven Pinker's talk on [Linguistics, Style and Writing in the 21st Century](https://youtu.be/OV5J6BfToSw) will provide you with sound advice on writing (hopefully you will put the passive voice to rest after watching the video). 
 
-My students have found very helpful to use the LaTeX typesetting system to write reports, theses, journal papers or other academic documents. You can write your LaTeX documents from scratch, however, it is often easier to start with an already written class template. This way you can focus on (as your supervisor expects) writing about your exciting research contributions, rather than spending time formatting your document or applying other cosmetic changes that just distract the reader. 
+My students have found very helpful to use the LaTeX typesetting system to write reports, theses, journal papers or other academic documents. You can write your LaTeX documents from scratch, however, it is often easier to start with an already written class template. This way you can focus on (as your supervisor expects) writing about your exciting research contributions, rather than spending time formatting your document or applying other cosmetic changes that just waste everybody's time and distract the reader. 
 
 The OxEngThesis class is based on the [memoir](https://ctan.org/pkg/memoir) package, with the addition of several other packages and extra features useful to format a typical academic document. The main class file is [oxengthesis.cls](oxengthesis.cls). One sample source file is provided: [sample_dphil_thesis.tex](sample_dphil_thesis.tex) to get you started writing your thesis. You can check the [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf) file to view an example of the output PDF document for a doctoral thesis.
 
-This tutorial summarises some of the features available in the OxEngThesis class. Take a look at the [oxengthesis.cls](oxengthesis.cls) file and the [sample_dphil_thesis.tex](sample_dphil_thesis.tex) source file for a more complete overview. Additionally, this tutorial is replicated as "Chapter 0 The OxEngThesis LaTeX class" in the [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf), so you can view examples of the LaTeX syntax to write your document.
+This tutorial summarises some of the features available in the OxEngThesis class. Take a look at the [oxengthesis.cls](oxengthesis.cls) file and the [sample_dphil_thesis.tex](sample_dphil_thesis.tex) source file for a more complete overview. Additionally, this tutorial is replicated as "Chapter 0: The OxEngThesis LaTeX class" in the [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf), so you can view examples of the LaTeX syntax to write your document.
 
 &nbsp;
 
@@ -37,7 +37,7 @@ Install the Carlito font (if it's not already installed in your system). Follow 
 ## LaTeX editors
 
 
-There are several editors available that will make your life easier when writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a compiling the LaTeX source files). For macOS, [Texifier](https://www.texifier.com) works really well. Good editors for Linux are [Kile](https://apps.kde.org/en-gb/kile) and [TeXMaker](https://www.xm1math.net/texmaker). I don't use Microsoft Windows. If you know what software is good for this operating system, let me know so I cand add it to my recommendaiton list.
+There are several editors available that will make your life easier when writing LaTeX documents and, ultimately, generating the final PDF file (a.k.a compiling the LaTeX source files). For macOS, [Texifier](https://www.texifier.com) works really well. Good editors for Linux are [Kile](https://apps.kde.org/en-gb/kile) and [TeXMaker](https://www.xm1math.net/texmaker). If you know what software is good for Microsoft Windows, let me know so I can add it to my recommendation list.
 
 The LaTeX files in this repository require the [LuaLaTeX](https://en.wikipedia.org/wiki/LuaTeX) engine. You editor should allow you to configure LuaLaTeX as the typesetting engine for your document and automatically take care of the compilation process to generate the final PDF document.
 
@@ -47,7 +47,7 @@ The LaTeX files in this repository require the [LuaLaTeX](https://en.wikipedia.o
 # Writing your thesis
 
 
-This tutorial is replicated as "Chapter 0 The OxEngThesis LaTeX class" in the [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf), so you can review examples on how to write your LaTeX document.
+This tutorial is replicated as "Chapter 0: The OxEngThesis LaTeX class" in the [sample_dphil_thesis-sample_output.pdf](sample_dphil_thesis-sample_output.pdf), so you can review examples on how to write your LaTeX document.
 
 
 ## Preparing your document
